@@ -933,12 +933,19 @@ module.exports = {
     zIndex: {
       auto: "auto",
       0: "0",
-      10: "10",
+      10: "10", 
       20: "20",
       30: "30",
       40: "40",
       50: "50",
     },
+    extend: {
+      fontFamily: {
+        "roboto": ["Roboto", "sans-serif"],
+        "lato": ["Lato", "sans-serif"],
+        "open-sans": ["Open Sans", "sans-serif"]
+      }
+    }
   },
   variantOrder: [
     "first",

@@ -1,18 +1,28 @@
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams} from "react-router-dom";
+import axios from "axios"
 
 
 export default function Detail() {
+  const [carsDetail, setCarsDetail] = useState({});
   const navigate = useNavigate()
+  const { id } = useParams()
+  useEffect(() => {
+    axios.get(`http://localhost:3000/cars/${id}`)
+    .then(res => {
+      setCarsDetail(res.data)
+    })
+  }, [])
 
-  const fetchMap = () =>{
-    navigate('map-navigation')
+  const fetchMap = (id) =>{
+    navigate(`/map-navigation/${id}`)
   }
 
   const goToPaymentPage = () => {
     navigate('/payments')
   }
-  const getFullReport = () => {
-    navigate('full-report')
+  const getFullReport = (idInspection) => {
+    navigate(`/full-report/${idInspection}`)
   }
 
   return (
@@ -23,12 +33,12 @@ export default function Detail() {
           <img className="w-full h-full" src="https://prod-carsome-id.imgix.net/B2C/55e0354e-6fa0-4a0a-a6aa-f0c48f54868b.jpg" alt="" />
         </div>
         <div className="w-2/6 h-5/6 p-4">
-          <h1 className="flex items-start font-bold text-2xl mt-1.5">2018 Toyota KIJANG INNOVA G 2.4</h1>
-          <h4 className="flex items-start text-sm mt-4">80.772 km | Automatic</h4>
-          <h2 className="flex items-start font-bold text-xl text-red-600">Rp. 308.266.000 (cash)</h2>
+          <h1 className="flex items-start font-bold text-2xl mt-1.5">{carsDetail.name}</h1>
+          <h4 className="flex items-start text-sm mt-4">{carsDetail.mileage} km</h4>
+          <h2 className="flex items-start font-bold text-xl text-red-600">Rp. {carsDetail.price} (cash)</h2>
           <div className="flex items-start flex-row rounded-md mt-4 p-3 bg-slate-100">
             <i className="flex justify-center mt-1 fa-solid fa-location-dot text-red-600 mr-4" />
-            <button className="flex justify-center font-semibold text-sky-600" onClick={() => fetchMap()}>Check Dealer Location</button>
+            <button className="flex justify-center font-semibold text-sky-600" onClick={() => fetchMap(carsDetail.id)}>Check Dealer Location</button>
           </div>
 
           {/* modal pembayaran */}
@@ -42,8 +52,8 @@ export default function Detail() {
       {/* detail mobil */}
 
       <div className="my-12">
-        <h1 className="font-bold text-slate-900 text-4xl">CAR DETAIL</h1>
-        <h1 className="font-semibold text-slate-900 text-lg mt-3">ID : XXXXXXX</h1>
+        <h1 className="font-bold text-slate-900 text-4xl">Car Detail</h1>
+        <h1 className="font-semibold text-slate-900 text-lg mt-3">ID : {carsDetail.id}</h1>
       </div>
       
       <hr className="mb-4 mx-16"/>
@@ -51,45 +61,35 @@ export default function Detail() {
       <div className="flex justify-around mb-10">
         <div className="w-2/5 h-auto">
           <div className="flex justify-between w-full mb-4 ">
-            <span>Jenis Bahan Bakar</span>
-            <span>Diesel</span>
+            <span>Fuel Type</span>
+            <span>{carsDetail.fuel}</span>
           </div>
           <hr className="mb-4"/>
           <div className="flex justify-between w-full mb-4">
-            <span>Jumlah Tempat Duduk</span>
-            <span>5</span>
+            <span>Number Of Seat</span>
+            <span>{carsDetail.seats}</span>
           </div>
           <hr className="mb-4"/>
           <div className="flex justify-between w-full mb-4">
-            <span>Kunci Cadangan</span>
-            <span>Ya</span>
-          </div>
-          <hr className="mb-4"/>
-          <div className="flex justify-between w-full mb-4">
-            <span>Garansi Pabrik</span>
-            <span>Tidak</span>
+            <span>Year Made</span>
+            <span>{carsDetail.yearMade}</span>
           </div>
         </div>
 
         <div className="w-2/5 h-auto">
           <div className="flex justify-between w-full mb-4">
-            <span>Warna</span>
-            <span>Silver</span>
+            <span>Color</span>
+            <span>{carsDetail.color}</span>
           </div>
           <hr className="mb-4"/>
           <div className="flex justify-between w-full mb-4">
-            <span>Tanggal Registrasi</span>
-            <span>Maret 2018</span>
+            <span>Inspection</span>
+
           </div>
           <hr className="mb-4"/>
           <div className="flex justify-between w-full mb-4">
-            <span>Jarak Tempuh</span>
-            <span>80.772 km</span>
-          </div>
-          <hr className="mb-4"/>
-          <div className="flex justify-between w-full mb-4">
-            <span>Buku Service</span>
-            <span>Ya</span>
+            <span>Current Mileage</span>
+            <span>{carsDetail.mileage} km</span>
           </div>
         </div>
       </div>
@@ -101,7 +101,7 @@ export default function Detail() {
               <div className="shadow-lg shadow-slate-600 rounded-l-lg w-3/6 bg-blue-900">
                 <div className="p-10">
                   <h1 className="font-bold text-lg text-white">Mobil Bekas Berkualitas</h1>
-                  <p className="font-semibold text-white">Proses inspeksi ketat 175 titik dan rekondisi memastikan Anda mendapatkan standar tertinggi. Hanya 3 dari 100 mobil yang mendapatkan persetujuan Carsome Certified.</p>
+                  <p className="font-semibold text-white">Proses inspeksi ketat 175 titik dan rekondisi memastikan Anda mendapatkan standar tertinggi. Hanya 3 dari 100 mobil yang mendapatkan persetujuan Otosic Certified.</p>
                 </div>
               </div>
               <div className="shadow-lg shadow-slate-400 rounded-r-lg w-3/6 bg-white">
@@ -128,7 +128,7 @@ export default function Detail() {
                   <span>23 Lulus</span>
                 </div>
                 <div className="flex flex-row justify-center m-5">
-                  <button onClick={() => getFullReport()} className="btn btn-outline my-3">Get Full Report</button>
+                  <button onClick={() => getFullReport(carsDetail.Inspection.id)} className="btn btn-outline my-3">Get Full Report</button>
                 </div>
               </div>
           </div>

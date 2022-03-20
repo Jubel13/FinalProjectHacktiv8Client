@@ -1,11 +1,16 @@
 import React, {useState, useEffect} from 'react';
+import { useParams } from 'react-router-dom';
 import { GoogleMap, LoadScript, DirectionsService, DirectionsRenderer} from '@react-google-maps/api';
+import env from "react-dotenv";
+import axios from 'axios';
 
 
 export default function MapsNavigation() {
+  const {id} = useParams()
   const [dealerPosition, setDealerPosition] = useState({})
   const [userPosition, setUserPosition] = useState({})
   const [directions, setDirection] = useState(null)
+  
   const directionCallback = (response)=>{
     if (response !== null) {
       if (response.status === 'OK') {
@@ -19,7 +24,6 @@ export default function MapsNavigation() {
   }
 
   const errorCallback = (error)=> {
-    console.log(error);
   }
 
 
@@ -28,38 +32,24 @@ export default function MapsNavigation() {
     navigator.geolocation.getCurrentPosition(successCallback, errorCallback)
 
     //get dealer location
-    fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=Bandung&key=AIzaSyBjlQ0LbPIFIH3rExuCRIFoDifRyNAyenw`)
-    .then(res => res.json())
-    .then(data => {
-      data.results.forEach(el => {
-        setDealerPosition(el.geometry.location)
-      });
-    })
-    .catch(err => console.log(err))
+    axios.get(`http://localhost:3000/cars/${id}`)
+      .then(res => {
+        setDealerPosition(res.data.Dealer)
+      })
+      .catch(err => console.log(err))
   }, [])
 
   return (
     <div>
-      <LoadScript 
-        googleMapsApiKey='AIzaSyBjlQ0LbPIFIH3rExuCRIFoDifRyNAyenw'>
+      <LoadScript googleMapsApiKey="AIzaSyBjlQ0LbPIFIH3rExuCRIFoDifRyNAyenw" >
           <GoogleMap
             mapContainerStyle={{ width: 1365, height: 625 }}
             center={{ lat: userPosition.latitude, lng: userPosition.longitude }}
             zoom={10}
           >
-            {/* {
-              <Marker position={{ lat: userPosition.latitude, lng: userPosition.longitude }}></Marker>
-            }
-            {
-              dealerPosition.map(dealer => {
-                return (
-                  <Marker key={dealer.place_id} position={{lat: dealer.geometry.location.lat, lng: dealer.geometry.location.lng}} />
-                )
-              })
-            } */}
             <DirectionsService
               options={{
-                destination: {lat: dealerPosition.lat, lng: dealerPosition.lng},
+                destination: dealerPosition.storeAddress,
                 origin:{lat: userPosition.latitude, lng: userPosition.longitude },
                 travelMode: 'DRIVING'
               }}
@@ -71,9 +61,7 @@ export default function MapsNavigation() {
                 <DirectionsRenderer directions={directions}/>
               )
             }
-
           </GoogleMap>
-          
       </LoadScript>
     </div>
   ) 

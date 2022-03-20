@@ -1,36 +1,80 @@
-import React from 'react';
-import GoogleMapReact from 'google-map-react';
+import React, {useState, useEffect} from 'react';
+import { GoogleMap, LoadScript, DirectionsService, DirectionsRenderer} from '@react-google-maps/api';
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+
 export default function MapsNavigation() {
-  const defaultProps = {
-    center: {
-      lat: -6.229991,
-      lng: 106.721986
-    },
-    zoom: 11
-  };
+  const [dealerPosition, setDealerPosition] = useState({})
+  const [userPosition, setUserPosition] = useState({})
+  const [directions, setDirection] = useState(null)
+  const directionCallback = (response)=>{
+    if (response !== null) {
+      if (response.status === 'OK') {
+        setDirection(response)
+      }
+    }
+  }
 
-  const handleApiLoaded = (map, maps) => {
-    console.log(map, maps, ' <==============');
-  };
-  
+  const successCallback = (position)=> {
+    setUserPosition(position.coords)
+  }
+
+  const errorCallback = (error)=> {
+    console.log(error);
+  }
+
+
+  useEffect(() => {
+    //get user location
+    navigator.geolocation.getCurrentPosition(successCallback, errorCallback)
+
+    //get dealer location
+    fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=Bandung&key=AIzaSyBjlQ0LbPIFIH3rExuCRIFoDifRyNAyenw`)
+    .then(res => res.json())
+    .then(data => {
+      data.results.forEach(el => {
+        setDealerPosition(el.geometry.location)
+      });
+    })
+    .catch(err => console.log(err))
+  }, [])
+
   return (
-    <div style={{ height: '50vh', width: '50%' }}>
-      <GoogleMapReact
-        bootstrapURLKeys={{ key: "AIzaSyBjlQ0LbPIFIH3rExuCRIFoDifRyNAyenw" }}
-        defaultCenter={defaultProps.center}
-        defaultZoom={defaultProps.zoom}
-        yesIWantToUseGoogleMapApiInternals
-        onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
-      >
-        <AnyReactComponent
-          lat={defaultProps.center.lat}
-          lng={defaultProps.center.lng}
-          text="Posisi Gue"
+    <div>
+      <LoadScript 
+        googleMapsApiKey='AIzaSyBjlQ0LbPIFIH3rExuCRIFoDifRyNAyenw'>
+          <GoogleMap
+            mapContainerStyle={{ width: 1365, height: 625 }}
+            center={{ lat: userPosition.latitude, lng: userPosition.longitude }}
+            zoom={10}
+          >
+            {/* {
+              <Marker position={{ lat: userPosition.latitude, lng: userPosition.longitude }}></Marker>
+            }
+            {
+              dealerPosition.map(dealer => {
+                return (
+                  <Marker key={dealer.place_id} position={{lat: dealer.geometry.location.lat, lng: dealer.geometry.location.lng}} />
+                )
+              })
+            } */}
+            <DirectionsService
+              options={{
+                destination: {lat: dealerPosition.lat, lng: dealerPosition.lng},
+                origin:{lat: userPosition.latitude, lng: userPosition.longitude },
+                travelMode: 'DRIVING'
+              }}
+              callback={directionCallback}
+            />
+            
+            {
+              directions !== null && (
+                <DirectionsRenderer directions={directions}/>
+              )
+            }
+
+          </GoogleMap>
           
-        />
-      </GoogleMapReact>
+      </LoadScript>
     </div>
-  )
+  ) 
 }

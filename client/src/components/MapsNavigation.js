@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import { GoogleMap, LoadScript, DirectionsService, DirectionsRenderer} from '@react-google-maps/api';
-import env from "react-dotenv";
-import axios from 'axios';
+import serverApi from '../apis/serverApi'
 
 
 export default function MapsNavigation() {
@@ -32,7 +31,7 @@ export default function MapsNavigation() {
     navigator.geolocation.getCurrentPosition(successCallback, errorCallback)
 
     //get dealer location
-    axios.get(`http://localhost:3000/cars/${id}`)
+    serverApi.get(`/cars/${id}`)
       .then(res => {
         setDealerPosition(res.data.Dealer)
       })

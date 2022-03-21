@@ -32,17 +32,17 @@ function Sidebar() {
         <ul className='nav flex-column'>
           <li className='nav-item'>
             <Link to='/inspections' className='nav-link nav-menu'>
-              <i className='fa-solid fa-table-columns'></i> Dashboard
+              <i className='fa-solid fa-table-columns'></i>&nbsp; Dashboard
             </Link>
           </li>
           <li className='nav-item'>
-            <Link to='category' className='nav-link nav-menu'>
-              <i className='fa-solid fa-code-branch'></i> Category
+            <Link to='cars' className='nav-link nav-menu'>
+              <i class='fa-solid fa-car'></i>&nbsp; Cars
             </Link>
           </li>
           <li className='nav-item'>
             <Link to='register' className='nav-link nav-menu'>
-              <i className='fas fa-user-cog'></i> Register Admin
+              <i className='fas fa-user-cog'></i>&nbsp; Register Admin
             </Link>
           </li>
           <li className='nav-item'>
@@ -51,7 +51,7 @@ function Sidebar() {
               onClick={logoutHandler}
               className='nav-link nav-menu'
             >
-              <i className='fas fa-sign-out-alt'></i> Logout
+              <i className='fas fa-sign-out-alt'></i>&nbsp; Logout
             </a>
           </li>
         </ul>

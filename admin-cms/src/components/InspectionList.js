@@ -14,7 +14,7 @@ function InspectionList({ isLoading }) {
 
   return (
     <>
-      <div id='product-header'>
+      <div id='inspection-header'>
         <h1 className='mb-3 col-3'>Inspection List</h1>
       </div>
 

@@ -143,8 +143,8 @@ hr {
   margin: 0 1px;
 }
 
-#product-header,
-#category-header {
+#inspection-header,
+#car-header {
   display: flex;
   justify-content: space-between;
 }

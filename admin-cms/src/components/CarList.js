@@ -34,9 +34,11 @@ function CarList({ isLoading }) {
             </tr>
           </thead>
           <tbody>
-            {cars.map((car) => {
-              return <Car car={car} key={car.id} />;
-            })}
+            {cars
+              .sort((a, b) => a.id - b.id)
+              .map((car) => {
+                return <Car car={car} key={car.id} />;
+              })}
           </tbody>
         </table>
       )}

@@ -10,6 +10,7 @@ import RegisterAdmin from "./components/RegisterAdmin";
 import InspectionList from "./components/InspectionList";
 import { fetchInspections } from "./store/actionCreators/inspectionActions";
 import CarList from "./components/CarList";
+import ExteriorList from "./components/ExteriorList";
 
 function App() {
   const dispatch = useDispatch();
@@ -45,6 +46,7 @@ function App() {
             element={<InspectionList isLoading={isLoading} />}
           ></Route>
           <Route path='cars' element={<CarList />}></Route>
+          <Route path='exterior' element={<ExteriorList />}></Route>
           <Route path='register' element={<RegisterAdmin />}></Route>
         </Route>
         <Route

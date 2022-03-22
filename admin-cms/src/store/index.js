@@ -7,6 +7,7 @@ import carReducer from "./reducers/carReducer";
 import exteriorReducer from "./reducers/exteriorReducer";
 import interiorReducer from "./reducers/interiorReducer";
 import roadTestReducer from "./reducers/roadTestReducer";
+import kolongReducer from "./reducers/kolongReducer";
 
 const rootReducer = combineReducers({
   userReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   exteriorReducer,
   interiorReducer,
   roadTestReducer,
+  kolongReducer,
 });
 
 let store = createStore(rootReducer, applyMiddleware(thunk, loggerMiddleware));

@@ -234,7 +234,7 @@ function ModalExt({ ext, show, setShow }) {
             </div>
             <div className='mb-3'>
               <label className='form-label'>
-                Kaca Samping Inspection status: &nbsp;
+                Side Glass Inspection status: &nbsp;
               </label>
               <select
                 value={samping}
@@ -248,7 +248,7 @@ function ModalExt({ ext, show, setShow }) {
             </div>
             <div className='mb-3'>
               <label className='form-label'>
-                Kaca Belakang Inspection status: &nbsp;
+                Back Glass Inspection status: &nbsp;
               </label>
               <select
                 value={belakang}

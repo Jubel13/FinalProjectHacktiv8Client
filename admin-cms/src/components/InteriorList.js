@@ -27,7 +27,7 @@ function InteriorList({ isLoading }) {
             <tr>
               <th scope='col'>Id</th>
               <th scope='col'>Speedometer</th>
-              <th scope='col'>Klakson</th>
+              <th scope='col'>Horn</th>
               <th scope='col'>Steering Wheel</th>
               <th scope='col'>Rear View Mirror</th>
               <th scope='col'>Dashboard</th>

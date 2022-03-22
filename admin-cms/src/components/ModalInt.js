@@ -154,7 +154,7 @@ function ModalInt({ int, show, setShow }) {
             </div>
             <div className='mb-3'>
               <label className='form-label'>
-                Klakson Inspection status: &nbsp;{" "}
+                Horn Inspection status: &nbsp;{" "}
               </label>
               <select
                 value={klak}

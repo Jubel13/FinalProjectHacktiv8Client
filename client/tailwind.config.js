@@ -943,7 +943,7 @@ module.exports = {
       fontFamily: {
         "roboto": ["Roboto", "sans-serif"],
         "lato": ["Lato", "sans-serif"],
-        "open-sans": ["Open Sans", "sans-serif"]
+        "open-sans": ["Encode Sans Semi Condensed", "sans-serif"]
       }
     }
   },
@@ -965,5 +965,5 @@ module.exports = {
     "active",
     "disabled",
   ],
-  plugins: [],
+  plugins: [require("daisyui")],
 };

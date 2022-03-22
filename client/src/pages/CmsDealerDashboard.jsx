@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { dealerApi } from "../apis";
+import { dealerApi } from "../API";
 
 import Navbar from "../components/CmsAdmin/Navbar";
 import Table from "../components/CmsAdmin/table/templates/Table";

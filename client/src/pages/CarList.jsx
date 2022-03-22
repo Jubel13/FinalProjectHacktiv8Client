@@ -16,9 +16,9 @@ export default function CarList() {
 
   return (
     <div className="h-full w-full mt-8 px-36 flex flex-col gap-y-12">
-      <div className="h-24 w-full z-50 bg-slate-600 flex flex-col justify-center items-center sticky top-0">
+      {/* <div className="h-24 w-full z-50 bg-slate-600 flex flex-col justify-center items-center sticky top-0">
         Search
-      </div>
+      </div> */}
       <div className="h-full w-full flex flex-wrap gap-y-8 items-center justify-center">
         {cars.map((car, index) => {
           return <Card key={index} car={car} />;

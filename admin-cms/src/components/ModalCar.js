@@ -45,7 +45,9 @@ function ModalCar({ car, show, setShow }) {
     <>
       <Modal show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
-          <Modal.Title>Update Car passed status</Modal.Title>
+          <Modal.Title>
+            Update Car passed status with car id: {car.id}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={carPassedHandler}>

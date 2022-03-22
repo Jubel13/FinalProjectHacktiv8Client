@@ -13,37 +13,67 @@ function Inspection({ inspection }) {
         <td>{inspection.CarId}</td>
         <td>
           {inspection.mainInspection === true ? (
-            <i class='fa-solid fa-circle-check' style={{ color: "green" }}></i>
+            <i
+              class='fa-solid fa-circle-check fa-xl'
+              style={{ color: "green" }}
+            ></i>
           ) : (
-            <i class='fa-solid fa-circle-xmark' style={{ color: "red" }}></i>
+            <i
+              class='fa-solid fa-circle-xmark fa-xl'
+              style={{ color: "red" }}
+            ></i>
           )}
         </td>
         <td>
           {inspection.exteriorInspection === true ? (
-            <i class='fa-solid fa-circle-check' style={{ color: "green" }}></i>
+            <i
+              class='fa-solid fa-circle-check fa-xl'
+              style={{ color: "green" }}
+            ></i>
           ) : (
-            <i class='fa-solid fa-circle-xmark' style={{ color: "red" }}></i>
+            <i
+              class='fa-solid fa-circle-xmark fa-xl'
+              style={{ color: "red" }}
+            ></i>
           )}
         </td>
         <td>
           {inspection.interiorInspection === true ? (
-            <i class='fa-solid fa-circle-check' style={{ color: "green" }}></i>
+            <i
+              class='fa-solid fa-circle-check fa-xl'
+              style={{ color: "green" }}
+            ></i>
           ) : (
-            <i class='fa-solid fa-circle-xmark' style={{ color: "red" }}></i>
+            <i
+              class='fa-solid fa-circle-xmark fa-xl'
+              style={{ color: "red" }}
+            ></i>
           )}
         </td>
         <td>
           {inspection.roadTest === true ? (
-            <i class='fa-solid fa-circle-check' style={{ color: "green" }}></i>
+            <i
+              class='fa-solid fa-circle-check fa-xl'
+              style={{ color: "green" }}
+            ></i>
           ) : (
-            <i class='fa-solid fa-circle-xmark' style={{ color: "red" }}></i>
+            <i
+              class='fa-solid fa-circle-xmark fa-xl'
+              style={{ color: "red" }}
+            ></i>
           )}
         </td>
         <td>
           {inspection.kolongTest === true ? (
-            <i class='fa-solid fa-circle-check' style={{ color: "green" }}></i>
+            <i
+              class='fa-solid fa-circle-check fa-xl'
+              style={{ color: "green" }}
+            ></i>
           ) : (
-            <i class='fa-solid fa-circle-xmark' style={{ color: "red" }}></i>
+            <i
+              class='fa-solid fa-circle-xmark fa-xl'
+              style={{ color: "red" }}
+            ></i>
           )}
         </td>
         <td>{inspection.inspectedBy}</td>

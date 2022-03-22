@@ -149,7 +149,8 @@ hr {
 
 #inspection-header,
 #car-header,
-#exterior-header {
+#exterior-header,
+#interior-header {
   display: flex;
   justify-content: space-between;
 }

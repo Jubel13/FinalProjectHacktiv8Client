@@ -14,9 +14,15 @@ function Car({ car }) {
         <td>{new Date(car.yearMade).getFullYear()}</td>
         <td>
           {car.passedInspection === true ? (
-            <i class='fa-solid fa-circle-check' style={{ color: "green" }}></i>
+            <i
+              class='fa-solid fa-circle-check fa-xl'
+              style={{ color: "green" }}
+            ></i>
           ) : (
-            <i class='fa-solid fa-circle-xmark' style={{ color: "red" }}></i>
+            <i
+              class='fa-solid fa-circle-xmark fa-xl'
+              style={{ color: "red" }}
+            ></i>
           )}
         </td>
         <td>{car.status}</td>

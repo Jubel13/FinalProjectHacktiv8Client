@@ -15,7 +15,7 @@ function ExteriorList({ isLoading }) {
   return (
     <>
       <div id='exterior-header'>
-        <h1 className='mb-3 col-3'>Exterior Inspection List</h1>
+        <h1 className='mb-3 col-6'>Exterior Inspection List</h1>
       </div>
 
       {isLoading ? (

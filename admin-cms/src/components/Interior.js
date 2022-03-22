@@ -1,17 +1,17 @@
 import { useState } from "react";
-import ModalExt from "./ModalExt";
+import ModalInt from "./ModalInt";
 
-function Exterior({ ext }) {
+function Interior({ int }) {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
 
   return (
     <>
-      <ModalExt ext={ext} show={show} setShow={setShow} />
+      <ModalInt int={int} show={show} setShow={setShow} />
       <tr>
-        <td>{ext.id}</td>
+        <td>{int.id}</td>
         <td>
-          {ext.chassis === true ? (
+          {int.speedometer === true ? (
             <i
               class='fa-solid fa-circle-check fa-xl'
               style={{ color: "green" }}
@@ -24,7 +24,7 @@ function Exterior({ ext }) {
           )}
         </td>
         <td>
-          {ext.bumper === true ? (
+          {int.klakson === true ? (
             <i
               class='fa-solid fa-circle-check fa-xl'
               style={{ color: "green" }}
@@ -37,7 +37,7 @@ function Exterior({ ext }) {
           )}
         </td>
         <td>
-          {ext.lights === true ? (
+          {int.steeringWheel === true ? (
             <i
               class='fa-solid fa-circle-check fa-xl'
               style={{ color: "green" }}
@@ -50,7 +50,7 @@ function Exterior({ ext }) {
           )}
         </td>
         <td>
-          {ext.roof === true ? (
+          {int.rearViewMirror === true ? (
             <i
               class='fa-solid fa-circle-check fa-xl'
               style={{ color: "green" }}
@@ -63,7 +63,7 @@ function Exterior({ ext }) {
           )}
         </td>
         <td>
-          {ext.spion === true ? (
+          {int.dashboard === true ? (
             <i
               class='fa-solid fa-circle-check fa-xl'
               style={{ color: "green" }}
@@ -76,7 +76,7 @@ function Exterior({ ext }) {
           )}
         </td>
         <td>
-          {ext.windShield === true ? (
+          {int.seats === true ? (
             <i
               class='fa-solid fa-circle-check fa-xl'
               style={{ color: "green" }}
@@ -89,7 +89,7 @@ function Exterior({ ext }) {
           )}
         </td>
         <td>
-          {ext.kacaSamping === true ? (
+          {int.gasPedal === true ? (
             <i
               class='fa-solid fa-circle-check fa-xl'
               style={{ color: "green" }}
@@ -102,7 +102,7 @@ function Exterior({ ext }) {
           )}
         </td>
         <td>
-          {ext.kacaBelakang === true ? (
+          {int.brakePedal === true ? (
             <i
               class='fa-solid fa-circle-check fa-xl'
               style={{ color: "green" }}
@@ -114,24 +114,11 @@ function Exterior({ ext }) {
             ></i>
           )}
         </td>
-        <td>
-          {ext.tire === true ? (
-            <i
-              class='fa-solid fa-circle-check fa-xl'
-              style={{ color: "green" }}
-            ></i>
-          ) : (
-            <i
-              class='fa-solid fa-circle-xmark fa-xl'
-              style={{ color: "red" }}
-            ></i>
-          )}
-        </td>
-        <td>{ext.InspectionId}</td>
-        <td>{ext.inspectedBy}</td>
+        <td>{int.InspectionId}</td>
+        <td>{int.inspectedBy}</td>
         <td>
           <button onClick={handleShow} className='btn btn-secondary mx-1'>
-            Update Exterior
+            Update Interior
           </button>
         </td>
       </tr>
@@ -139,4 +126,4 @@ function Exterior({ ext }) {
   );
 }
 
-export default Exterior;
+export default Interior;

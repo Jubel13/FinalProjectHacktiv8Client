@@ -25,14 +25,14 @@ export default function FullReportPage() {
     <>
     {/* main inspection */}
       <div className="flex flex-col justify-center bg-gray-100">
-        <div className="bg-white mx-20 mt-20 w-5/6 rounded-md">
+        <div className="bg-white mx-20 mt-10 w-100 rounded-md">
           <div className="flex flex-row justify-between p-3">
             <span className="font-bold text-gray-800">Main Inspection</span>
             {
               inspection.mainInspection === true ? <span className="font-bold text-green-500">Graduated</span> : <span className="font-bold text-red-500">Not Graduated</span>
             }
           </div>
-          <div className="flex flex-row justify-center p-4"> 
+          <div className="flex flex-row justify-center w-100 p-4"> 
             <div className="flex w-2/4">
               <img className="rounded-l-md" src="https://www.carsome.id/_nuxt/img/r-no-0.720afe1.jpg" alt="" />
             </div>
@@ -46,7 +46,7 @@ export default function FullReportPage() {
 
         {/* Eksterior */}
 
-        <div className="bg-white mx-20 my-10 w-5/6 rounded-md">
+        <div className="bg-white mx-20 my-10 w-100 rounded-md">
           <div className="flex flex-row justify-between p-4">
             <span className="font-bold text-gray-800">Exterior</span>
             {
@@ -127,7 +127,7 @@ export default function FullReportPage() {
 
         {/* interior */}
 
-        <div className="bg-white mx-20 mb-10 w-5/6 rounded-md">
+        <div className="bg-white mx-20 mb-10 w-100 rounded-md">
           <div className="flex flex-row justify-between p-4">
             <span className="font-bold text-gray-800">Interior</span>
             {
@@ -210,7 +210,7 @@ export default function FullReportPage() {
                 
         {/* Road Test */}
 
-        <div className="bg-white mx-20 mb-10 w-5/6 rounded-md">
+        <div className="bg-white mx-20 mb-10 w-100 rounded-md">
           <div className="flex flex-row justify-between p-4">
             <span className="font-bold text-gray-800">Road Test</span>
             {
@@ -278,7 +278,7 @@ export default function FullReportPage() {
 
         {/* Kolong */}
 
-        <div className="bg-white mx-20 w-5/6 mb-10 rounded-md">
+        <div className="bg-white mx-20 w-100 mb-10 rounded-md">
           <div className="flex flex-row justify-between p-4">
             <span className="font-bold text-gray-800">Bottom Section</span>
             {

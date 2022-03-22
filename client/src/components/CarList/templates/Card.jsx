@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 // import Carousel from "../organisms/Carousel";
 import { priceFormatter, mileageFormatter, yearFormatter } from "../../../helpers";
+import { useNavigate } from "react-router";
 
 export default function Card({ car }) {
   const [index, setIndex] = useState(0);
@@ -15,6 +16,11 @@ export default function Card({ car }) {
     setCurImage(car.Images[0].image);
     // console.log(curImage)
   }, []);
+
+  const navigate = useNavigate()
+  const seeDetail = (carId) => {
+    navigate('/detail/'+carId)
+  }
 
   return (
     <div className="w-80 mx-8 overflow-hidden bg-white rounded-xl shadow-lg border">
@@ -42,7 +48,7 @@ export default function Card({ car }) {
           <button className="w-1/3 h-full border-r hover:bg-slate-100 hover:font-bold hover:text-md">
             Preview
           </button>
-          <button className="w-1/3 h-full border-r hover:bg-slate-100 hover:font-bold hover:text-md">
+          <button onClick={() => seeDetail(car.id)} className="w-1/3 h-full border-r hover:bg-slate-100 hover:font-bold hover:text-md">
             See Detail
           </button>
           <button className="w-1/3 h-full hover:bg-slate-100 hover:font-bold hover:text-md">

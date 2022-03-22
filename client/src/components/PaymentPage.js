@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router"
-import { apiClient, core } from "../API/midtrans"
+// import { midtrans, core} from "../API/midtrans"
+import { apiClient } from "../API/newMidtrans"
 import serverApi from '../API/serverApi'
 
 export default function PaymentPage() {
@@ -118,25 +119,47 @@ export default function PaymentPage() {
     })
     .catch(err => console.log(err))
   }
+  
 
-  const payload = {
-    client_key: 'SB-Mid-client-yD7_B8N68TSAEE2y',
-    card_number: '5211111111111117',
-    card_cvv: '123',
-    card_exp_month: '12',
-    card_exp_year: '2025'
-  }
-  core.cardToken(payload)
-  .then(resp => console.log(resp, '<<<<< CARD >>>>>'))
-  .catch(err => console.log(err.ApiResponse, '<<<<< CARD ERROR >>>>>'))
-
+  
   const submitPaymentCredit = () => {
+    // midtrans.get(`v2/card/register?card_number=${cardNumber}&card_exp_month=${cardExpMonth}&card_exp_year=${cardExpYear}&client_key=${process.env.REACT_APP_CLIENT_KEY}`, {
+    //   headers: {
+    //     "Access-Control-Allow-Methods": 'GET'
+    //   }
+    // })
+    //   .then(res => {
+    //     console.log(res.data);
+    //   })
+    //   .catch(err => {
+    //     console.log(err.response);
+    //   })
+    // const payload = {
+    //   client_key: process.env.REACT_APP_CLIENT_KEY,
+    //   card_number: cardNumber.toString(),
+    //   card_cvv: cvv.toString(),
+    //   card_exp_month: cardExpMonth.toString(),
+    //   card_exp_year: cardExpYear.toString()
+    // }
+
+    // core.cardToken(payload)
+    // .then(resp => {
+    //   const params = {
+    //     client_key: process.env.REACT_APP_CLIENT_KEY,
+    //     token_id: resp.token_id,
+    //     card_cvv: cvv.toString(),
+    //   }
+    //   return core.cardToken(params)
+    // })
+    // .then(resp => console.log(resp, '<<<<< NEXT CARD >>>>>'))
+    // .catch(err => console.log(err.ApiResponse, '<<<<< CARD ERROR >>>>>'))
     
+
   }
 
   return (
     <>
-      <h1 className="font-bold text-xl my-5">Payment Page</h1>
+      <h1 className="flex justify-center font-bold text-xl my-5">Payment Page</h1>
       <div className="flex flex-row justify-center mx-32">
         <div className="w-2/6 my-4">
           <select className="select select-bordered w-full" onChange={changePaymentMethod} value={paymentMethod} defaultValue={paymentMethod}>

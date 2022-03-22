@@ -42,7 +42,7 @@ export default function MapsNavigation() {
     <div>
       <LoadScript googleMapsApiKey={process.env.REACT_APP_API_KEY}>
           <GoogleMap
-            mapContainerStyle={{ width: 1365, height: 625 }}
+            mapContainerStyle={{ width:'100vw', height: '100vh' }}
             center={{ lat: userPosition.latitude, lng: userPosition.longitude }}
             zoom={10}
           >

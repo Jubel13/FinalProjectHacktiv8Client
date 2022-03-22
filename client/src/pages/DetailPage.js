@@ -63,7 +63,7 @@ export default function Detail() {
   return (
     <div className="containerDetail">
       {/* image and maps navigasi */}
-      <div className="flex flex-row">
+      <div className="flex flex-row mt-5 px-24">
         <div className="w-4/6">
           <div className="carousel w-full">
             <div className="carousel-item relative w-full">
@@ -76,7 +76,7 @@ export default function Detail() {
           </div>
           
         </div>
-        <div className="w-2/6 h-96 p-4">
+        <div className="w-2/6 h-96 px-6">
           <h1 className="flex items-start font-bold text-2xl mt-1.5">{carsDetail.name}</h1>
           <h4 className="flex items-start text-sm mt-4">{carsDetail.mileage?carsDetail.mileage.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."): carsDetail.mileage} km</h4>
           <h2 className="flex items-start font-bold text-xl text-red-600">Rp. {carsDetail.price?carsDetail.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."): carsDetail.price} (cash)</h2>
@@ -86,7 +86,7 @@ export default function Detail() {
           </div>
 
           {/* modal pembayaran */}
-          <div className="flex flex-row items-end">
+          <div className="flex flex-row items-end pr-3">
             <button onClick={() => goToPaymentPage(carsDetail.id)} className="flex btn btn-outline items-center justify-center mt-12 font-bold w-5/6 h-12 rounded-md">Buy Now</button>
             <a href="https://api.whatsapp.com/send/?phone=6281355538777" className="flex btn btn-outline items-center justify-center mt-12 ml-2 rounded-md h-12"><i className="fa-brands fa-whatsapp text-4xl text-green-400"></i></a>
           </div>
@@ -95,7 +95,7 @@ export default function Detail() {
 
       {/* detail mobil */}
 
-      <div className="mb-8">
+      <div className="flex flex-col items-center mb-8">
         <h1 className="font-bold text-slate-900 text-3xl">Car Detail</h1>
         <h1 className="font-semibold text-slate-900 text-lg mt-3">ID : {carsDetail.id}</h1>
       </div>

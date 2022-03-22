@@ -150,7 +150,9 @@ hr {
 #inspection-header,
 #car-header,
 #exterior-header,
-#interior-header {
+#interior-header,
+#roadtest-header,
+#kolong-header {
   display: flex;
   justify-content: space-between;
 }

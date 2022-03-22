@@ -96,7 +96,9 @@ function ModalInspection({ inspection, show, setShow }) {
     <>
       <Modal show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
-          <Modal.Title>Update Car Inspections</Modal.Title>
+          <Modal.Title>
+            Update Car Inspections with id: {inspection.id}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={inspectionHandler}>

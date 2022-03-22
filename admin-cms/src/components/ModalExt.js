@@ -121,7 +121,7 @@ function ModalExt({ ext, show, setShow }) {
       lights: light,
       roof: atap,
       spion: kacaSpion,
-      windshield: shield,
+      windShield: shield,
       kacaSamping: samping,
       kacaBelakang: belakang,
       tire: ban,
@@ -142,9 +142,11 @@ function ModalExt({ ext, show, setShow }) {
 
   return (
     <>
-      <Modal show={show} animation={false}>
+      <Modal show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
-          <Modal.Title>Update Exterior Inspections</Modal.Title>
+          <Modal.Title>
+            Update Exterior Inspections with id:{ext.id}{" "}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={exteriorHandler}>

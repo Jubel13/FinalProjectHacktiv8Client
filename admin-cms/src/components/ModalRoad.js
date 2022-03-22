@@ -3,119 +3,94 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 import {
-  fetchInteriors,
-  updateInterior,
-} from "../store/actionCreators/interiorActions";
-
-function ModalInt({ int, show, setShow }) {
+  fetchRoadTest,
+  updateRoadTest,
+} from "../store/actionCreators/roadtestActions";
+function ModalRoad({ road, show, setShow }) {
   const {
-    speedometer,
-    klakson,
-    steeringWheel,
-    rearViewMirror,
-    dashboard,
-    seats,
-    gasPedal,
-    brakePedal,
-  } = int;
+    engineStarting,
+    engineIdling,
+    steeringSystem,
+    acceleration,
+    engineSound,
+    brake,
+  } = road;
 
-  const [speedo, setSpeedo] = useState(speedometer);
-  const [klak, setKlakson] = useState(klakson);
-  const [steering, setSteering] = useState(steeringWheel);
-  const [rear, setRear] = useState(rearViewMirror);
-  const [dash, setDash] = useState(dashboard);
-  const [seat, setSeat] = useState(seats);
-  const [gas, setGas] = useState(gasPedal);
-  const [brake, setBrake] = useState(brakePedal);
+  const [start, setStart] = useState(engineStarting);
+  const [idle, setIdle] = useState(engineIdling);
+  const [steer, setSteer] = useState(steeringSystem);
+  const [acc, setAcc] = useState(acceleration);
+  const [sound, setSound] = useState(engineSound);
+  const [brakeSys, setBrakeSys] = useState(brake);
 
   const handleClose = () => setShow(false);
   const dispatch = useDispatch();
 
-  function changeSpeedo(e) {
+  function changeStart(e) {
     const value = e.target.value;
     if (value === "true") {
-      setSpeedo(true);
+      setStart(true);
     } else {
-      setSpeedo(false);
+      setStart(false);
     }
   }
 
-  function changeKlak(e) {
+  function changeIdle(e) {
     const value = e.target.value;
     if (value === "true") {
-      setKlakson(true);
+      setIdle(true);
     } else {
-      setKlakson(false);
+      setIdle(false);
     }
   }
 
   function changeSteer(e) {
     const value = e.target.value;
     if (value === "true") {
-      setSteering(true);
+      setSteer(true);
     } else {
-      setSteering(false);
+      setSteer(false);
     }
   }
-  function changeRear(e) {
+  function changeAcc(e) {
     const value = e.target.value;
     if (value === "true") {
-      setRear(true);
+      setAcc(true);
     } else {
-      setRear(false);
-    }
-  }
-
-  function changeDash(e) {
-    const value = e.target.value;
-    if (value === "true") {
-      setDash(true);
-    } else {
-      setDash(false);
+      setAcc(false);
     }
   }
 
-  function changeSeat(e) {
+  function changeSound(e) {
     const value = e.target.value;
     if (value === "true") {
-      setSeat(true);
+      setSound(true);
     } else {
-      setSeat(false);
-    }
-  }
-
-  function changeGas(e) {
-    const value = e.target.value;
-    if (value === "true") {
-      setGas(true);
-    } else {
-      setGas(false);
+      setSound(false);
     }
   }
 
   function changeBrake(e) {
     const value = e.target.value;
     if (value === "true") {
-      setBrake(true);
+      setBrakeSys(true);
     } else {
-      setBrake(false);
+      setBrakeSys(false);
     }
   }
 
-  function interiorHandler(e) {
+  function roadTestHandler(e) {
     e.preventDefault();
     const data = {
-      speedometer: speedo,
-      klakson: klak,
-      steeringWheel: steering,
-      rearViewMirror: rear,
-      dashboard: dash,
-      seats: seat,
-      gasPedal: gas,
-      brakePedal: brake,
+      engineStarting: start,
+      engineIdling: idle,
+      steeringSystem: steer,
+      acceleration: acc,
+      engineSound: sound,
+      brake: brakeSys,
     };
 
-    dispatch(updateInterior(data, int.id)).then((data) => {
+    dispatch(updateRoadTest(data, road.id)).then((data) => {
       Swal.fire({
         position: "top-end",
         icon: "success",
@@ -123,7 +98,7 @@ function ModalInt({ int, show, setShow }) {
         showConfirmButton: false,
         timer: 1500,
       });
-      dispatch(fetchInteriors());
+      dispatch(fetchRoadTest());
       handleClose();
     });
   }
@@ -133,18 +108,18 @@ function ModalInt({ int, show, setShow }) {
       <Modal show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
           <Modal.Title>
-            Update Interior Inspections with id: {int.id}
+            Update Road Test Inspections with id: {road.id}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form onSubmit={interiorHandler}>
+          <form onSubmit={roadTestHandler}>
             <div className='mb-3'>
               <label className='form-label'>
-                Speedometer Inspection status:
+                Engine Starting Inspection status:
               </label>
               <select
-                value={speedo}
-                onChange={changeSpeedo}
+                value={start}
+                onChange={changeStart}
                 class='form-select'
                 aria-label='Default select example'
               >
@@ -154,11 +129,11 @@ function ModalInt({ int, show, setShow }) {
             </div>
             <div className='mb-3'>
               <label className='form-label'>
-                Klakson Inspection status: &nbsp;{" "}
+                Engine Idling Inspection status: &nbsp;{" "}
               </label>
               <select
-                value={klak}
-                onChange={changeKlak}
+                value={idle}
+                onChange={changeIdle}
                 class='form-select'
                 aria-label='Default select example'
               >
@@ -168,10 +143,10 @@ function ModalInt({ int, show, setShow }) {
             </div>
             <div className='mb-3'>
               <label className='form-label'>
-                Steering Wheel Inspection status: &nbsp;
+                Steering System Inspection status: &nbsp;
               </label>
               <select
-                value={steering}
+                value={steer}
                 onChange={changeSteer}
                 class='form-select'
                 aria-label='Default select example'
@@ -182,11 +157,11 @@ function ModalInt({ int, show, setShow }) {
             </div>
             <div className='mb-3'>
               <label className='form-label'>
-                Rear View Mirror Inspection status: &nbsp;
+                Acceleration Inspection status: &nbsp;
               </label>
               <select
-                value={rear}
-                onChange={changeRear}
+                value={acc}
+                onChange={changeAcc}
                 class='form-select'
                 aria-label='Default select example'
               >
@@ -196,11 +171,11 @@ function ModalInt({ int, show, setShow }) {
             </div>
             <div className='mb-3'>
               <label className='form-label'>
-                Dashboard Inspection status: &nbsp;
+                Engine Sound Inspection status: &nbsp;
               </label>
               <select
-                value={dash}
-                onChange={changeDash}
+                value={sound}
+                onChange={changeSound}
                 class='form-select'
                 aria-label='Default select example'
               >
@@ -210,38 +185,10 @@ function ModalInt({ int, show, setShow }) {
             </div>
             <div className='mb-3'>
               <label className='form-label'>
-                Seats Inspection status: &nbsp;
+                Brake System Inspection status: &nbsp;
               </label>
               <select
-                value={seat}
-                onChange={changeSeat}
-                class='form-select'
-                aria-label='Default select example'
-              >
-                <option value='true'>True</option>
-                <option value='false'>False</option>
-              </select>
-            </div>
-            <div className='mb-3'>
-              <label className='form-label'>
-                Gas Pedal Inspection status: &nbsp;
-              </label>
-              <select
-                value={gas}
-                onChange={changeGas}
-                class='form-select'
-                aria-label='Default select example'
-              >
-                <option value='true'>True</option>
-                <option value='false'>False</option>
-              </select>
-            </div>
-            <div className='mb-3'>
-              <label className='form-label'>
-                Brake Pedal Inspection status: &nbsp;
-              </label>
-              <select
-                value={brake}
+                value={brakeSys}
                 onChange={changeBrake}
                 class='form-select'
                 aria-label='Default select example'
@@ -260,4 +207,4 @@ function ModalInt({ int, show, setShow }) {
   );
 }
 
-export default ModalInt;
+export default ModalRoad;

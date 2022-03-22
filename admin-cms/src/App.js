@@ -12,6 +12,8 @@ import { fetchInspections } from "./store/actionCreators/inspectionActions";
 import CarList from "./components/CarList";
 import ExteriorList from "./components/ExteriorList";
 import InteriorList from "./components/InteriorList";
+import RoadTestList from "./components/RoadTestList";
+import KolongList from "./components/KolongList";
 
 function App() {
   const dispatch = useDispatch();
@@ -49,6 +51,8 @@ function App() {
           <Route path='cars' element={<CarList />}></Route>
           <Route path='exterior' element={<ExteriorList />}></Route>
           <Route path='interior' element={<InteriorList />}></Route>
+          <Route path='roadtest' element={<RoadTestList />}></Route>
+          <Route path='kolong' element={<KolongList />}></Route>
           <Route path='register' element={<RegisterAdmin />}></Route>
         </Route>
         <Route

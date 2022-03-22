@@ -3,131 +3,141 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 import {
-  fetchExteriors,
-  updateExterior,
-} from "../store/actionCreators/exteriorActions";
-
-function ModalExt({ ext, show, setShow }) {
+  fetchKolong,
+  updateKolong,
+} from "../store/actionCreators/kolongActions";
+function ModalKolong({ kolong, show, setShow }) {
   const {
-    chassis,
-    bumper,
-    lights,
-    roof,
-    spion,
-    windShield,
-    kacaSamping,
-    kacaBelakang,
-    tire,
-  } = ext;
+    oliMesin,
+    transmission,
+    minyakRem,
+    radiator,
+    aki,
+    bottomCover,
+    knalpot,
+    kestabilanBan,
+    shockBreaker,
+    masterBrake,
+  } = kolong;
 
-  const [chass, setChassis] = useState(chassis);
-  const [bump, setBump] = useState(bumper);
-  const [light, setLight] = useState(lights);
-  const [atap, setAtap] = useState(roof);
-  const [kacaSpion, setKacaSpion] = useState(spion);
-  const [shield, setShield] = useState(windShield);
-  const [samping, setSamping] = useState(kacaSamping);
-  const [belakang, setBelakang] = useState(kacaBelakang);
-  const [ban, setBan] = useState(tire);
+  const [oli, setOli] = useState(oliMesin);
+  const [trans, setTrans] = useState(transmission);
+  const [minyak, setMinyak] = useState(minyakRem);
+  const [rad, setRad] = useState(radiator);
+  const [batt, setBat] = useState(aki);
+  const [cover, setCover] = useState(bottomCover);
+  const [exhaust, setExhaust] = useState(knalpot);
+  const [stabil, setStabil] = useState(kestabilanBan);
+  const [shock, setShock] = useState(shockBreaker);
+  const [master, setMaster] = useState(masterBrake);
 
   const handleClose = () => setShow(false);
   const dispatch = useDispatch();
 
-  function changeChass(e) {
+  function changeOli(e) {
     const value = e.target.value;
     if (value === "true") {
-      setChassis(true);
+      setOli(true);
     } else {
-      setChassis(false);
+      setOli(false);
     }
   }
 
-  function changeBump(e) {
+  function changeTrans(e) {
     const value = e.target.value;
     if (value === "true") {
-      setBump(true);
+      setTrans(true);
     } else {
-      setBump(false);
+      setTrans(false);
     }
   }
 
-  function changeLight(e) {
+  function changeMinyak(e) {
     const value = e.target.value;
     if (value === "true") {
-      setLight(true);
+      setMinyak(true);
     } else {
-      setLight(false);
+      setMinyak(false);
     }
   }
-  function changeSpion(e) {
+  function changeRad(e) {
     const value = e.target.value;
     if (value === "true") {
-      setKacaSpion(true);
+      setRad(true);
     } else {
-      setKacaSpion(false);
-    }
-  }
-
-  function changeRoof(e) {
-    const value = e.target.value;
-    if (value === "true") {
-      setAtap(true);
-    } else {
-      setAtap(false);
+      setRad(false);
     }
   }
 
-  function changeShield(e) {
+  function changeAki(e) {
     const value = e.target.value;
     if (value === "true") {
-      setShield(true);
+      setBat(true);
     } else {
-      setShield(false);
+      setBat(false);
     }
   }
 
-  function changeSamping(e) {
+  function changeCover(e) {
     const value = e.target.value;
     if (value === "true") {
-      setSamping(true);
+      setCover(true);
     } else {
-      setSamping(false);
+      setCover(false);
     }
   }
 
-  function changeBelakang(e) {
+  function changeExhaust(e) {
     const value = e.target.value;
     if (value === "true") {
-      setBelakang(true);
+      setExhaust(true);
     } else {
-      setBelakang(false);
+      setExhaust(false);
     }
   }
 
-  function changeBan(e) {
+  function changeStabil(e) {
     const value = e.target.value;
     if (value === "true") {
-      setBan(true);
+      setStabil(true);
     } else {
-      setBan(false);
+      setStabil(false);
     }
   }
 
-  function exteriorHandler(e) {
+  function changeShock(e) {
+    const value = e.target.value;
+    if (value === "true") {
+      setShock(true);
+    } else {
+      setShock(false);
+    }
+  }
+  function changeMaster(e) {
+    const value = e.target.value;
+    if (value === "true") {
+      setMaster(true);
+    } else {
+      setMaster(false);
+    }
+  }
+
+  function kolongHandler(e) {
     e.preventDefault();
     const data = {
-      chassis: chass,
-      bumper: bump,
-      lights: light,
-      roof: atap,
-      spion: kacaSpion,
-      windShield: shield,
-      kacaSamping: samping,
-      kacaBelakang: belakang,
-      tire: ban,
+      oliMesin: oli,
+      transmission: trans,
+      minyakRem: minyak,
+      radiator: rad,
+      aki: batt,
+      bottomCover: cover,
+      knalpot: exhaust,
+      kestabilanBan: stabil,
+      shockBreaker: shock,
+      masterBrake: master,
     };
 
-    dispatch(updateExterior(data, ext.id)).then((data) => {
+    dispatch(updateKolong(data, kolong.id)).then((data) => {
       Swal.fire({
         position: "top-end",
         icon: "success",
@@ -135,7 +145,7 @@ function ModalExt({ ext, show, setShow }) {
         showConfirmButton: false,
         timer: 1500,
       });
-      dispatch(fetchExteriors());
+      dispatch(fetchKolong());
       handleClose();
     });
   }
@@ -145,26 +155,26 @@ function ModalExt({ ext, show, setShow }) {
       <Modal show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
           <Modal.Title>
-            Update Exterior Inspections with id:{ext.id}{" "}
+            Update Bottom Inspections with id: {kolong.id}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form onSubmit={exteriorHandler}>
+          <form onSubmit={kolongHandler}>
             <div className='mb-3 row'>
               <label className='form-label col-6'>
-                Chassis Inspection status:
+                Lubricant Inspection status:
               </label>
               <div class='form-check col'>
                 <input
                   class='form-check-input'
                   type='radio'
-                  name='chass'
-                  id='chass1'
+                  name='oli'
+                  id='oli1'
                   value='true'
-                  checked={chass === true}
-                  onChange={changeChass}
+                  checked={oli === true}
+                  onChange={changeOli}
                 />
-                <label class='form-check-label' for='chass1'>
+                <label class='form-check-label' for='oli1'>
                   True
                 </label>
               </div>
@@ -172,32 +182,32 @@ function ModalExt({ ext, show, setShow }) {
                 <input
                   class='form-check-input'
                   type='radio'
-                  name='chass'
-                  id='chass2'
+                  name='oli'
+                  id='oli2'
                   value='false'
-                  checked={chass === false}
-                  onChange={changeChass}
+                  checked={oli === false}
+                  onChange={changeOli}
                 />
-                <label class='form-check-label' for='chass2'>
+                <label class='form-check-label' for='oli2'>
                   False
                 </label>
               </div>
             </div>
             <div className='mb-3 row'>
               <label className='form-label col-6'>
-                Bumper Inspection status: &nbsp;{" "}
+                Transmission Inspection status: &nbsp;{" "}
               </label>
               <div class='form-check col'>
                 <input
                   class='form-check-input'
                   type='radio'
-                  name='bump'
-                  id='bump1'
+                  name='trans'
+                  id='trans1'
                   value='true'
-                  checked={bump === true}
-                  onChange={changeBump}
+                  checked={trans === true}
+                  onChange={changeTrans}
                 />
-                <label class='form-check-label' for='bump1'>
+                <label class='form-check-label' for='trans1'>
                   True
                 </label>
               </div>
@@ -205,32 +215,32 @@ function ModalExt({ ext, show, setShow }) {
                 <input
                   class='form-check-input'
                   type='radio'
-                  name='bump'
-                  id='bump2'
+                  name='trans'
+                  id='trans2'
                   value='false'
-                  checked={bump === false}
-                  onChange={changeBump}
+                  checked={trans === false}
+                  onChange={changeTrans}
                 />
-                <label class='form-check-label' for='bump2'>
+                <label class='form-check-label' for='trans2'>
                   False
                 </label>
               </div>
             </div>
             <div className='mb-3 row'>
               <label className='form-label col-6'>
-                Lights Inspection status: &nbsp;
+                Brake Oil Inspection status: &nbsp;
               </label>
               <div class='form-check col'>
                 <input
                   class='form-check-input'
                   type='radio'
-                  name='light'
-                  id='light1'
+                  name='minyak'
+                  id='minyak1'
                   value='true'
-                  checked={light === true}
-                  onChange={changeLight}
+                  checked={minyak === true}
+                  onChange={changeMinyak}
                 />
-                <label class='form-check-label' for='light1'>
+                <label class='form-check-label' for='minyak1'>
                   True
                 </label>
               </div>
@@ -238,32 +248,32 @@ function ModalExt({ ext, show, setShow }) {
                 <input
                   class='form-check-input'
                   type='radio'
-                  name='light'
-                  id='light2'
+                  name='minyak'
+                  id='minyak2'
                   value='false'
-                  checked={light === false}
-                  onChange={changeLight}
+                  checked={minyak === false}
+                  onChange={changeMinyak}
                 />
-                <label class='form-check-label' for='light2'>
+                <label class='form-check-label' for='minyak2'>
                   False
                 </label>
               </div>
             </div>
             <div className='mb-3 row'>
               <label className='form-label col-6'>
-                Roof Inspection status: &nbsp;
+                Radiator Inspection status: &nbsp;
               </label>
               <div class='form-check col'>
                 <input
                   class='form-check-input'
                   type='radio'
-                  name='atap'
-                  id='atap1'
+                  name='rad'
+                  id='rad1'
                   value='true'
-                  checked={atap === true}
-                  onChange={changeRoof}
+                  checked={rad === true}
+                  onChange={changeRad}
                 />
-                <label class='form-check-label' for='atap1'>
+                <label class='form-check-label' for='rad1'>
                   True
                 </label>
               </div>
@@ -271,32 +281,32 @@ function ModalExt({ ext, show, setShow }) {
                 <input
                   class='form-check-input'
                   type='radio'
-                  name='atap'
-                  id='atap2'
+                  name='rad'
+                  id='rad2'
                   value='false'
-                  checked={atap === false}
-                  onChange={changeRoof}
+                  checked={rad === false}
+                  onChange={changeRad}
                 />
-                <label class='form-check-label' for='atap2'>
+                <label class='form-check-label' for='rad2'>
                   False
                 </label>
               </div>
             </div>
             <div className='mb-3 row'>
               <label className='form-label col-6'>
-                Spion Inspection status: &nbsp;
+                Battery Car Inspection status: &nbsp;
               </label>
               <div class='form-check col'>
                 <input
                   class='form-check-input'
                   type='radio'
-                  name='kacaSpion'
-                  id='kacaSpion1'
+                  name='batt'
+                  id='batt1'
                   value='true'
-                  checked={kacaSpion === true}
-                  onChange={changeSpion}
+                  checked={batt === true}
+                  onChange={changeAki}
                 />
-                <label class='form-check-label' for='kacaSpion1'>
+                <label class='form-check-label' for='batt1'>
                   True
                 </label>
               </div>
@@ -304,32 +314,32 @@ function ModalExt({ ext, show, setShow }) {
                 <input
                   class='form-check-input'
                   type='radio'
-                  name='kacaSpion'
-                  id='kacaSpion2'
+                  name='batt'
+                  id='batt2'
                   value='false'
-                  checked={kacaSpion === false}
-                  onChange={changeSpion}
+                  checked={batt === false}
+                  onChange={changeAki}
                 />
-                <label class='form-check-label' for='kacaSpion2'>
+                <label class='form-check-label' for='batt2'>
                   False
                 </label>
               </div>
             </div>
             <div className='mb-3 row'>
               <label className='form-label col-6'>
-                Wind Shield Inspection status: &nbsp;
+                Bottom Cover Inspection status: &nbsp;
               </label>
               <div class='form-check col'>
                 <input
                   class='form-check-input'
                   type='radio'
-                  name='shield'
-                  id='shield1'
+                  name='cover'
+                  id='cover1'
                   value='true'
-                  checked={shield === true}
-                  onChange={changeShield}
+                  checked={cover === true}
+                  onChange={changeCover}
                 />
-                <label class='form-check-label' for='shield1'>
+                <label class='form-check-label' for='cover1'>
                   True
                 </label>
               </div>
@@ -337,32 +347,32 @@ function ModalExt({ ext, show, setShow }) {
                 <input
                   class='form-check-input'
                   type='radio'
-                  name='shield'
-                  id='shield2'
+                  name='cover'
+                  id='cover2'
                   value='false'
-                  checked={shield === false}
-                  onChange={changeShield}
+                  checked={cover === false}
+                  onChange={changeCover}
                 />
-                <label class='form-check-label' for='shield2'>
+                <label class='form-check-label' for='cover2'>
                   False
                 </label>
               </div>
             </div>
             <div className='mb-3 row'>
               <label className='form-label col-6'>
-                Side Glass Inspection status: &nbsp;
+                Exhaust Inspection status: &nbsp;
               </label>
               <div class='form-check col'>
                 <input
                   class='form-check-input'
                   type='radio'
-                  name='samping'
-                  id='samping1'
+                  name='exhaust'
+                  id='exhaust1'
                   value='true'
-                  checked={samping === true}
-                  onChange={changeSamping}
+                  checked={exhaust === true}
+                  onChange={changeExhaust}
                 />
-                <label class='form-check-label' for='samping1'>
+                <label class='form-check-label' for='exhaust1'>
                   True
                 </label>
               </div>
@@ -370,32 +380,32 @@ function ModalExt({ ext, show, setShow }) {
                 <input
                   class='form-check-input'
                   type='radio'
-                  name='samping'
-                  id='samping2'
+                  name='exhaust'
+                  id='exhaust2'
                   value='false'
-                  checked={samping === false}
-                  onChange={changeSamping}
+                  checked={exhaust === false}
+                  onChange={changeExhaust}
                 />
-                <label class='form-check-label' for='samping2'>
+                <label class='form-check-label' for='exhaust2'>
                   False
                 </label>
               </div>
             </div>
             <div className='mb-3 row'>
               <label className='form-label col-6'>
-                Back Glass Inspection status: &nbsp;
+                Tire Balance Inspection status: &nbsp;
               </label>
               <div class='form-check col'>
                 <input
                   class='form-check-input'
                   type='radio'
-                  name='belakang'
-                  id='belakang1'
+                  name='stabil'
+                  id='stabil1'
                   value='true'
-                  checked={belakang === true}
-                  onChange={changeBelakang}
+                  checked={stabil === true}
+                  onChange={changeStabil}
                 />
-                <label class='form-check-label' for='belakang1'>
+                <label class='form-check-label' for='stabil1'>
                   True
                 </label>
               </div>
@@ -403,32 +413,32 @@ function ModalExt({ ext, show, setShow }) {
                 <input
                   class='form-check-input'
                   type='radio'
-                  name='belakang'
-                  id='belakang2'
+                  name='stabil'
+                  id='stabil2'
                   value='false'
-                  checked={belakang === false}
-                  onChange={changeBelakang}
+                  checked={stabil === false}
+                  onChange={changeStabil}
                 />
-                <label class='form-check-label' for='belakang2'>
+                <label class='form-check-label' for='stabil2'>
                   False
                 </label>
               </div>
             </div>
             <div className='mb-3 row'>
               <label className='form-label col-6'>
-                Tire Inspection status: &nbsp;
+                ShockBreaker Inspection status: &nbsp;
               </label>
               <div class='form-check col'>
                 <input
                   class='form-check-input'
                   type='radio'
-                  name='ban'
-                  id='ban1'
+                  name='shock'
+                  id='shock1'
                   value='true'
-                  checked={ban === true}
-                  onChange={changeBan}
+                  checked={shock === true}
+                  onChange={changeShock}
                 />
-                <label class='form-check-label' for='ban1'>
+                <label class='form-check-label' for='shock1'>
                   True
                 </label>
               </div>
@@ -436,13 +446,46 @@ function ModalExt({ ext, show, setShow }) {
                 <input
                   class='form-check-input'
                   type='radio'
-                  name='ban'
-                  id='ban2'
+                  name='shock'
+                  id='shock2'
                   value='false'
-                  checked={ban === false}
-                  onChange={changeBan}
+                  checked={shock === false}
+                  onChange={changeShock}
                 />
-                <label class='form-check-label' for='ban2'>
+                <label class='form-check-label' for='shock2'>
+                  False
+                </label>
+              </div>
+            </div>
+            <div className='mb-3 row'>
+              <label className='form-label col-6'>
+                Master Brake Inspection status: &nbsp;
+              </label>
+              <div class='form-check col'>
+                <input
+                  class='form-check-input'
+                  type='radio'
+                  name='master'
+                  id='master1'
+                  value='true'
+                  checked={master === true}
+                  onChange={changeMaster}
+                />
+                <label class='form-check-label' for='master1'>
+                  True
+                </label>
+              </div>
+              <div class='form-check col'>
+                <input
+                  class='form-check-input'
+                  type='radio'
+                  name='master'
+                  id='master2'
+                  value='false'
+                  checked={master === false}
+                  onChange={changeMaster}
+                />
+                <label class='form-check-label' for='master2'>
                   False
                 </label>
               </div>
@@ -457,4 +500,4 @@ function ModalExt({ ext, show, setShow }) {
   );
 }
 
-export default ModalExt;
+export default ModalKolong;

@@ -36,9 +36,13 @@ function InspectionList({ isLoading }) {
             </tr>
           </thead>
           <tbody>
-            {inspections.map((inspection) => {
-              return <Inspection inspection={inspection} key={inspection.id} />;
-            })}
+            {inspections
+              .sort((a, b) => a.id - b.id)
+              .map((inspection) => {
+                return (
+                  <Inspection inspection={inspection} key={inspection.id} />
+                );
+              })}
           </tbody>
         </table>
       )}

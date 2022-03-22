@@ -1,18 +1,17 @@
 import { useState } from "react";
-import ModalInspection from "./ModalInspect";
+import ModalInt from "./ModalInt";
 
-function Inspection({ inspection }) {
+function Interior({ int }) {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
 
   return (
     <>
-      <ModalInspection inspection={inspection} show={show} setShow={setShow} />
+      <ModalInt int={int} show={show} setShow={setShow} />
       <tr>
-        <td>{inspection.id}</td>
-        <td>{inspection.CarId}</td>
+        <td>{int.id}</td>
         <td>
-          {inspection.mainInspection === true ? (
+          {int.speedometer === true ? (
             <i
               class='fa-solid fa-circle-check fa-xl'
               style={{ color: "green" }}
@@ -25,7 +24,7 @@ function Inspection({ inspection }) {
           )}
         </td>
         <td>
-          {inspection.exteriorInspection === true ? (
+          {int.klakson === true ? (
             <i
               class='fa-solid fa-circle-check fa-xl'
               style={{ color: "green" }}
@@ -38,7 +37,7 @@ function Inspection({ inspection }) {
           )}
         </td>
         <td>
-          {inspection.interiorInspection === true ? (
+          {int.steeringWheel === true ? (
             <i
               class='fa-solid fa-circle-check fa-xl'
               style={{ color: "green" }}
@@ -51,7 +50,7 @@ function Inspection({ inspection }) {
           )}
         </td>
         <td>
-          {inspection.roadTest === true ? (
+          {int.rearViewMirror === true ? (
             <i
               class='fa-solid fa-circle-check fa-xl'
               style={{ color: "green" }}
@@ -64,7 +63,7 @@ function Inspection({ inspection }) {
           )}
         </td>
         <td>
-          {inspection.kolongTest === true ? (
+          {int.dashboard === true ? (
             <i
               class='fa-solid fa-circle-check fa-xl'
               style={{ color: "green" }}
@@ -76,10 +75,50 @@ function Inspection({ inspection }) {
             ></i>
           )}
         </td>
-        <td>{inspection.inspectedBy}</td>
+        <td>
+          {int.seats === true ? (
+            <i
+              class='fa-solid fa-circle-check fa-xl'
+              style={{ color: "green" }}
+            ></i>
+          ) : (
+            <i
+              class='fa-solid fa-circle-xmark fa-xl'
+              style={{ color: "red" }}
+            ></i>
+          )}
+        </td>
+        <td>
+          {int.gasPedal === true ? (
+            <i
+              class='fa-solid fa-circle-check fa-xl'
+              style={{ color: "green" }}
+            ></i>
+          ) : (
+            <i
+              class='fa-solid fa-circle-xmark fa-xl'
+              style={{ color: "red" }}
+            ></i>
+          )}
+        </td>
+        <td>
+          {int.brakePedal === true ? (
+            <i
+              class='fa-solid fa-circle-check fa-xl'
+              style={{ color: "green" }}
+            ></i>
+          ) : (
+            <i
+              class='fa-solid fa-circle-xmark fa-xl'
+              style={{ color: "red" }}
+            ></i>
+          )}
+        </td>
+        <td>{int.InspectionId}</td>
+        <td>{int.inspectedBy}</td>
         <td>
           <button onClick={handleShow} className='btn btn-secondary mx-1'>
-            Update Inspection
+            Update Interior
           </button>
         </td>
       </tr>
@@ -87,4 +126,4 @@ function Inspection({ inspection }) {
   );
 }
 
-export default Inspection;
+export default Interior;

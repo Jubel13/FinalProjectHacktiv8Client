@@ -1,18 +1,17 @@
 import { useState } from "react";
-import ModalInspection from "./ModalInspect";
+import ModalExt from "./ModalExt";
 
-function Inspection({ inspection }) {
+function Exterior({ ext }) {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
 
   return (
     <>
-      <ModalInspection inspection={inspection} show={show} setShow={setShow} />
+      <ModalExt ext={ext} show={show} setShow={setShow} />
       <tr>
-        <td>{inspection.id}</td>
-        <td>{inspection.CarId}</td>
+        <td>{ext.id}</td>
         <td>
-          {inspection.mainInspection === true ? (
+          {ext.chassis === true ? (
             <i
               class='fa-solid fa-circle-check fa-xl'
               style={{ color: "green" }}
@@ -25,7 +24,7 @@ function Inspection({ inspection }) {
           )}
         </td>
         <td>
-          {inspection.exteriorInspection === true ? (
+          {ext.bumper === true ? (
             <i
               class='fa-solid fa-circle-check fa-xl'
               style={{ color: "green" }}
@@ -38,7 +37,7 @@ function Inspection({ inspection }) {
           )}
         </td>
         <td>
-          {inspection.interiorInspection === true ? (
+          {ext.lights === true ? (
             <i
               class='fa-solid fa-circle-check fa-xl'
               style={{ color: "green" }}
@@ -51,7 +50,7 @@ function Inspection({ inspection }) {
           )}
         </td>
         <td>
-          {inspection.roadTest === true ? (
+          {ext.roof === true ? (
             <i
               class='fa-solid fa-circle-check fa-xl'
               style={{ color: "green" }}
@@ -64,7 +63,7 @@ function Inspection({ inspection }) {
           )}
         </td>
         <td>
-          {inspection.kolongTest === true ? (
+          {ext.spion === true ? (
             <i
               class='fa-solid fa-circle-check fa-xl'
               style={{ color: "green" }}
@@ -76,10 +75,63 @@ function Inspection({ inspection }) {
             ></i>
           )}
         </td>
-        <td>{inspection.inspectedBy}</td>
+        <td>
+          {ext.windShield === true ? (
+            <i
+              class='fa-solid fa-circle-check fa-xl'
+              style={{ color: "green" }}
+            ></i>
+          ) : (
+            <i
+              class='fa-solid fa-circle-xmark fa-xl'
+              style={{ color: "red" }}
+            ></i>
+          )}
+        </td>
+        <td>
+          {ext.kacaSamping === true ? (
+            <i
+              class='fa-solid fa-circle-check fa-xl'
+              style={{ color: "green" }}
+            ></i>
+          ) : (
+            <i
+              class='fa-solid fa-circle-xmark fa-xl'
+              style={{ color: "red" }}
+            ></i>
+          )}
+        </td>
+        <td>
+          {ext.kacaBelakang === true ? (
+            <i
+              class='fa-solid fa-circle-check fa-xl'
+              style={{ color: "green" }}
+            ></i>
+          ) : (
+            <i
+              class='fa-solid fa-circle-xmark fa-xl'
+              style={{ color: "red" }}
+            ></i>
+          )}
+        </td>
+        <td>
+          {ext.tire === true ? (
+            <i
+              class='fa-solid fa-circle-check fa-xl'
+              style={{ color: "green" }}
+            ></i>
+          ) : (
+            <i
+              class='fa-solid fa-circle-xmark fa-xl'
+              style={{ color: "red" }}
+            ></i>
+          )}
+        </td>
+        <td>{ext.InspectionId}</td>
+        <td>{ext.inspectedBy}</td>
         <td>
           <button onClick={handleShow} className='btn btn-secondary mx-1'>
-            Update Inspection
+            Update Exterior
           </button>
         </td>
       </tr>
@@ -87,4 +139,4 @@ function Inspection({ inspection }) {
   );
 }
 
-export default Inspection;
+export default Exterior;

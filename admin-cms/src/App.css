@@ -110,6 +110,10 @@ hr {
   cursor: pointer;
 }
 
+#sidebar a:focus {
+  color: white;
+}
+
 .nav-title {
   color: inherit;
 }
@@ -144,7 +148,9 @@ hr {
 }
 
 #inspection-header,
-#car-header {
+#car-header,
+#exterior-header,
+#interior-header {
   display: flex;
   justify-content: space-between;
 }

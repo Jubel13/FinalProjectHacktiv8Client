@@ -4,11 +4,15 @@ import thunk from "redux-thunk";
 import loggerMiddleware from "./middlewares/logger";
 import inspectionReducer from "./reducers/inspectionReducer";
 import carReducer from "./reducers/carReducer";
+import exteriorReducer from "./reducers/exteriorReducer";
+import interiorReducer from "./reducers/interiorReducer";
 
 const rootReducer = combineReducers({
   userReducer,
   inspectionReducer,
   carReducer,
+  exteriorReducer,
+  interiorReducer,
 });
 
 let store = createStore(rootReducer, applyMiddleware(thunk, loggerMiddleware));

@@ -31,8 +31,8 @@ function ExteriorList({ isLoading }) {
               <th scope='col'>Roof</th>
               <th scope='col'>Spion</th>
               <th scope='col'>Wind Shield</th>
-              <th scope='col'>Kaca Samping</th>
-              <th scope='col'>Kaca Belakang</th>
+              <th scope='col'>Side Glass</th>
+              <th scope='col'>Back Glass</th>
               <th scope='col'>Tire</th>
               <th scope='col'>Inspection ID</th>
               <th scope='col'>Inspected By</th>

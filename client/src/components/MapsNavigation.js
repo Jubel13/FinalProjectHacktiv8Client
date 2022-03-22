@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import { GoogleMap, LoadScript, DirectionsService, DirectionsRenderer} from '@react-google-maps/api';
-import serverApi from '../apis/serverApi'
+import serverApi from '../API/serverApi'
 
 
 export default function MapsNavigation() {
@@ -40,7 +40,7 @@ export default function MapsNavigation() {
 
   return (
     <div>
-      <LoadScript googleMapsApiKey="AIzaSyBjlQ0LbPIFIH3rExuCRIFoDifRyNAyenw" >
+      <LoadScript googleMapsApiKey={process.env.REACT_APP_API_KEY}>
           <GoogleMap
             mapContainerStyle={{ width: 1365, height: 625 }}
             center={{ lat: userPosition.latitude, lng: userPosition.longitude }}

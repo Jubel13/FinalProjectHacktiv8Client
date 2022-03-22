@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router"
 import { apiClient } from "../API/midtrans"
-import serverApi from '../apis/serverApi'
+import serverApi from '../API/serverApi'
 
 export default function PaymentPage() {
   const [carDetail, setCarDetail] = useState({})

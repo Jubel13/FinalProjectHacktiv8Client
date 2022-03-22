@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import serverApi from '../apis/serverApi'
+import serverApi from '../API/serverApi'
 
 export default function FullReportPage() {
   const [inspection, setInspection] = useState({})

@@ -1,6 +1,6 @@
 import {useEffect, useState } from "react";
 import { useNavigate, useParams} from "react-router-dom";
-import serverApi from '../apis/serverApi'
+import serverApi from '../API/serverApi'
 
 
 export default function Detail() {

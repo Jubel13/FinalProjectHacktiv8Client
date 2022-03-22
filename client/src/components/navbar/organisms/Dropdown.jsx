@@ -64,6 +64,7 @@ export default function Dropdown({ title }) {
               >
                 {`${title} as dealer`}
               </button>
+              <label for="my-modal-4" className="btn bg-white border-0">open modal</label>
             </div>
           </div>
         </div>

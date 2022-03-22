@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Card from "../components/CarList/templates/Card";
-import { carsApi } from "../apis";
+import { carsApi } from "../API";
 
 export default function CarList() {
   const [cars, setCars] = useState([]);

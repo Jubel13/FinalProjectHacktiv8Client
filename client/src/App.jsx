@@ -17,6 +17,8 @@ import CmsDealerDashboard from "./pages/CmsDealerDashboard";
 import LoginModalDealer from "./components/modals/templates/LoginModalDealer";
 import LoginModalBuyer from "./components/modals/templates/LoginModalBuyer";
 import RegisterBuyer from "./pages/RegisterBuyer";
+import ProtectedRoute from "./components/ProtectionRoute";
+import MyBill from "./components/MyBillPage";
 
 export default function App() {
   const [loginDealer, setLoginDealer] = useState(false);
@@ -42,7 +44,17 @@ export default function App() {
           <Route path="/detail/:id" element={<Detail />} />
           <Route path="/full-report/:id" element={<FullReportPage />} />
           <Route path="/map-navigation/:id" element={<MapsNavigation />} />
-          <Route path="/payments/:carId" element={<PaymentPage />} />
+          <Route path="/payments/:carId" element=
+            {
+              <ProtectedRoute>
+                <PaymentPage />
+              </ProtectedRoute>
+            } />
+          <Route path="/mybill" element={
+            <ProtectedRoute>
+              <MyBill />
+            </ProtectedRoute>
+          } />
           <Route
             path="/register/user"
             element={<RegisterBuyer setLoginBuyer={setLoginBuyer} />}

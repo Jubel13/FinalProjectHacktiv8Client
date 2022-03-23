@@ -1,21 +1,36 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { createPopper } from "@popperjs/core";
+import Swal from "sweetalert2"
 
-export default function Dropdown({ title, setLoginBuyer, setLoginDealer }) {
+export default function DropdownProfile() {
   // dropdown props
   const navigate = useNavigate();
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const btnDropdownRef = React.createRef();
   const popoverDropdownRef = React.createRef();
+  const role = localStorage.getItem("role");
+  const username = localStorage.getItem("username");
+
   const openDropdownPopover = () => {
     createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
       placement: "bottom-start",
     });
     setDropdownPopoverShow(true);
   };
+
   const closeDropdownPopover = () => {
     setDropdownPopoverShow(false);
+  };
+
+  const signOutHandler = () => {
+    localStorage.clear();
+    Swal.fire({
+      icon: "success",
+      title: "Logout",
+      text: "See you again!",
+    });
+    navigate("/");
   };
   return (
     <div>
@@ -24,7 +39,7 @@ export default function Dropdown({ title, setLoginBuyer, setLoginDealer }) {
           <div className="relative inline-flex align-middle w-full">
             <button
               className={
-                "text-slate-900 font-bold font-open-sans text-xl py-3 over:border-b hover:border-orange-600 outline-none focus:outline-none ease-linear transition-all duration-150"
+                "text-slate-900 font-bold font-encode text-xl py-2 px-4 rounded-full over:border-b hover:border-orange-600 outline-none focus:outline-none ease-linear transition-all duration-150 bg-slate-300"
               }
               type="button"
               ref={btnDropdownRef}
@@ -32,7 +47,7 @@ export default function Dropdown({ title, setLoginBuyer, setLoginDealer }) {
               onMouseEnter={openDropdownPopover}
               onMouseLeave={closeDropdownPopover}
             >
-              {title}
+              <i class="fa-solid fa-user text-slate-900"></i>
             </button>
             <div
               onMouseEnter={() => openDropdownPopover()}
@@ -41,35 +56,36 @@ export default function Dropdown({ title, setLoginBuyer, setLoginDealer }) {
               className={
                 (dropdownPopoverShow ? "block " : "hidden ") +
                 "bg-white " +
-                "font-open-sans text-lg z-50 float-left py-2 list-none text-left rounded shadow-lg mt-1"
+                "font-encode text-lg z-50 float-left py-2 list-none text-left rounded shadow-lg mt-1"
               }
               style={{ minWidth: "12rem" }}
             >
+              <p
+                className={
+                  "text-lg text-left py-4 px-4 font-semibold block w-full whitespace-nowrap bg-transparent " +
+                  "text-blueGray-700"
+                }
+              >
+                {`Hello, ${username}`}
+              </p>
+              <p
+                className={
+                  "text-md -mt-2 text-slate-600 text-left px-4 font-normal block w-full whitespace-nowrap bg-transparent " +
+                  "text-blueGray-700"
+                }
+              >
+                {role}
+              </p>
+              <div className="divider"></div>
               <button
                 className={
                   "text-lg text-left py-4 px-4 font-normal block w-full whitespace-nowrap bg-transparent " +
                   "text-blueGray-700 hover:bg-yellow-100"
                 }
-                onClick={() => {
-                  title === "Login"
-                    ? setLoginBuyer(true)
-                    : navigate("/register/user");
-                }}
+                onClick={signOutHandler}
               >
-                {title}
-              </button>
-              <button
-                className={
-                  "text-lg text-left py-4 px-4 font-normal block w-full whitespace-nowrap bg-transparent " +
-                  "text-blueGray-700 hover:bg-yellow-100"
-                }
-                onClick={() => {
-                  title === "Login"
-                    ? setLoginDealer(true)
-                    : navigate("/register/dealer");
-                }}
-              >
-                {`${title} as dealer`}
+                <i class="fa-solid fa-right-from-bracket"></i>
+                {`  Sign Out`}
               </button>
             </div>
           </div>

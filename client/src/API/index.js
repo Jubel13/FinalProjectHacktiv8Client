@@ -10,6 +10,10 @@ export const dealerApi = axios.create({
   baseURL: `${ORIGIN}/dealers`,
 });
 
+export const buyerApi = axios.create({
+  baseURL: `${ORIGIN}/buyers`
+})
+
 export const brandApi = axios.create({
   baseURL: `${ORIGIN}/brands`,
 });

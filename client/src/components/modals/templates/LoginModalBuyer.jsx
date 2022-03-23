@@ -24,7 +24,7 @@ export default function LoginModalBuyer({ showModal, setShowModal }) {
         text: "Welcome!",
       });
       setShowModal(false);
-      navigate("/dealer/dashboard");
+      navigate("/cars");
     } catch (error) {
       Swal.fire({
         icon: "error",

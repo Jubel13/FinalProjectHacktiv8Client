@@ -8,8 +8,6 @@ import { ORIGIN } from "../API";
 const labelClass = "text-xl font-bold font-encode text-slate-900 px-2";
 const inputClass =
   "block text-lg text-slate-900 font-encode w-full px-4 py-2 bg-white border border-slate-900 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500";
-const inputWithBoxClass =
-  "block text-lg text-slate-900 font-encode w-10/12 px-4 py-2 bg-white border border-slate-900 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500";
 const selectClass =
   "select select-bordered w-full block text-lg text-slate-900 font-encode font-normal w-full px-4 py-2 bg-white border border-slate-900 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500";
 const textAreaClass =
@@ -17,11 +15,12 @@ const textAreaClass =
 
 export default function CmsDealerSellForm() {
   const publicKey = "public_BACW09RMefisOpJUrHcxl/9Id9g=";
-  const urlEndpoint = "https://ik.imagekit.io/iqpgx3omg7kg/auto-classic";
+  const urlEndpoint = "https://ik.imagekit.io/iqpgx3omg7kg";
   const { register, handleSubmit, watch, reset } = useForm();
   const [brands, setBrands] = useState([]);
   const [types, setTypes] = useState([]);
-  const [uploadedImageSource, setUploadedImageSource] = useState();
+  const [imageField, setImageField] = useState(1);
+  const [uploadedImageSource, setUploadedImageSource] = useState([]);
   const watchBrand = watch("brand", null);
 
   const fetchBrands = async () => {
@@ -54,10 +53,9 @@ export default function CmsDealerSellForm() {
   const onSubmit = async (data) => {
     try {
       data.yearMade = `${data.yearMade}-01-01`;
-      data.image = [uploadedImageSource];
-      console.log(data);
+      data.image = uploadedImageSource;
       const accessToken = localStorage.getItem("access_token");
-      const response = await carsApi.post("/", data, {
+      await carsApi.post("/", data, {
         headers: {
           access_token: accessToken,
         },
@@ -67,6 +65,7 @@ export default function CmsDealerSellForm() {
         title: "Sell a Car",
         text: "Success add car",
       });
+      reset()
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -79,7 +78,8 @@ export default function CmsDealerSellForm() {
   const onSuccess = (res) => {
     console.log("Success");
     console.log(res.url);
-    setUploadedImageSource(res.url);
+    setUploadedImageSource([...uploadedImageSource, res.url]);
+    console.log(uploadedImageSource)
   };
 
   const onError = (err) => {
@@ -89,8 +89,8 @@ export default function CmsDealerSellForm() {
 
   return (
     <div className="min-h-screen w-full flex flex-col bg-slate-100 items-center p-8">
-      <div className="w-full h-full bg-white flex flex-col px-36 rounded-xl drop-shadow-2xl">
-        <div className="h-36 w-full py-8 text-4xl font-bold font-encode text-slate-900">
+      <div className="w-full h-full bg-white flex flex-col px-48 rounded-xl drop-shadow-2xl">
+        <div className="h-36 w-full py-8 mt-4 text-4xl font-bold font-encode text-slate-900">
           Sell a Car
         </div>
         <div className="w-full flex flex-col -mt-8">
@@ -144,6 +144,7 @@ export default function CmsDealerSellForm() {
                     disabled
                     {...register("type", { required: true })}
                     className={selectClass}
+                    defaultValue=""
                   >
                     <option value="" selected disabled hidden>
                       Select car model
@@ -153,6 +154,7 @@ export default function CmsDealerSellForm() {
                   <select
                     {...register("TypeId", { required: true })}
                     className={selectClass}
+                    defaultValue=""
                   >
                     <option value="" selected disabled hidden>
                       Select car model
@@ -173,6 +175,7 @@ export default function CmsDealerSellForm() {
                 <select
                   {...register("fuel", { required: true })}
                   className={selectClass}
+                  defaultValue=""
                 >
                   <option value="" selected disabled hidden>
                     Select fuel type
@@ -187,12 +190,17 @@ export default function CmsDealerSellForm() {
                 <select
                   {...register("seats", { required: true })}
                   className={selectClass}
+                  defaultValue=""
                 >
                   <option value="" selected disabled hidden>
                     Select fuel type
                   </option>
                   {Array.from(Array(10).keys()).map((el) => {
-                    return <option value={el + 1}>{el + 1}</option>;
+                    return (
+                      <option key={el} value={el + 1}>
+                        {el + 1}
+                      </option>
+                    );
                   })}
                 </select>
               </div>
@@ -225,47 +233,64 @@ export default function CmsDealerSellForm() {
                   />
                 </div>
               </div>
+            </div>
 
-              <div className="w-full flex flex-col gap-y-2">
-                <label htmlFor="price" className={labelClass}>
-                  Price
-                </label>
-                <div className="w-full flex flex-row">
-                  <input
-                    id="price"
-                    type="number"
-                    {...register("price", {
-                      required: true,
-                    })}
-                    className={inputClass}
-                  />
-                </div>
+            <div className="w-full flex flex-col gap-y-2">
+              <label htmlFor="price" className={labelClass}>
+                Price
+              </label>
+              <div className="w-full flex flex-row">
+                <input
+                  id="price"
+                  type="number"
+                  {...register("price", {
+                    required: true,
+                  })}
+                  className={inputClass}
+                />
               </div>
+            </div>
 
-              <div className="w-full flex flex-col gap-y-2">
-                <label htmlFor="image" className={labelClass}>
-                  Image
-                </label>
-                <div className="w-full flex flex-row">
-                  <div className={inputClass}>
-                    <IKContext
-                      publicKey={publicKey}
-                      urlEndpoint={urlEndpoint}
-                      authenticationEndpoint={`${ORIGIN}/auth`}
+            <div className="w-full flex flex-col gap-y-2">
+              <label htmlFor="image" className={labelClass}>
+                Image
+              </label>
+              <div className="w-full flex flex-row">
+                <div className={inputClass}>
+                  <IKContext
+                    publicKey={publicKey}
+                    urlEndpoint={urlEndpoint}
+                    authenticationEndpoint={`${ORIGIN}/auth`}
+                  >
+                    <div className="w-full flex flex-col gap-y-2">
+                      {Array.from(Array(imageField + 1).keys())
+                        .filter((el) => el > 0)
+                        .map((el) => {
+                          return (
+                            <IKUpload
+                              key={el}
+                              useUniqueFileName={true}
+                              folder={"/cars"}
+                              onError={onError}
+                              onSuccess={onSuccess}
+                            />
+                          );
+                        })}
+                    </div>
+                  </IKContext>
+                  {imageField <= 10 ? (
+                    <button
+                      className="w-full py-2 pt-3 text-left text-blue-700 hover:text-blue-500 font-bold font-encode"
+                      onClick={() => setImageField(imageField + 1)}
                     >
-                      <IKUpload
-                        fileName="test.jpg"
-                        isPrivateFile={false}
-                        useUniqueFileName={true}
-                        folder={"/auto-classic/cars"}
-                        onError={onError}
-                        onSuccess={onSuccess}
-                      />
-                    </IKContext>
-                  </div>
+                      <i class="fa-solid fa-plus"></i>
+                      Add image
+                    </button>
+                  ) : null}
                 </div>
               </div>
             </div>
+
             <div className="w-full flex flex-col gap-y-2">
               <label className={labelClass}>Description</label>
               <textarea

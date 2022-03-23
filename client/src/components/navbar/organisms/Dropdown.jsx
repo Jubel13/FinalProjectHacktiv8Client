@@ -24,7 +24,7 @@ export default function Dropdown({ title, setLoginBuyer, setLoginDealer }) {
           <div className="relative inline-flex align-middle w-full">
             <button
               className={
-                "text-slate-900 font-bold font-open-sans text-xl py-3 over:border-b hover:border-orange-600 outline-none focus:outline-none ease-linear transition-all duration-150"
+                "text-slate-900 font-bold font-open-sans text-xl py-3 hover:border-b hover:border-orange-600 outline-none focus:outline-none ease-linear transition-all duration-150"
               }
               type="button"
               ref={btnDropdownRef}

@@ -8,11 +8,11 @@ export default function FullReportPage() {
   const [interior, setInterior] = useState({});
   const [kolong, setKolong] = useState({});
   const [roadTest, setRoadTest] = useState({});
-  const { id } = useParams();
+  const { idInspection } = useParams();
 
   useEffect(() => {
     serverApi
-      .get(`/inspections/${id}`)
+      .get(`/inspections/${idInspection}`)
       .then((res) => {
         setInspection(res.data);
         setExterior(res.data.Exterior);
@@ -21,10 +21,8 @@ export default function FullReportPage() {
         setRoadTest(res.data.RoadTest);
       })
       .catch((err) => console.log(err));
-  }, [id]);
+  }, [idInspection]);
 
-  console.log(id, "dari report");
-  console.log(inspection);
   return (
     <>
       {/* main inspection */}

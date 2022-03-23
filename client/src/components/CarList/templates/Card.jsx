@@ -10,6 +10,7 @@ import { useNavigate } from "react-router";
 export default function Card({ car }) {
   const [index, setIndex] = useState(0);
   const [curImage, setCurImage] = useState("");
+  const [readMore, setReadMore] = useState(false)
 
   const onImgLoad = ({ target: img }) => {
     const { offsetHeight, offsetWidth } = img;
@@ -27,52 +28,54 @@ export default function Card({ car }) {
   };
 
   return (
-    <div className='w-80 mx-8 overflow-hidden bg-white rounded-xl shadow-lg border'>
+    <div className="w-80 mx-8 overflow-hidden bg-white rounded-xl shadow-lg border hover:shadow-2xl hover:scale-110 ease-in-out transition-all duration-500 cursor-default">
       {/* <Carousel /> */}
-      <div className='h-56 w-full overflow-hidden flex justify-center items-center'>
+      <div className="h-56 w-full overflow-hidden flex justify-center items-center">
         <img
           onLoad={onImgLoad}
           src={curImage}
           alt={car.name}
-          className='object-cover h-full self-center rounded'
+          className="object-cover h-full self-center rounded"
         />
       </div>
-      <div className='flex flex-col gap-y-2 px-3 pt-3 bg-white'>
-        <h1 className='mx-3 text-lg font-open-sans font-bold text-red-900'>
+      <div className="flex flex-col gap-y-2 px-3 pt-3 bg-white">
+        <h1 className="mx-3 text-lg font-open-sans font-bold text-red-900">
           {priceFormatter(car.price)}
         </h1>
-        <h1 className='mx-3 text-lg font-open-sans font-bold text-slate-900'>
+        <h1 className="mx-3 text-lg font-open-sans font-bold text-slate-900">
           {car.name}
         </h1>
       </div>
 
-      <div className='px-6 py-4'>
-        <h1 className='text-sm font-open-sans text-slate-500'>
+      <div className="px-6 py-4">
+        <h1 className="text-sm font-open-sans text-slate-500">
           {`${mileageFormatter(car.mileage)} | ${
             car.fuel
           } | Automatic | Jakarta Utara`}
         </h1>
-        <p className='py-2 text-sm text-gray-700 text-justify'>
-          {`${car.description.substring(0, 250)}...`}
+        <p className="py-2 text-sm text-gray-700 text-justify font-encode">
+        {(car.description.length > 100 && !readMore) ? `${car.description.substring(0, 100)}...` : car.description}
         </p>
-        <div className='mt-2 h-12 w-full flex flex-row font-open-sans text-slate-900 text-sm'>
-          <button className='w-1/3 h-full border-r hover:bg-slate-100 hover:font-bold hover:text-md'>
+        {car.description.length > 100 ? <button className="font-encode" onClick={() => readMore ? setReadMore(false) : setReadMore(true) }>{ readMore ? "read less" : "read more" }</button> : null}
+        
+        <div className="mt-2 h-12 w-full flex flex-row font-open-sans text-slate-900 text-sm">
+          <button className="w-1/3 h-full border-r hover:bg-slate-100 hover:font-bold hover:text-md">
             Preview
           </button>
           {car.status === "sale" && (
             <button
               onClick={() => seeDetail(car.id)}
-              className='w-1/3 h-full border-r hover:bg-slate-100 hover:font-bold hover:text-md'
+              className="w-1/3 h-full border-r hover:bg-slate-100 hover:font-bold hover:text-md"
             >
               See Detail
             </button>
           )}
           {car.status !== "sale" && (
-            <button className='w-1/3 h-full border-r hover:bg-slate-100 hover:font-bold hover:text-md'>
+            <button className="w-1/3 h-full border-r hover:bg-slate-100 hover:font-bold hover:text-md">
               sold
             </button>
           )}
-          <button className='w-1/3 h-full hover:bg-slate-100 hover:font-bold hover:text-md'>
+          <button className="w-1/3 h-full hover:bg-slate-100 hover:font-bold hover:text-md">
             Like
           </button>
         </div>

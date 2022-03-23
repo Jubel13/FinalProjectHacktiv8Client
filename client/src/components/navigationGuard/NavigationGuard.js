@@ -20,6 +20,7 @@ export default function NavigationGuard({ children, setLoginDealer }) {
       title: "Oops...",
       text: "This feature only available for dealer",
     });
+    return <Navigate to="/" state={{ from: location }} replace />;
   } else {
     return children;
   }

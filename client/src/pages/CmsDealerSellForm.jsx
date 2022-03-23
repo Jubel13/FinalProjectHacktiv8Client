@@ -278,7 +278,7 @@ export default function CmsDealerSellForm() {
                         })}
                     </div>
                   </IKContext>
-                  {imageField <= 10 ? (
+                  {imageField < 10 ? (
                     <button
                       className="w-full py-2 pt-3 text-left text-blue-700 hover:text-blue-500 font-bold font-encode"
                       onClick={() => setImageField(imageField + 1)}

@@ -39,7 +39,7 @@ export default function DropdownProfile() {
           <div className="relative inline-flex align-middle w-full">
             <button
               className={
-                "text-slate-900 font-bold font-encode text-xl py-2 px-4 rounded-full over:border-b hover:border-orange-600 outline-none focus:outline-none ease-linear transition-all duration-150 bg-slate-300"
+                "text-slate-900 font-bold font-encode text-xl py-2 px-4 rounded-full hover:ring-2 hover:ring-sky-500 hover:border-b hover:border-orange-600 outline-none focus:outline-none ease-linear transition-all duration-150 bg-slate-300"
               }
               type="button"
               ref={btnDropdownRef}
@@ -79,7 +79,7 @@ export default function DropdownProfile() {
               <div className="divider"></div>
               <button
                 className={
-                  "text-md text-left py-4 px-4 font-normal block w-full whitespace-nowrap bg-transparent " +
+                  "text-sm text-left py-4 px-4 font-normal block w-full whitespace-nowrap bg-transparent " +
                   "text-blueGray-700 hover:bg-yellow-100"
                 }
                 onClick={signOutHandler}

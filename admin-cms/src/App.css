@@ -81,24 +81,30 @@ table {
 
 #user-info {
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
+  justify-content: space-between;
   width: 90%;
 }
 
 #user-info img {
-  border-radius: 50%;
-  width: 56px;
-  height: 56px;
+  width: 200px;
+}
+
+#user-info p {
+  color: black;
+  margin-bottom: 0;
+  margin-top: 1;
 }
 
 hr {
-  color: white;
+  color: black;
   width: 90%;
+  margin-bottom: 1;
+  margin-top: 0;
 }
 
 #sidebar {
   background-color: white;
-  color: white;
   width: 250px;
   padding: 20px;
   height: 100vh;
@@ -112,12 +118,12 @@ hr {
 
 #sidebar a,
 #sidebar a {
-  color: grey !important;
+  color: black !important;
   cursor: pointer;
 }
 
 #sidebar a:focus {
-  color: black;
+  color: grey !important;
 }
 
 .nav-title {
@@ -132,7 +138,7 @@ hr {
   overflow-y: auto;
   width: 100%;
   padding: 32px;
-  background-color: #d7dfe6;
+  background-color: #e5e7eb;
   /* background-image: url("./images/wall.jpg");
   background-position: center;
   background-size: cover; */

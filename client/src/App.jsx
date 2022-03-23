@@ -32,7 +32,6 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/cars" element={<CarList />} />
-
           <Route
             path="/dealer/dashboard"
             element={
@@ -44,12 +43,8 @@ export default function App() {
             <Route path="" element={<CmsDealerDashboard />} />
             <Route path="sell" element={<CmsDealerSellForm />} />
           </Route>
-
           <Route path="/detail/:id" element={<Detail />} />
-          <Route
-            path="/full-report/:idInspection"
-            element={<FullReportPage />}
-          />
+          <Route element={<FullReportPage />} />
           <Route path="/map-navigation/:id" element={<MapsNavigation />} />
           <Route path="/payments/:carId" element={<PaymentPage />} />
           <Route
@@ -60,6 +55,8 @@ export default function App() {
             path="/register/dealer"
             element={<RegisterDealer setLoginDealer={setLoginDealer} />}
           />
+          <Route path="/map-navigation/:id" element={<MapsNavigation />} />
+          <Route path="/payments/:carId" element={<PaymentPage />} />
         </Routes>
         <Footer />
         <LoginModalDealer

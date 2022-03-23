@@ -22,31 +22,31 @@ import CmsDealerDashboard from "./pages/CmsDealerDashboard";
 
 export default function App() {
   return (
-    <div className="App">
-      <div className="w-full min-h-screen bg-white">
+    <div className='App'>
+      <div className='w-full min-h-screen bg-white'>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/cars" element={<CarList />} />
-          <Route path="/login/user" element={<Login />} />
+          <Route path='/' element={<Home />} />
+          <Route path='/cars' element={<CarList />} />
+          <Route path='/login/user' element={<Login />} />
           <Route
-            path="/dealer/dashboard"
+            path='/dealer/dashboard'
             element={
               <NavigationGuard>
                 <CmsDealer />
               </NavigationGuard>
             }
           >
-            <Route path="" element={<CmsDealerDashboard />} />
-            <Route path="sell" element={<CmsDealerSellForm />} />
+            <Route path='' element={<CmsDealerDashboard />} />
+            <Route path='sell' element={<CmsDealerSellForm />} />
           </Route>
-          <Route path="/detail/:id" element={<Detail />} />
+          <Route path='/detail/:id' element={<Detail />} />
           <Route
-            path="/full-report/:idInspection"
+            path='/full-report/:idInspection'
             element={<FullReportPage />}
           />
-          <Route path="/map-navigation/:id" element={<MapsNavigation />} />
-          <Route path="/payments/:carId" element={<PaymentPage />} />
+          <Route path='/map-navigation/:id' element={<MapsNavigation />} />
+          <Route path='/payments/:carId' element={<PaymentPage />} />
           {/* <Route path="/login/dealer" element={<LoginDealer />} />
           <Route path="/register/user" element={<Register />} />
           <Route path="/register/dealer" element={<RegisterDealer />} /> */}

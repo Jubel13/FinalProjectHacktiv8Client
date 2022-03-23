@@ -33,62 +33,62 @@ export default function LoginModal() {
         title: "Login",
         text: "Welcome!",
       });
-      navigate("/dashboard/dealer");
+      navigate("/dealer/dashboard");
     } catch (error) {
       Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
+        icon: "error",
+        title: "Oops...",
         text: error.response.data.message,
-      })
+      });
     }
   };
 
   return (
     <div>
-      <input type="checkbox" id="login-modal" className="modal-toggle" />
+      <input type='checkbox' id='login-modal' className='modal-toggle' />
       <div className={classModal}>
-        <div className="modal-box w-11/12 max-w-3xl h-fit bg-white text-slate-900">
+        <div className='modal-box w-11/12 max-w-3xl h-fit bg-white text-slate-900'>
           <label
-            for="login-modal"
-            className="btn btn-sm btn-circle absolute right-2 top-2"
+            for='login-modal'
+            className='btn btn-sm btn-circle absolute right-2 top-2'
           >
             ✕
           </label>
-          <div className="w-full px-4 mt-8 flex flex-col justify-center items-center">
-            <p className="text-4xl font-bold">Dealer Login</p>
+          <div className='w-full px-4 mt-8 flex flex-col justify-center items-center'>
+            <p className='text-4xl font-bold'>Dealer Login</p>
             <form
-              className="w-full flex flex-col mt-12 px-16 pb-16"
+              className='w-full flex flex-col mt-12 px-16 pb-16'
               onSubmit={handleSubmit(onSubmit)}
             >
               <label
-                htmlFor="Email"
-                className="py-2 pl-4 text-xl font-bold font-encode"
+                htmlFor='Email'
+                className='py-2 pl-4 text-xl font-bold font-encode'
               >
                 Email
               </label>
               <input
-                type="text"
-                className="w-full px-8 py-4 font-encode border border-slate-500 rounded-full"
-                placeholder="john.doe@mail.com"
-                name="email"
+                type='text'
+                className='w-full px-8 py-4 font-encode border border-slate-500 rounded-full'
+                placeholder='john.doe@mail.com'
+                name='email'
                 {...register("email")}
               />
               <label
-                htmlFor="Email"
-                className="mt-6 py-2 pl-4 text-xl font-bold font-encode"
+                htmlFor='Email'
+                className='mt-6 py-2 pl-4 text-xl font-bold font-encode'
               >
                 Password
               </label>
               <input
-                type="password"
-                className="w-full px-8 py-4 font-encode border border-slate-500 rounded-full"
-                placeholder="myVerySecretPassword"
-                name="password"
+                type='password'
+                className='w-full px-8 py-4 font-encode border border-slate-500 rounded-full'
+                placeholder='myVerySecretPassword'
+                name='password'
                 {...register("password")}
               />
               <button
-                type="submit"
-                className="mt-12 text-lg font-encode font-bold text-white w-full rounded-full py-4 bg-blue-700"
+                type='submit'
+                className='mt-12 text-lg font-encode font-bold text-white w-full rounded-full py-4 bg-blue-700'
               >
                 Submit
               </button>

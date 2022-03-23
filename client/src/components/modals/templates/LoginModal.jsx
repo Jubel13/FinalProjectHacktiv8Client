@@ -1,29 +1,61 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { dealerApi } from "../../../API";
+import { useNavigate } from "react-router-dom";
+import useLocalStorage from "../../../helpers/customHook";
+import Swal from "sweetalert2";
 
-export default function AccountForm() {
+export default function LoginModal() {
+  const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
+  const [classModal, setModal] = useState("modal");
+  const [access_token, setToken] = useLocalStorage("access_token", "");
+
+  useEffect(() => {
+    if (!access_token) {
+      setModal("modal");
+    } else {
+      setModal("modal hidden");
+    }
+  }, [access_token]);
 
   const onSubmit = async (data) => {
-    // console.log(data);
-    const response = await dealerApi.post("/login", data)
-    console.log(response.data)
+    try {
+      console.log(data);
+      const response = await dealerApi.post("/login", data);
+      console.log(response.data);
+      localStorage.setItem("access_token", response.data.access_token);
+      localStorage.setItem("id", response.data.id);
+      localStorage.setItem("email", response.data.email);
+      localStorage.setItem("username", response.data.name);
+      Swal.fire({
+        icon: "success",
+        title: "Login",
+        text: "Welcome!",
+      });
+      navigate("/dashboard/dealer");
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: error.response.data.message,
+      })
+    }
   };
 
   return (
     <div>
-      <input type="checkbox" id="my-modal-4" class="modal-toggle" />
-      <div class="modal">
-        <div class="modal-box w-11/12 max-w-3xl h-fit bg-white text-slate-900">
+      <input type="checkbox" id="login-modal" className="modal-toggle" />
+      <div className={classModal}>
+        <div className="modal-box w-11/12 max-w-3xl h-fit bg-white text-slate-900">
           <label
-            for="my-modal-4"
-            class="btn btn-sm btn-circle absolute right-2 top-2"
+            for="login-modal"
+            className="btn btn-sm btn-circle absolute right-2 top-2"
           >
             ✕
           </label>
           <div className="w-full px-4 mt-8 flex flex-col justify-center items-center">
-            <p className="text-4xl font-bold">Login</p>
+            <p className="text-4xl font-bold">Dealer Login</p>
             <form
               className="w-full flex flex-col mt-12 px-16 pb-16"
               onSubmit={handleSubmit(onSubmit)}

@@ -14,7 +14,11 @@ import Detail from "./pages/DetailPage";
 import MapsNavigation from "./components/MapsNavigation";
 import FullReportPage from "./components/FullReportPage";
 import PaymentPage from "./components/PaymentPage";
-import AccountForm from "./components/modals/templates/AccountForm";
+import LoginModal from "./components/modals/templates/LoginModal";
+import RegisterModal from "./components/modals/templates/RegisterModal";
+import NavigationGuard from "./components/navigationGuard/NavigationGuard";
+import CmsDealerSellForm from "./pages/CmsDealerSellForm";
+import CmsDealerDashboard from "./pages/CmsDealerDashboard";
 
 export default function App() {
   return (
@@ -25,7 +29,17 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/cars" element={<CarList />} />
           <Route path="/login/user" element={<Login />} />
-          <Route path="/dashboard/dealer/:id" element={<CmsDealer />} />
+          <Route
+            path="/dealer/dashboard"
+            element={
+              <NavigationGuard>
+                <CmsDealer />
+              </NavigationGuard>
+            }
+          >
+            <Route path="" element={<CmsDealerDashboard />} />
+            <Route path="sell" element={<CmsDealerSellForm />} />
+          </Route>
           <Route path="/detail/:id" element={<Detail />} />
           <Route
             path="/full-report/:idInspection"
@@ -38,7 +52,8 @@ export default function App() {
           <Route path="/register/dealer" element={<RegisterDealer />} /> */}
         </Routes>
         <Footer />
-        <AccountForm />
+        <LoginModal />
+        <RegisterModal />
       </div>
     </div>
   );

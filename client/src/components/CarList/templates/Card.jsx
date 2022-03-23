@@ -52,18 +52,21 @@ export default function Card({ car }) {
         <i class="fa-solid fa-camera mr-2"></i>
         {car.Images.length}
       </div>
+
       <button
         className="w-8 h-8 rounded-full bg-slate-900 opacity-50 absolute top-28 left-2 flex justify-center items-center text-white hover:scale-105"
         onClick={previousImage}
       >
         <i class="fa-solid fa-angle-left"></i>
       </button>
+
       <button
         className="w-8 h-8 rounded-full bg-slate-900 opacity-50 absolute top-28 right-2 flex justify-center items-center text-white hover:scale-105"
         onClick={nextImage}
       >
         <i class="fa-solid fa-angle-right"></i>
       </button>
+      
       <div className="h-56 w-full overflow-hidden flex justify-center items-center">
         <img
           // onLoad={onImgLoad}

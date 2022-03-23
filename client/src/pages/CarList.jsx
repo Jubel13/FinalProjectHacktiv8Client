@@ -6,7 +6,7 @@ import { useSearchParams } from "react-router-dom";
 export default function CarList() {
   const [cars, setCars] = useState([]);
   let [searchParams, setSearchParams] = useSearchParams();
-  let brandQuery = searchParams.get("brand").toLowerCase()
+  let brandQuery = searchParams.get("brand")?.toLowerCase();
 
   const fetchCars = async () => {
     const response = await carsApi.get();

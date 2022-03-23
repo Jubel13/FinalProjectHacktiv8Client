@@ -29,6 +29,10 @@ export default function Navbar({ setLoginBuyer, setLoginDealer }) {
         >
           Sell Car
         </button>
+        <button className="h-full font-bold font-open-sans hover:border-b hover:border-orange-600"
+        onClick={() => navigate("/mybill")}>
+          My Bill
+        </button>
       </div>
       <div className="h-full w-1/4 flex flex-row gap-x-8 justify-end items-center text-xl">
         { !localStorage.getItem("access_token") ? (

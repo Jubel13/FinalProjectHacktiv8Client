@@ -6,7 +6,7 @@ import 'react-slideshow-image/dist/styles.css'
 
 export default function Detail() {
   const [carsDetail, setCarsDetail] = useState({});
-  const [imageUrl, setImageUrl] = useState('')
+  const [imageUrl, setImageUrl] = useState([])
   // const [imageId, setImageId] = useState(1)
   const [exterior, setExterior] = useState({})
   const [interior, setInterior] = useState({})
@@ -14,12 +14,14 @@ export default function Detail() {
   const [roadTest, setRoadTest] = useState({})
   const navigate = useNavigate()
   const { id } = useParams()
+  
+  const [currentIndex, setCurrentIndex] = useState(0)
 
   useEffect(() => {
     serverApi.get(`/cars/${id}`)
     .then(res => {
       setCarsDetail(res.data)
-      setImageUrl(res.data.Images[0].image)
+      setImageUrl(res.data.Images)
       return serverApi.get(`/inspections/${res.data.Inspection.id}`)
     })
     .then(res => {
@@ -28,7 +30,7 @@ export default function Detail() {
       setKolong(res.data.Kolong);
       setRoadTest(res.data.RoadTest);
     })
-    .catch(err => console.log(err))
+    .catch(err => console.log(err.response))
   }, [])
 
   // TOTAL EXTERIOR TRUE
@@ -58,6 +60,19 @@ export default function Detail() {
     navigate(`/full-report/${idInspection}`)
   }
 
+  let count = 0;
+
+  const handleNext = () => {
+    count = (count + 1) % imageUrl.length;
+    setCurrentIndex(count)
+  }
+
+  const handlePrev = () => {
+    const imgLength = imageUrl.length
+    count = (currentIndex + imgLength -1) % imgLength;
+    setCurrentIndex(count)
+  }
+
   return (
     <div className="containerDetail">
       {/* image and maps navigasi */}
@@ -65,10 +80,10 @@ export default function Detail() {
         <div className="w-4/6">
         <div class="carousel w-full">
             <div id="slide1" class="carousel-item relative w-full">
-              <img src={imageUrl} class="w-full" />
+              <img src={!imageUrl.length ? '' : imageUrl[currentIndex].image } class="w-full" />
               <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                <button class="btn btn-circle">❮</button> 
-                <button class="btn btn-circle">❯</button>
+                <button onClick={handlePrev} class="btn btn-circle">❮</button> 
+                <button onClick={handleNext} class="btn btn-circle">❯</button>
               </div>
             </div> 
           </div>
@@ -149,22 +164,22 @@ export default function Detail() {
               <div className="shadow-lg shadow-slate-400 rounded-r-lg w-3/6 bg-white">
                 <div className="flex flex-row justify-between m-5">
                   <span className="font-semibold text-slate-600">Eksterior</span>
-                  <span className="font-bold text-green-500">{exteriorTrue.length} Graduated</span>
+                  <span className="font-bold text-green-500">{exteriorTrue.length} Passed</span>
                 </div>
                 <hr className="mx-5"/>
                 <div className="flex flex-row justify-between m-5">
                   <span className="font-semibold text-slate-600">Interior</span>
-                  <span className="font-bold text-green-500">{interiorTrue.length} Graduated</span>
+                  <span className="font-bold text-green-500">{interiorTrue.length} Passed</span>
                 </div>
                 <hr className="mx-5"/>
                 <div className="flex flex-row justify-between m-5">
                   <span className="font-semibold text-slate-600">Road Test</span>
-                  <span className="font-bold text-green-500">{roadTestTrue.length} Graduated</span>
+                  <span className="font-bold text-green-500">{roadTestTrue.length} Passed</span>
                 </div>
                 <hr className="mx-5"/>
                 <div className="flex flex-row justify-between m-5">
                   <span className="font-semibold text-slate-600">Bottom Section</span>
-                  <span className="font-bold text-green-500">{kolongTestTrue.length} Graduated</span>
+                  <span className="font-bold text-green-500">{kolongTestTrue.length} Passed</span>
                 </div>
                 <div className="flex flex-row justify-center m-5">
                   <button onClick={() => getFullReport(carsDetail.Inspection.id)} className="btn btn-outline my-3">Get Full Report</button>

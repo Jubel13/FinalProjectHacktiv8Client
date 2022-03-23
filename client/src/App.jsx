@@ -5,9 +5,8 @@ import Home from "./pages/Home";
 import CarList from "./pages/CarList";
 import Navbar from "./components/navbar/templates/Navbar";
 import Footer from "./components/footer/templates/Footer";
-import Login from "./pages/Login";
 import CmsDealer from "./pages/CmsDealer";
-import Register from "./pages/Register";
+import Register from "./pages/RegisterBuyer";
 import LoginDealer from "./pages/LoginDealer";
 import RegisterDealer from "./pages/RegisterDealer";
 import CmsAdmin from "./pages/CmsDealer";
@@ -21,6 +20,7 @@ import CmsDealerSellForm from "./pages/CmsDealerSellForm";
 import CmsDealerDashboard from "./pages/CmsDealerDashboard";
 import LoginModalDealer from "./components/modals/templates/LoginModalDealer";
 import LoginModalBuyer from "./components/modals/templates/LoginModalBuyer";
+import RegisterBuyer from "./pages/RegisterBuyer";
 
 export default function App() {
   const [loginDealer, setLoginDealer] = useState(false);
@@ -32,7 +32,6 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/cars" element={<CarList />} />
-          <Route path="/login/user" element={<Login />} />
           <Route
             path="/dealer/dashboard"
             element={
@@ -51,19 +50,21 @@ export default function App() {
           />
           <Route path="/map-navigation/:id" element={<MapsNavigation />} />
           <Route path="/payments/:carId" element={<PaymentPage />} />
-          {/* <Route path="/login/dealer" element={<LoginDealer />} />
-          <Route path="/register/user" element={<Register />} />
-          <Route path="/register/dealer" element={<RegisterDealer />} /> */}
+          <Route
+            path="/register/user"
+            element={<RegisterBuyer setLoginBuyer={setLoginBuyer} />}
+          />
+          <Route
+            path="/register/dealer"
+            element={<RegisterDealer setLoginDealer={setLoginDealer} />}
+          />
         </Routes>
         <Footer />
         <LoginModalDealer
           showModal={loginDealer}
           setShowModal={setLoginDealer}
         />
-        <LoginModalBuyer 
-          showModal={loginBuyer} 
-          setShowModal={setLoginBuyer} 
-        />
+        <LoginModalBuyer showModal={loginBuyer} setShowModal={setLoginBuyer} />
       </div>
     </div>
   );

@@ -50,7 +50,11 @@ export default function Dropdown({ title, setLoginBuyer, setLoginDealer }) {
                   "text-lg text-left py-4 px-4 font-normal block w-full whitespace-nowrap bg-transparent " +
                   "text-blueGray-700 hover:bg-yellow-100"
                 }
-                onClick={() => setLoginBuyer(true)}
+                onClick={() => {
+                  title === "Login"
+                    ? setLoginBuyer(true)
+                    : navigate("/register/user");
+                }}
               >
                 {title}
               </button>
@@ -59,7 +63,11 @@ export default function Dropdown({ title, setLoginBuyer, setLoginDealer }) {
                   "text-lg text-left py-4 px-4 font-normal block w-full whitespace-nowrap bg-transparent " +
                   "text-blueGray-700 hover:bg-yellow-100"
                 }
-                onClick={() => setLoginDealer(true)}
+                onClick={() => {
+                  title === "Login"
+                    ? setLoginDealer(true)
+                    : navigate("/register/dealer");
+                }}
               >
                 {`${title} as dealer`}
               </button>

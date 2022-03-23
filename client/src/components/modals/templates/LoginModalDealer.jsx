@@ -138,7 +138,7 @@ export default function LoginModalDealer({ showModal, setShowModal }) {
             // onClick={() => setShowModal(false)}
           >
             <div
-              className="relative my-6 mx-auto w-11/12 max-w-3xl h-fit bg-white text-slate-900"
+              className="relative my-6 mx-auto w-11/12 max-w-xl h-fit bg-white text-slate-900"
               // onBlur={setShowModal(false)}
             >
               <button
@@ -148,42 +148,42 @@ export default function LoginModalDealer({ showModal, setShowModal }) {
                 X
               </button>
               <div className="w-full px-4 mt-8 flex flex-col justify-center items-center">
-                <p className="text-4xl font-bold">Dealer Login</p>
+                <p className="text-2xl font-semibold">Dealer Login</p>
                 <form
                   className="w-full flex flex-col mt-12 px-16 pb-16"
                   onSubmit={handleSubmit(onSubmit)}
                 >
                   <label
                     htmlFor="Email"
-                    className="py-2 pl-4 text-xl font-bold font-encode"
+                    className="py-2 pl-4 text-md font-semibold font-encode"
                   >
                     Email
                   </label>
                   <input
                     type="text"
-                    className="w-full px-8 py-4 font-encode border border-slate-500 rounded-full"
+                    className="w-full px-8 py-4 text-md font-encode border border-slate-500 rounded-full"
                     placeholder="john.doe@mail.com"
                     name="email"
                     {...register("email")}
                   />
                   <label
                     htmlFor="Email"
-                    className="mt-6 py-2 pl-4 text-xl font-bold font-encode"
+                    className="mt-4 py-2 pl-4 text-md font-semibold font-encode"
                   >
                     Password
                   </label>
                   <input
                     type="password"
-                    className="w-full px-8 py-4 font-encode border border-slate-500 rounded-full"
+                    className="w-full px-8 py-4 text-md font-encode border border-slate-500 rounded-full"
                     placeholder="myVerySecretPassword"
                     name="password"
                     {...register("password")}
                   />
                   <button
                     type="submit"
-                    className="mt-12 text-lg font-encode font-bold text-white w-full rounded-full py-4 bg-blue-700"
+                    className="mt-12 text-md font-encode font-normal text-white w-full rounded-full py-4 bg-blue-700"
                   >
-                    Submit
+                    Sign in
                   </button>
                 </form>
               </div>

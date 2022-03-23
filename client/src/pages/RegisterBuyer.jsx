@@ -1,22 +1,22 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { dealerApi } from "../API";
+import { buyerApi } from "../API";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
-export default function RegisterDealer({ setLoginDealer }) {
+export default function RegisterBuyer({ setLoginBuyer }) {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     try {
-      await dealerApi.post("/register", data);
+      await buyerApi.post("/register", data);
       Swal.fire({
         icon: "success",
         title: "Login",
         text: "Welcome!",
       });
-      setLoginDealer(true);
+      setLoginBuyer(true);
       navigate("/");
     } catch (error) {
       Swal.fire({
@@ -56,7 +56,7 @@ export default function RegisterDealer({ setLoginDealer }) {
           <div class="flex-1">
             <div class="text-center mt-16">
               <h2 class="text-4xl font-bold text-center text-slate-900">
-                Dealer
+                User
               </h2>
 
               <p class="mt-3 text-gray-500">Register Account</p>
@@ -66,18 +66,18 @@ export default function RegisterDealer({ setLoginDealer }) {
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div>
                   <label
-                    for="name"
+                    for="username"
                     class="block mb-2 text-sm text-gray-600"
                   >
-                    Name
+                    Username
                   </label>
                   <input
                     type="text"
-                    name="name"
-                    id="name"
-                    placeholder="John Doe"
+                    name="username"
+                    id="username"
+                    placeholder="john123"
                     class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-                    {...register("name")}
+                    {...register("username")}
                   />
                 </div>
 
@@ -96,30 +96,16 @@ export default function RegisterDealer({ setLoginDealer }) {
                 </div>
 
                 <div className="mt-6">
-                  <label for="storeName" class="block mb-2 text-sm text-gray-600">
-                    Store Name
+                  <label for="address" class="block mb-2 text-sm text-gray-600">
+                    City Address
                   </label>
                   <input
                     type="text"
-                    name="storeName"
-                    id="storeName"
-                    placeholder="Southwest Auto"
-                    class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-                    {...register("storeName")}
-                  />
-                </div>
-
-                <div className="mt-6">
-                  <label for="storeAddress" class="block mb-2 text-sm text-gray-600">
-                    Store City Address
-                  </label>
-                  <input
-                    type="text"
-                    name="storeAddress"
-                    id="storeAddress"
+                    name="address"
+                    id="address"
                     placeholder="Jakarta Pusat"
                     class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-                    {...register("storeAddress")}
+                    {...register("address")}
                   />
                 </div>
 
@@ -128,7 +114,7 @@ export default function RegisterDealer({ setLoginDealer }) {
                     for="phoneNumber"
                     class="block mb-2 text-sm text-gray-600"
                   >
-                    Store Phone Number
+                    Phone Number
                   </label>
                   <input
                     type="text"
@@ -168,7 +154,7 @@ export default function RegisterDealer({ setLoginDealer }) {
                 <button
                   class="text-blue-500 focus:outline-none focus:underline hover:underline"
                   onClick={() => {
-                    setLoginDealer(true);
+                    setLoginBuyer(true);
                     navigate("/");
                   }}
                 >

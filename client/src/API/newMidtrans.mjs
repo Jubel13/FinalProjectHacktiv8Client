@@ -49,6 +49,10 @@ const payload = {
   card_exp_year: '2025'
 }
 
+export const token = (payload) => {
+  return core.cardToken(payload)
+}
+
 core.cardToken(payload)
 .then(resp => console.log(resp, '<<<<< CARD >>>>>'))
 .catch(err => console.log(err.ApiResponse, '<<<<< CARD ERROR >>>>>'))

@@ -1,12 +1,13 @@
 import {useEffect, useState } from "react";
 import { useNavigate, useParams} from "react-router-dom";
 import serverApi from '../API/serverApi'
+import 'react-slideshow-image/dist/styles.css'
 
 
 export default function Detail() {
   const [carsDetail, setCarsDetail] = useState({});
   const [imageUrl, setImageUrl] = useState('')
-  const [imageId, setImageId] = useState(1)
+  // const [imageId, setImageId] = useState(1)
   const [exterior, setExterior] = useState({})
   const [interior, setInterior] = useState({})
   const [kolong, setKolong] = useState({})
@@ -18,9 +19,7 @@ export default function Detail() {
     serverApi.get(`/cars/${id}`)
     .then(res => {
       setCarsDetail(res.data)
-      res.data.Images.map(el => {
-        if (el.id === imageId) setImageUrl(el.image) 
-      })
+      setImageUrl(res.data.Images[0].image)
       return serverApi.get(`/inspections/${res.data.Inspection.id}`)
     })
     .then(res => {
@@ -31,7 +30,6 @@ export default function Detail() {
     })
     .catch(err => console.log(err))
   }, [])
-
 
   // TOTAL EXTERIOR TRUE
   const exteriorEntries = Object.entries(exterior);
@@ -65,16 +63,15 @@ export default function Detail() {
       {/* image and maps navigasi */}
       <div className="flex flex-row mt-5 px-24">
         <div className="w-4/6">
-          <div className="carousel w-full">
-            <div className="carousel-item relative w-full">
-              <img src={imageUrl} className="object-cover h-5/6 w-full" />
-              {/* <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                <button onClick={prev} className="btn btn-circle">❮</button> 
-                <button onClick={next}  className="btn btn-circle">❯</button>
-              </div> */}
-            </div>
+        <div class="carousel w-full">
+            <div id="slide1" class="carousel-item relative w-full">
+              <img src={imageUrl} class="w-full" />
+              <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                <button class="btn btn-circle">❮</button> 
+                <button class="btn btn-circle">❯</button>
+              </div>
+            </div> 
           </div>
-          
         </div>
         <div className="w-2/6 h-96 px-6">
           <h1 className="flex items-start font-bold text-2xl mt-1.5">{carsDetail.name}</h1>
@@ -85,7 +82,6 @@ export default function Detail() {
             <button className="flex justify-center font-semibold text-sky-600" onClick={() => fetchMap(carsDetail.id)}>Check Dealer Location</button>
           </div>
 
-          {/* modal pembayaran */}
           <div className="flex flex-row items-end pr-3">
             <button onClick={() => goToPaymentPage(carsDetail.id)} className="flex btn btn-outline items-center justify-center mt-12 font-bold w-5/6 h-12 rounded-md">Buy Now</button>
             <a href="https://api.whatsapp.com/send/?phone=6281355538777" className="flex btn btn-outline items-center justify-center mt-12 ml-2 rounded-md h-12"><i className="fa-brands fa-whatsapp text-4xl text-green-400"></i></a>
@@ -95,14 +91,14 @@ export default function Detail() {
 
       {/* detail mobil */}
 
-      <div className="flex flex-col items-center mb-8">
+      <div className="flex flex-col items-center mt-8">
         <h1 className="font-bold text-slate-900 text-3xl">Car Detail</h1>
         <h1 className="font-semibold text-slate-900 text-lg mt-3">ID : {carsDetail.id}</h1>
       </div>
       
-      <hr className="mb-4 mx-16"/>
+      <hr className="mb-4 mx-24"/>
 
-      <div className="flex justify-around mb-10">
+      <div className="flex justify-around mb-10 px-8">
         <div className="w-2/5 h-auto">
           <div className="flex justify-between w-full mb-4 ">
             <span className="text-slate-600 font-semibold">Fuel Type</span>

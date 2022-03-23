@@ -29,7 +29,7 @@ export default function FullReportPage() {
           <div className="flex flex-row justify-between p-3">
             <span className="font-bold text-gray-800">Main Inspection</span>
             {
-              inspection.mainInspection === true ? <span className="font-bold text-green-500">Graduated</span> : <span className="font-bold text-red-500">Not Graduated</span>
+              inspection.mainInspection === true ? <span className="font-bold text-green-500">Passed</span> : <span className="font-bold text-red-500">Not Passed</span>
             }
           </div>
           <div className="flex flex-row justify-center w-100 p-4"> 
@@ -50,7 +50,7 @@ export default function FullReportPage() {
           <div className="flex flex-row justify-between p-4">
             <span className="font-bold text-gray-800">Exterior</span>
             {
-              inspection.exteriorInspection === true ? <span className="font-bold text-green-500">Graduated</span> : <span className="font-bold text-red-500">Not Graduated</span>
+              inspection.exteriorInspection === true ? <span className="font-bold text-green-500">Passed</span> : <span className="font-bold text-red-500">Not Passed</span>
             }
           </div>
           <div className="flex flex-row justify-center p-4"> 
@@ -63,7 +63,7 @@ export default function FullReportPage() {
             </div>
           </div>
           <div className="flex flex-row p-4">
-            <div className="flex flex-col w-2/4 mr-3">
+            <div className="flex flex-col w-2/4 mr-10">
               <div className="flex flex-row items-center justify-between w-full my-3">
                   <span>Bamper</span>
                   {
@@ -131,7 +131,7 @@ export default function FullReportPage() {
           <div className="flex flex-row justify-between p-4">
             <span className="font-bold text-gray-800">Interior</span>
             {
-              inspection.interiorInspection === true ? <span className="font-bold text-green-500">Graduated</span> : <span className="font-bold text-red-500">Not Graduated</span>
+              inspection.interiorInspection === true ? <span className="font-bold text-green-500">Passed</span> : <span className="font-bold text-red-500">Not Passed</span>
             }
           </div>
           <div className="flex flex-row justify-center p-4"> 
@@ -146,7 +146,7 @@ export default function FullReportPage() {
             </div>
           </div>
           <div className="flex flex-row p-4">
-            <div className="flex flex-col w-2/4 mr-3">
+            <div className="flex flex-col w-2/4 mr-8">
               <div className="flex flex-row items-center justify-between w-full my-3">
                   <span>Brake Pedal</span>
                   {
@@ -214,7 +214,7 @@ export default function FullReportPage() {
           <div className="flex flex-row justify-between p-4">
             <span className="font-bold text-gray-800">Road Test</span>
             {
-              inspection.roadTest === true ? <span className="font-bold text-green-500">Graduated</span> : <span className="font-bold text-red-500">Not Graduated</span>
+              inspection.roadTest === true ? <span className="font-bold text-green-500">Passed</span> : <span className="font-bold text-red-500">Not Passed</span>
             }
           </div>
           <div className="flex flex-row justify-center p-4"> 
@@ -228,7 +228,7 @@ export default function FullReportPage() {
             </div>
           </div>
           <div className="flex flex-row p-4">
-            <div className="flex flex-col w-2/4 mr-3">
+            <div className="flex flex-col w-2/4 mr-8">
               <div className="flex flex-row items-center justify-between w-full my-3">
                   <span>Engine Starting</span>
                   {
@@ -282,7 +282,7 @@ export default function FullReportPage() {
           <div className="flex flex-row justify-between p-4">
             <span className="font-bold text-gray-800">Bottom Section</span>
             {
-              inspection.kolongTest === true ? <span className="font-bold text-green-500">Graduated</span> : <span className="font-bold text-red-500">Not Graduated</span>
+              inspection.kolongTest === true ? <span className="font-bold text-green-500">Passed</span> : <span className="font-bold text-red-500">Not Passed</span>
             }
           </div>
           <div className="flex flex-row justify-center p-4"> 
@@ -296,7 +296,7 @@ export default function FullReportPage() {
             </div>
           </div>
           <div className="flex flex-row p-4">
-            <div className="flex flex-col w-2/4 mr-3">
+            <div className="flex flex-col w-2/4 mr-8">
               <div className="flex flex-row items-center justify-between w-full my-3">
                   <span>Oli Mesin</span>
                   {

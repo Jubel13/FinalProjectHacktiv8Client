@@ -1,23 +1,16 @@
-// const webpack = require('webpack');
+const webpack = require('webpack');
 
-// module.exports = {
-//   plugins: [
-//         new webpack.ProvidePlugin({
-//             Buffer: ['buffer', 'Buffer'],
-//         }),
-//         new webpack.ProvidePlugin({
-//             process: 'process/browser',
-//         }),
-//     ],
-//   resolve: {
-//         ...resolve,
-//         extensions: [ '.ts', '.js' ],
-//         fallback: {
-//             ...fallback,
-//             stream: require.resolve("stream-browserify"),
-//             buffer: require.resolve("buffer"),
-//             querystring: false
-//         }
-//     },
-// }
-
+module.exports = {
+     fallback: {
+            util: require.resolve('util/'),
+            assert: require.resolve('assert/'),
+            stream: require.resolve('stream-browserify'),
+            zlib: require.resolve('browserify-zlib'),
+        },
+    plugins: [
+        new webpack.ProvidePlugin({
+             Buffer: ['buffer', 'Buffer'],
+             process: 'process/browser',
+        }),
+    ],
+}

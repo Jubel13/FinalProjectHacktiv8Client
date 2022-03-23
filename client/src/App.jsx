@@ -19,6 +19,8 @@ import RegisterModal from "./components/modals/templates/RegisterModal";
 import NavigationGuard from "./components/navigationGuard/NavigationGuard";
 import CmsDealerSellForm from "./pages/CmsDealerSellForm";
 import CmsDealerDashboard from "./pages/CmsDealerDashboard";
+import MyBill from "./components/MyBillPage";
+import ProtectedRoute from "./components/ProtectionRoute";
 
 export default function App() {
   return (
@@ -46,7 +48,16 @@ export default function App() {
             element={<FullReportPage />}
           />
           <Route path="/map-navigation/:id" element={<MapsNavigation />} />
-          <Route path="/payments/:carId" element={<PaymentPage />} />
+          <Route path="/payments/:carId" element={
+              <ProtectedRoute>
+                <PaymentPage/>
+              </ProtectedRoute>
+            } />
+          <Route path="/mybill"  element={
+            <ProtectedRoute>
+              <MyBill />
+            </ProtectedRoute>
+          } />
           {/* <Route path="/login/dealer" element={<LoginDealer />} />
           <Route path="/register/user" element={<Register />} />
           <Route path="/register/dealer" element={<RegisterDealer />} /> */}

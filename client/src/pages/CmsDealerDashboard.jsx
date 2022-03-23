@@ -39,7 +39,7 @@ export default function CmsDealerDashboard() {
                   </div>
                   <div className="block w-full overflow-x-auto">
                     {/* Projects table */}
-                    <Table cars={cars}/>
+                    <Table cars={cars} fetchCars={fetchCars}/>
                   </div>
                 </div>
               </div>

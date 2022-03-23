@@ -21,6 +21,7 @@ export default function CmsDealerSellForm() {
   const [types, setTypes] = useState([]);
   const [imageField, setImageField] = useState(1);
   const [uploadedImageSource, setUploadedImageSource] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const watchBrand = watch("brand", null);
 
   const fetchBrands = async () => {
@@ -52,6 +53,7 @@ export default function CmsDealerSellForm() {
 
   const onSubmit = async (data) => {
     try {
+      setIsLoading(true);
       data.yearMade = `${data.yearMade}-01-01`;
       data.image = uploadedImageSource;
       const accessToken = localStorage.getItem("access_token");
@@ -66,12 +68,14 @@ export default function CmsDealerSellForm() {
         text: "Success add car",
       });
       reset();
+      setIsLoading(false)
     } catch (error) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: error.response.data.message,
       });
+      setIsLoading(false)
     }
   };
 
@@ -312,9 +316,16 @@ export default function CmsDealerSellForm() {
               />
             </div>
             <div className="pb-16 w-full flex justify-end">
-              <button className="w-1/4 py-2 text-white font-bold font-encode bg-blue-700 rounded-xl">
-                Submit
-              </button>
+              {isLoading ? (
+                <div className="w-1/4 py-2 text-white font-bold font-encode bg-blue-700 rounded-xl cursor-wait flex justify-center items-center">
+                  <i class="fa-solid fa-spinner animate-spin mr-2"></i>
+                  Submit
+                </div>
+              ) : (
+                <button className="w-1/4 py-2 text-white font-bold font-encode bg-blue-700 rounded-xl">
+                  Submit
+                </button>
+              )}
             </div>
           </form>
         </div>

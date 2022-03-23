@@ -7,8 +7,11 @@ export default function Navbar({ setLoginBuyer, setLoginDealer }) {
   const navigate = useNavigate();
   return (
     <div className="w-full h-16 px-36 flex flex-row justify-between text-slate-900">
-      <div className="w-1/4 h-full font-bold font-open-sans text-xl text-xl flex justify-start items-center">
-        LOGO
+      <div className="w-1/4 h-full font-bold font-open-sans text-xl flex justify-start items-center">
+        <img
+          src="https://media.discordapp.net/attachments/951784075235037204/956060922907066448/logobaru.png"
+          alt="Auto Classic Logo"
+        />
       </div>
       <div className="w-1/2 h-full flex flex-row gap-x-8 justify-center items-center text-xl">
         <button

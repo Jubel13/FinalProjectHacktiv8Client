@@ -1,13 +1,23 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router"
+import { Link } from "react-router-dom";
 import { apiClient } from "../API/midtrans"
 import serverApi from '../API/serverApi'
+import picoModal from 'picomodal'
+
 
 export default function PaymentPage() {
   const [carDetail, setCarDetail] = useState({})
+
   const [quantity, setQuantity] = useState(1)
   const [buyerId, setBuyerId] = useState(1)
   const [notes, setNotes] = useState('')
+
+  const [cardNumber, setCardNumber] = useState(0)
+  const [cardExpMonth, setCardExpMonth] = useState(0)
+  const [cardExpYear, setCardExpYear] = useState(0)
+  const [cvv,setCvv] = useState(0)
+
   const [paymentMethod, setPaymentMethod] = useState('cash')
 
   const {carId} = useParams()
@@ -19,6 +29,22 @@ export default function PaymentPage() {
   const changePaymentMethod = (event) => {
     // console.log(event.target.value);
     setPaymentMethod(event.target.value)
+  }
+
+  const changeCardNumber = (event) => {
+    setCardNumber(event.target.value)
+  }
+
+  const changeCardExpMonth = (event) => {
+    setCardExpMonth(event.target.value)
+  }
+
+  const changeCardExpYear = (event) => {
+    setCardExpYear(event.target.value)
+  }
+
+  const changeCvv = (event) => {
+    setCvv(event.target.value)
   }
 
 
@@ -48,7 +74,6 @@ export default function PaymentPage() {
       document.body.removeChild(scriptTag);
     }
   }, []);
-
 
 
   const submitPaymentCash = () => {
@@ -96,15 +121,59 @@ export default function PaymentPage() {
     })
     .catch(err => console.log(err))
   }
-
-
+  
+ 
+  
   const submitPaymentCredit = () => {
-    console.log('masuk');
+    const payload = {
+      card_number: cardNumber.toString(),
+      card_cvv: cvv.toString(),
+      card_exp_month: cardExpMonth.toString(),
+      card_exp_year: cardExpYear.toString()
+    }
+
+    serverApi.post('/payments/token', payload)
+    .then(resp => {
+      console.log(resp);
+      const params = {
+        token_id: resp.data.token_id,
+        term: 3,
+        dp: 50000000
+      }
+      return serverApi.post('/payments/credits/'+carId, params, {
+        headers: {access_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImlydmFuIiwiZW1haWwiOiJpcnZhbmpucjEwQGdtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiMDg1Njc2Nzg4NjgiLCJhZGRyZXNzIjoiVGFuZ2VyYW5nIiwiaWF0IjoxNjQ3OTc5NzI1fQ.XlEk1rtkuYkLF80OLVKvose8OgmJxvhgVhBQKi6_QsI'}
+      })
+    })
+    .then(resp => {
+      console.log(resp, '<<<<< NEXT CARD >>>>>')
+      var popupModal = (function(){
+        var modal = null;
+        return {
+          openPopup(url){
+            modal = picoModal({
+              content:'<iframe frameborder="0" style="height:90vh; width:100%;" src="'+resp.data.paymentUrl+'"></iframe>',
+              width: "75%",
+              closeButton: false,
+              overlayClose: false,
+              escCloses: false
+            }).show();
+          },
+          closePopup(){
+            try{
+              modal.close();
+            } catch(e) {}
+          }
+        }
+      }());
+      popupModal()
+    })
+    .catch(err => console.log(err.ApiResponse, '<<<<< CARD ERROR >>>>>'))
+
   }
 
   return (
     <>
-      <h1 className="font-bold text-xl my-5">Payment Page</h1>
+      <h1 className="flex justify-center font-bold text-xl my-3">Payment Page</h1>
       <div className="flex flex-row justify-center mx-32">
         <div className="w-2/6 my-4">
           <select className="select select-bordered w-full" onChange={changePaymentMethod} value={paymentMethod} defaultValue={paymentMethod}>
@@ -114,42 +183,54 @@ export default function PaymentPage() {
 
           {
             paymentMethod === 'cash' ? 
-              <div className="rounded-lg mt-10 bg-gray-100 p-3">
+              <div className="rounded-lg mt-6 bg-gray-100 p-4 relative">
                   <span className="flex justify-start font-bold">Payment Method (CASH)</span>
                   <div className="flex flex-col items-start mt-10 mb-5">
-                    <label className="font-semibold">Quantity <span className="text-red-600">*</span></label>
-                    <input type="number" placeholder="Type here"  value="1" className="input input-sm input-bordered w-full max-w-xs" />
+                    <label className="font-semibold my-3">Car Name</label>
+                    <label>{carDetail.name}</label>
                   </div>
                   <hr />
                   <div className="flex flex-col items-start mb-5">
-                    <label className="font-semibold">Car Id<span className="text-red-600">*</span></label>
-                    <input type="number" placeholder="Type here" value={carId} className="input input-sm input-bordered w-full max-w-xs" />
+                    <label className="font-semibold my-3">Quantity</label>
+                    <span>{quantity}</span>
                   </div>
                   <hr />
                   <div className="flex flex-col items-start mb-5">
-                    <label className="font-semibold">Notes</label>
-                    <textarea type="text" placeholder="Optional" onChange={changeNote} value={notes} className="textarea textarea-sm textarea-bordered w-full max-w-xs" />
+                    <label className="font-semibold my-3">Total Price</label>
+                    <span>Rp. {carDetail.price?carDetail.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."): carDetail.price}</span>
                   </div>
-                  <button onClick={() => submitPaymentCash()} className="btn btn-sm w-full my-5">Sumbit</button>
+                  <hr />
+                  <div className="flex flex-col items-start mb-5">
+                    <label className="font-semibold my-3">Notes (optional)</label>
+                    <textarea type="text" placeholder="Type here" onChange={changeNote} value={notes} className="cash textarea textarea-sm textarea-bordered w-full" />
+                  </div>
+                  <button onClick={() => submitPaymentCash()} className="btn btn-sm w-full my-2">Submit</button>
+                  <Link to={`/detail/${carDetail.id}`} className="btn btn-sm btn-error w-full md-5">Cancel</Link>
               </div> :
 
               <div className="rounded-lg mt-10 bg-gray-100 p-3">
                   <span className="flex justify-start font-bold">Payment Method (CREDIT)</span>
                   <div className="flex flex-col items-start mt-10 mb-5">
                     <label className="font-semibold">Card Number <span className="text-red-600">*</span></label>
-                    <input type="number" placeholder="Type here"  value="" className="input input-sm input-bordered w-full" />
+                    <input onChange={changeCardNumber} value={cardNumber} type="number" placeholder="Type here" className="credit input input-sm input-bordered w-full" />
                   </div>
                   <hr />
                   <div className="flex flex-col items-start mb-5">
-                    <label className="font-semibold">Expiry Date <span className="text-red-600">*</span></label>
-                    <input type="date" placeholder="Type here" className="input input-sm input-bordered w-full" />
+                    <label className="font-semibold">Card Expiry Month <span className="text-red-600">*</span></label>
+                    <input onChange={changeCardExpMonth} value={cardExpMonth} type="number" placeholder="Type here"  className="credit input input-sm input-bordered w-full" />
+                  </div>
+                  <hr />
+                  <div className="flex flex-col items-start mb-5">
+                    <label className="font-semibold">Card Expiry Year <span className="text-red-600">*</span></label>
+                    <input onChange={changeCardExpYear} value={cardExpYear} type="number" placeholder="Type here" className="credit input input-sm input-bordered w-full" />
                   </div>
                   <hr />
                   <div className="flex flex-col items-start mb-5">
                     <label className="font-semibold">Card Code(CVV) <span className="text-red-600">*</span></label>
-                    <input type="number" placeholder="Type here" className="input input-sm input-bordered w-full" />
+                    <input onChange={changeCvv} value={cvv} type="number" placeholder="Type here" className="credit input input-sm input-bordered w-full" />
                   </div>
-                  <button onClick={() => submitPaymentCredit()} className="btn btn-sm w-full my-5">Sumbit</button>
+                  <button onClick={() => submitPaymentCredit()} className="btn btn-sm w-full my-2">Submit</button>
+                  <Link to={`/detail/${carDetail.id}`} className="btn btn-sm btn-error w-full md-5">Cancel</Link>
               </div>
           }
 

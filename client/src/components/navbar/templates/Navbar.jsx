@@ -25,9 +25,9 @@ export default function Navbar({ setLoginBuyer, setLoginDealer }) {
         </button>
         <button
           className="h-full font-bold hover:border-b hover:border-blue-700 ease-linear transition-all duration-150"
-          onClick={() => navigate("/dealer/dashboard")}
+          onClick={() => navigate("/dealer/dashboard/sell")}
         >
-          Register
+          Sell a Car
         </button>
       </div>
       <div className="h-full w-1/4 flex flex-row gap-x-8 justify-end items-center text-xl">

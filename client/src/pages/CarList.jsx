@@ -14,13 +14,13 @@ export default function CarList() {
     // console.log(response.data);
     setIsLoading(false);
     if (brandQuery) {
-      let cars = response.data.filter((car) => {
+      let cars = response.data.rows.filter((car) => {
         return car.Type.Brand.name.toLowerCase() === brandQuery;
       });
       console.log(cars);
       setCars(cars);
     } else {
-      setCars(response.data);
+      setCars(response.data.rows);
     }
   };
   useEffect(() => {

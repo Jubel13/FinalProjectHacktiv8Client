@@ -13,7 +13,7 @@ export default function NavigationGuard({ children, setLoginDealer }) {
   } else if (
     token &&
     localStorage.getItem("role") === "Buyer" &&
-    location.pathname === "/dealer/dashboard"
+    (location.pathname === "/dealer/dashboard" || location.pathname === "/dealer/dashboard/sell")
   ) {
     Swal.fire({
       icon: "warning",

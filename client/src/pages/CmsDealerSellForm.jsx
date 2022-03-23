@@ -65,7 +65,7 @@ export default function CmsDealerSellForm() {
         title: "Sell a Car",
         text: "Success add car",
       });
-      reset()
+      reset();
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -79,7 +79,7 @@ export default function CmsDealerSellForm() {
     console.log("Success");
     console.log(res.url);
     setUploadedImageSource([...uploadedImageSource, res.url]);
-    console.log(uploadedImageSource)
+    console.log(uploadedImageSource);
   };
 
   const onError = (err) => {
@@ -103,6 +103,7 @@ export default function CmsDealerSellForm() {
                 <label className={labelClass}>Name</label>
                 <input
                   type="text"
+                  placeholder="Input car name here"
                   {...register("name", { required: true })}
                   className={inputClass}
                 />
@@ -114,6 +115,7 @@ export default function CmsDealerSellForm() {
                   type="text"
                   {...register("color", { required: true })}
                   className={inputClass}
+                  placeholder="Black, Red, Green, Blue Metalic, others?"
                 />
               </div>
 
@@ -214,6 +216,7 @@ export default function CmsDealerSellForm() {
                     min: 1800,
                     max: 2010,
                   })}
+                  placeholder="Enter year between 1800 and 2010"
                   className={inputClass}
                 />
               </div>
@@ -226,6 +229,7 @@ export default function CmsDealerSellForm() {
                   <input
                     id="mileage"
                     type="number"
+                    placeholder="Input number only in kilometer"
                     {...register("mileage", {
                       required: true,
                     })}
@@ -243,6 +247,7 @@ export default function CmsDealerSellForm() {
                 <input
                   id="price"
                   type="number"
+                  placeholder="Input number only in rupiah (IDR)"
                   {...register("price", {
                     required: true,
                   })}
@@ -268,6 +273,11 @@ export default function CmsDealerSellForm() {
                         .map((el) => {
                           return (
                             <IKUpload
+                              className="file:mr-4 file:py-2 file:px-4
+                            file:rounded-lg file:border-0
+                            file:text-sm file:font-semibold
+                            file:bg-violet-50 file:text-violet-700
+                            hover:file:bg-violet-100"
                               key={el}
                               useUniqueFileName={true}
                               folder={"/cars"}
@@ -296,6 +306,7 @@ export default function CmsDealerSellForm() {
               <textarea
                 rows={5}
                 cols={50}
+                placeholder="Specify your car here"
                 {...register("description", { required: true })}
                 className={textAreaClass}
               />

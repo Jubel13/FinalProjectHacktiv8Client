@@ -12,19 +12,19 @@ export default function Navbar({ setLoginBuyer, setLoginDealer }) {
       </div>
       <div className="w-1/2 h-full flex flex-row gap-x-8 justify-center items-center text-xl">
         <button
-          className="h-full font-bold font-open-sans text-xl hover:border-b hover:border-blue-700 ease-linear transition-all duration-150"
+          className="h-full font-bold font-open-sans text-xl hover:border-b hover:border-blue-700 ease-in-out transition-all duration-150"
           onClick={() => navigate("/")}
         >
           Home
         </button>
         <button
-          className="h-full font-bold font-open-sans text-xl hover:border-b hover:border-blue-700 ease-linear transition-all duration-150"
+          className="h-full font-bold font-open-sans text-xl hover:border-b hover:border-blue-700 ease-in-out transition-all duration-150"
           onClick={() => navigate("/cars")}
         >
           Browse Car
         </button>
         <button
-          className="h-full font-bold hover:border-b hover:border-blue-700 ease-linear transition-all duration-150"
+          className="h-full font-bold font-open-sans hover:border-b hover:border-blue-700 ease-in-out transition-all duration-150"
           onClick={() => navigate("/dealer/dashboard/sell")}
         >
           Sell a Car

@@ -16,7 +16,7 @@ export default function LoginModalBuyer({ showModal, setShowModal }) {
       localStorage.setItem("access_token", response.data.access_token);
       localStorage.setItem("id", response.data.id);
       localStorage.setItem("email", response.data.email);
-      localStorage.setItem("username", response.data.name);
+      localStorage.setItem("username", response.data.username);
       localStorage.setItem("role", "Buyer");
       Swal.fire({
         icon: "success",

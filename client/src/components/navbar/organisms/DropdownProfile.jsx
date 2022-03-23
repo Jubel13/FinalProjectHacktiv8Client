@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { createPopper } from "@popperjs/core";
-import Swal from "sweetalert2"
+import Swal from "sweetalert2";
 
 export default function DropdownProfile() {
   // dropdown props
@@ -76,6 +76,23 @@ export default function DropdownProfile() {
               >
                 {role}
               </p>
+              {role === "Dealer" ? (
+                <>
+                  {" "}
+                  <div className="divider"></div>
+                  <button
+                    className={
+                      "text-sm text-left py-4 px-4 font-normal block w-full whitespace-nowrap bg-transparent " +
+                      "text-blueGray-700 hover:bg-yellow-100"
+                    }
+                    onClick={() => navigate("/dealer/dashboard")}
+                  >
+                    <i class="fa-solid fa-table-columns mr-2"></i>
+                    {`Dashboard`}
+                  </button>{" "}
+                </>
+              ) : null}
+
               <div className="divider"></div>
               <button
                 className={
@@ -84,8 +101,8 @@ export default function DropdownProfile() {
                 }
                 onClick={signOutHandler}
               >
-                <i className="fa-solid fa-right-from-bracket"></i>
-                {`  Sign Out`}
+                <i className="fa-solid fa-right-from-bracket mr-2"></i>
+                {`Sign Out`}
               </button>
             </div>
           </div>

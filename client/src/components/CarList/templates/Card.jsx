@@ -40,7 +40,8 @@ export default function Card({ car }) {
   };
 
   return (
-    <div className="w-80 mx-8 overflow-hidden bg-white rounded-xl shadow-lg border hover:shadow-2xl hover:scale-110 ease-in-out transition-all duration-500 cursor-default relative">
+    <div 
+    className={(car.status === "sale" || !car.status) ? "w-80 mx-8 overflow-hidden bg-white rounded-xl shadow-lg border hover:shadow-2xl hover:scale-110 ease-in-out transition-all duration-500 cursor-default relative" : "w-80 mx-8 overflow-hidden bg-gray-200 rounded-xl shadow-lg border hover:shadow-2xl hover:scale-110 ease-in-out transition-all duration-500 cursor-default relative"}>
       {car.passedInspection && (
         <div className="px-4 py-2 bg-amber-500 absolute top-0 right-0 rounded-bl-lg font-encode text-white text-sm">
           <i class="fa-solid fa-clipboard-check mr-2"></i>
@@ -52,6 +53,8 @@ export default function Card({ car }) {
         <i class="fa-solid fa-camera mr-2"></i>
         {car.Images.length}
       </div>
+
+      {car.status === "sold" ? <div className="absolute top-0 z-50 bg-black opacity-70 h-56 w-full overflow-hidden flex justify-center items-center text-center text-4xl font-bold font-encode">Sold</div> : null}
 
       <button
         className="w-8 h-8 rounded-full bg-slate-900 opacity-50 absolute top-28 left-2 flex justify-center items-center text-white hover:scale-105"
@@ -80,7 +83,7 @@ export default function Card({ car }) {
           }}
         />
       </div>
-      <div className="flex flex-col gap-y-2 px-3 pt-3 bg-white">
+      <div className="flex flex-col gap-y-2 px-3 pt-3">
         <h1 className="mx-3 text-lg font-open-sans font-bold text-slate-900">
           {car.name}
         </h1>

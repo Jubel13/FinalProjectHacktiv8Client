@@ -80,7 +80,7 @@ export default function Detail() {
         <div className="w-4/6">
         <div class="carousel w-full">
             <div id="slide1" class="carousel-item relative w-full">
-              <img src={imageUrl[currentIndex].image} class="w-full" />
+              <img src={!imageUrl.length ? '' : imageUrl[currentIndex].image } class="w-full" />
               <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                 <button onClick={handlePrev} class="btn btn-circle">❮</button> 
                 <button onClick={handleNext} class="btn btn-circle">❯</button>

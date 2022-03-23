@@ -25,7 +25,7 @@ export function loginAction(payload) {
         .then((data) => {
           localStorage.setItem("login", true);
           localStorage.setItem("access_token", data.access_token);
-
+          localStorage.setItem("email", data.email);
           dispatch(userLogin());
           resolve("Login success");
         })

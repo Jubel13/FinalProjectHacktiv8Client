@@ -40,10 +40,7 @@ export default function App() {
             <Route path="sell" element={<CmsDealerSellForm />} />
           </Route>
           <Route path="/detail/:id" element={<Detail />} />
-          <Route
-            path="/full-report/:idInspection"
-            element={<FullReportPage />}
-          />
+          <Route path="/full-report/:id" element={<FullReportPage />} />
           <Route path="/map-navigation/:id" element={<MapsNavigation />} />
           <Route path="/payments/:carId" element={<PaymentPage />} />
           <Route
@@ -54,6 +51,8 @@ export default function App() {
             path="/register/dealer"
             element={<RegisterDealer setLoginDealer={setLoginDealer} />}
           />
+          <Route path="/map-navigation/:id" element={<MapsNavigation />} />
+          <Route path="/payments/:carId" element={<PaymentPage />} />
         </Routes>
         <Footer />
         <LoginModalDealer

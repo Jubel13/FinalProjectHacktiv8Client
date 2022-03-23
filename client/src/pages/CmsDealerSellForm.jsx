@@ -17,7 +17,7 @@ const textAreaClass =
 
 export default function CmsDealerSellForm() {
   const publicKey = "public_BACW09RMefisOpJUrHcxl/9Id9g=";
-  const urlEndpoint = "https://ik.imagekit.io/iqpgx3omg7kg/auto-classic";
+  const urlEndpoint = "https://ik.imagekit.io/iqpgx3omg7kg";
   const { register, handleSubmit, watch, reset } = useForm();
   const [brands, setBrands] = useState([]);
   const [types, setTypes] = useState([]);
@@ -57,7 +57,7 @@ export default function CmsDealerSellForm() {
       data.image = [uploadedImageSource];
       console.log(data);
       const accessToken = localStorage.getItem("access_token");
-      const response = await carsApi.post("/", data, {
+      await carsApi.post("/", data, {
         headers: {
           access_token: accessToken,
         },
@@ -254,10 +254,8 @@ export default function CmsDealerSellForm() {
                       authenticationEndpoint={`${ORIGIN}/auth`}
                     >
                       <IKUpload
-                        fileName="test.jpg"
-                        isPrivateFile={false}
                         useUniqueFileName={true}
-                        folder={"/auto-classic/cars"}
+                        folder={"/cars"}
                         onError={onError}
                         onSuccess={onSuccess}
                       />
@@ -266,6 +264,7 @@ export default function CmsDealerSellForm() {
                 </div>
               </div>
             </div>
+
             <div className="w-full flex flex-col gap-y-2">
               <label className={labelClass}>Description</label>
               <textarea

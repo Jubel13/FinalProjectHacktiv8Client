@@ -21,6 +21,7 @@ export default function CmsDealerSellForm() {
   const [types, setTypes] = useState([]);
   const [imageField, setImageField] = useState(1);
   const [uploadedImageSource, setUploadedImageSource] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const watchBrand = watch("brand", null);
 
   const fetchBrands = async () => {
@@ -52,6 +53,7 @@ export default function CmsDealerSellForm() {
 
   const onSubmit = async (data) => {
     try {
+      setIsLoading(true);
       data.yearMade = `${data.yearMade}-01-01`;
       data.image = uploadedImageSource;
       const accessToken = localStorage.getItem("access_token");
@@ -65,13 +67,15 @@ export default function CmsDealerSellForm() {
         title: "Sell a Car",
         text: "Success add car",
       });
-      reset()
+      reset();
+      setIsLoading(false)
     } catch (error) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: error.response.data.message,
       });
+      setIsLoading(false)
     }
   };
 
@@ -79,7 +83,7 @@ export default function CmsDealerSellForm() {
     console.log("Success");
     console.log(res.url);
     setUploadedImageSource([...uploadedImageSource, res.url]);
-    console.log(uploadedImageSource)
+    console.log(uploadedImageSource);
   };
 
   const onError = (err) => {
@@ -103,6 +107,7 @@ export default function CmsDealerSellForm() {
                 <label className={labelClass}>Name</label>
                 <input
                   type="text"
+                  placeholder="Input car name here"
                   {...register("name", { required: true })}
                   className={inputClass}
                 />
@@ -114,6 +119,7 @@ export default function CmsDealerSellForm() {
                   type="text"
                   {...register("color", { required: true })}
                   className={inputClass}
+                  placeholder="Black, Red, Green, Blue Metalic, others?"
                 />
               </div>
 
@@ -214,6 +220,7 @@ export default function CmsDealerSellForm() {
                     min: 1800,
                     max: 2010,
                   })}
+                  placeholder="Enter year between 1800 and 2010"
                   className={inputClass}
                 />
               </div>
@@ -226,6 +233,7 @@ export default function CmsDealerSellForm() {
                   <input
                     id="mileage"
                     type="number"
+                    placeholder="Input number only in kilometer"
                     {...register("mileage", {
                       required: true,
                     })}
@@ -243,6 +251,7 @@ export default function CmsDealerSellForm() {
                 <input
                   id="price"
                   type="number"
+                  placeholder="Input number only in rupiah (IDR)"
                   {...register("price", {
                     required: true,
                   })}
@@ -268,6 +277,11 @@ export default function CmsDealerSellForm() {
                         .map((el) => {
                           return (
                             <IKUpload
+                              className="file:mr-4 file:py-2 file:px-4
+                            file:rounded-lg file:border-0
+                            file:text-sm file:font-semibold
+                            file:bg-violet-50 file:text-violet-700
+                            hover:file:bg-violet-100"
                               key={el}
                               useUniqueFileName={true}
                               folder={"/cars"}
@@ -278,7 +292,7 @@ export default function CmsDealerSellForm() {
                         })}
                     </div>
                   </IKContext>
-                  {imageField <= 10 ? (
+                  {imageField < 10 ? (
                     <button
                       className="w-full py-2 pt-3 text-left text-blue-700 hover:text-blue-500 font-bold font-encode"
                       onClick={() => setImageField(imageField + 1)}
@@ -296,14 +310,22 @@ export default function CmsDealerSellForm() {
               <textarea
                 rows={5}
                 cols={50}
+                placeholder="Specify your car here"
                 {...register("description", { required: true })}
                 className={textAreaClass}
               />
             </div>
             <div className="pb-16 w-full flex justify-end">
-              <button className="w-1/4 py-2 text-white font-bold font-encode bg-blue-700 rounded-xl">
-                Submit
-              </button>
+              {isLoading ? (
+                <div className="w-1/4 py-2 text-white font-bold font-encode bg-blue-700 rounded-xl cursor-wait flex justify-center items-center">
+                  <i class="fa-solid fa-spinner animate-spin mr-2"></i>
+                  Submit
+                </div>
+              ) : (
+                <button className="w-1/4 py-2 text-white font-bold font-encode bg-blue-700 rounded-xl">
+                  Submit
+                </button>
+              )}
             </div>
           </form>
         </div>

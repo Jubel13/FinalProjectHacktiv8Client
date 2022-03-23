@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { createPopper } from "@popperjs/core";
-import Swal from "sweetalert2"
+import Swal from "sweetalert2";
 
 export default function DropdownProfile() {
   // dropdown props
@@ -39,7 +39,7 @@ export default function DropdownProfile() {
           <div className="relative inline-flex align-middle w-full">
             <button
               className={
-                "text-slate-900 font-bold font-encode text-xl py-2 px-4 rounded-full over:border-b hover:border-orange-600 outline-none focus:outline-none ease-linear transition-all duration-150 bg-slate-300"
+                "text-slate-900 font-bold font-encode text-xl py-2 px-4 rounded-full hover:ring-2 hover:ring-sky-500 hover:border-b hover:border-orange-600 outline-none focus:outline-none ease-linear transition-all duration-150 bg-slate-300"
               }
               type="button"
               ref={btnDropdownRef}
@@ -76,16 +76,33 @@ export default function DropdownProfile() {
               >
                 {role}
               </p>
+              {role === "Dealer" ? (
+                <>
+                  {" "}
+                  <div className="divider"></div>
+                  <button
+                    className={
+                      "text-sm text-left py-4 px-4 font-normal block w-full whitespace-nowrap bg-transparent " +
+                      "text-blueGray-700 hover:bg-yellow-100"
+                    }
+                    onClick={() => navigate("/dealer/dashboard")}
+                  >
+                    <i class="fa-solid fa-table-columns mr-2"></i>
+                    {`Dashboard`}
+                  </button>{" "}
+                </>
+              ) : null}
+
               <div className="divider"></div>
               <button
                 className={
-                  "text-md text-left py-4 px-4 font-normal block w-full whitespace-nowrap bg-transparent " +
+                  "text-sm text-left py-4 px-4 font-normal block w-full whitespace-nowrap bg-transparent " +
                   "text-blueGray-700 hover:bg-yellow-100"
                 }
                 onClick={signOutHandler}
               >
-                <i className="fa-solid fa-right-from-bracket"></i>
-                {`  Sign Out`}
+                <i className="fa-solid fa-right-from-bracket mr-2"></i>
+                {`Sign Out`}
               </button>
             </div>
           </div>

@@ -6,15 +6,11 @@ import CarList from "./pages/CarList";
 import Navbar from "./components/navbar/templates/Navbar";
 import Footer from "./components/footer/templates/Footer";
 import CmsDealer from "./pages/CmsDealer";
-import Register from "./pages/RegisterBuyer";
-import LoginDealer from "./pages/LoginDealer";
 import RegisterDealer from "./pages/RegisterDealer";
-import CmsAdmin from "./pages/CmsDealer";
 import Detail from "./pages/DetailPage";
 import MapsNavigation from "./components/MapsNavigation";
 import FullReportPage from "./components/FullReportPage";
 import PaymentPage from "./components/PaymentPage";
-import RegisterModal from "./components/modals/templates/RegisterModal";
 import NavigationGuard from "./components/navigationGuard/NavigationGuard";
 import CmsDealerSellForm from "./pages/CmsDealerSellForm";
 import CmsDealerDashboard from "./pages/CmsDealerDashboard";
@@ -44,7 +40,10 @@ export default function App() {
             <Route path="sell" element={<CmsDealerSellForm />} />
           </Route>
           <Route path="/detail/:id" element={<Detail />} />
-          <Route element={<FullReportPage />} />
+          <Route
+            path="/full-report/:idInspection"
+            element={<FullReportPage />}
+          />
           <Route path="/map-navigation/:id" element={<MapsNavigation />} />
           <Route path="/payments/:carId" element={<PaymentPage />} />
           <Route
@@ -55,8 +54,6 @@ export default function App() {
             path="/register/dealer"
             element={<RegisterDealer setLoginDealer={setLoginDealer} />}
           />
-          <Route path="/map-navigation/:id" element={<MapsNavigation />} />
-          <Route path="/payments/:carId" element={<PaymentPage />} />
         </Routes>
         <Footer />
         <LoginModalDealer

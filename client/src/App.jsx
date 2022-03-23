@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import Home from "./pages/Home";
@@ -14,17 +15,20 @@ import Detail from "./pages/DetailPage";
 import MapsNavigation from "./components/MapsNavigation";
 import FullReportPage from "./components/FullReportPage";
 import PaymentPage from "./components/PaymentPage";
-import LoginModal from "./components/modals/templates/LoginModal";
 import RegisterModal from "./components/modals/templates/RegisterModal";
 import NavigationGuard from "./components/navigationGuard/NavigationGuard";
 import CmsDealerSellForm from "./pages/CmsDealerSellForm";
 import CmsDealerDashboard from "./pages/CmsDealerDashboard";
+import LoginModalDealer from "./components/modals/templates/LoginModalDealer";
+import LoginModalBuyer from "./components/modals/templates/LoginModalBuyer";
 
 export default function App() {
+  const [loginDealer, setLoginDealer] = useState(false);
+  const [loginBuyer, setLoginBuyer] = useState(false);
   return (
     <div className="App">
       <div className="w-full min-h-screen bg-white">
-        <Navbar />
+        <Navbar setLoginBuyer={setLoginBuyer} setLoginDealer={setLoginDealer} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/cars" element={<CarList />} />
@@ -52,8 +56,14 @@ export default function App() {
           <Route path="/register/dealer" element={<RegisterDealer />} /> */}
         </Routes>
         <Footer />
-        <LoginModal />
-        <RegisterModal />
+        <LoginModalDealer
+          showModal={loginDealer}
+          setShowModal={setLoginDealer}
+        />
+        <LoginModalBuyer 
+          showModal={loginBuyer} 
+          setShowModal={setLoginBuyer} 
+        />
       </div>
     </div>
   );

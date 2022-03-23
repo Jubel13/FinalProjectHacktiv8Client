@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { createPopper } from "@popperjs/core";
 
-export default function Dropdown({ title }) {
+export default function Dropdown({ title, setLoginBuyer, setLoginDealer }) {
   // dropdown props
   const navigate = useNavigate();
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
@@ -45,24 +45,24 @@ export default function Dropdown({ title }) {
               }
               style={{ minWidth: "12rem" }}
             >
-              <label
+              <button
                 className={
-                  "text-lg py-4 px-4 font-normal block w-full whitespace-nowrap bg-transparent " +
+                  "text-lg text-left py-4 px-4 font-normal block w-full whitespace-nowrap bg-transparent " +
                   "text-blueGray-700 hover:bg-yellow-100"
                 }
-                // for={title === "Login" ? "login-modal" : "register-modal"}
+                onClick={() => setLoginBuyer(true)}
               >
                 {title}
-              </label>
-              <label
+              </button>
+              <button
                 className={
-                  "text-lg py-4 px-4 font-normal block w-full whitespace-nowrap bg-transparent " +
+                  "text-lg text-left py-4 px-4 font-normal block w-full whitespace-nowrap bg-transparent " +
                   "text-blueGray-700 hover:bg-yellow-100"
                 }
-                for={title === "Login" ? "login-modal" : "register-modal"}
+                onClick={() => setLoginDealer(true)}
               >
                 {`${title} as dealer`}
-              </label>
+              </button>
             </div>
           </div>
         </div>
@@ -70,11 +70,3 @@ export default function Dropdown({ title }) {
     </div>
   );
 }
-
-// export default function DropdownRender() {
-//   return (
-//     <>
-//       <Dropdown title="Register"/>
-//     </>
-//   );
-// }

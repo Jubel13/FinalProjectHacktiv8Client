@@ -21,7 +21,8 @@ export default function CmsDealerSellForm() {
   const { register, handleSubmit, watch, reset } = useForm();
   const [brands, setBrands] = useState([]);
   const [types, setTypes] = useState([]);
-  const [uploadedImageSource, setUploadedImageSource] = useState();
+  const [imageField, setImageField] = useState(1);
+  const [uploadedImageSource, setUploadedImageSource] = useState([]);
   const watchBrand = watch("brand", null);
 
   const fetchBrands = async () => {
@@ -54,8 +55,7 @@ export default function CmsDealerSellForm() {
   const onSubmit = async (data) => {
     try {
       data.yearMade = `${data.yearMade}-01-01`;
-      data.image = [uploadedImageSource];
-      console.log(data);
+      data.image = uploadedImageSource;
       const accessToken = localStorage.getItem("access_token");
       await carsApi.post("/", data, {
         headers: {
@@ -79,7 +79,8 @@ export default function CmsDealerSellForm() {
   const onSuccess = (res) => {
     console.log("Success");
     console.log(res.url);
-    setUploadedImageSource(res.url);
+    setUploadedImageSource([...uploadedImageSource, res.url]);
+    console.log(uploadedImageSource)
   };
 
   const onError = (err) => {
@@ -192,7 +193,11 @@ export default function CmsDealerSellForm() {
                     Select fuel type
                   </option>
                   {Array.from(Array(10).keys()).map((el) => {
-                    return <option value={el + 1}>{el + 1}</option>;
+                    return (
+                      <option key={el} value={el + 1}>
+                        {el + 1}
+                      </option>
+                    );
                   })}
                 </select>
               </div>
@@ -225,42 +230,60 @@ export default function CmsDealerSellForm() {
                   />
                 </div>
               </div>
+            </div>
 
-              <div className="w-full flex flex-col gap-y-2">
-                <label htmlFor="price" className={labelClass}>
-                  Price
-                </label>
-                <div className="w-full flex flex-row">
-                  <input
-                    id="price"
-                    type="number"
-                    {...register("price", {
-                      required: true,
-                    })}
-                    className={inputClass}
-                  />
-                </div>
+            <div className="w-full flex flex-col gap-y-2">
+              <label htmlFor="price" className={labelClass}>
+                Price
+              </label>
+              <div className="w-full flex flex-row">
+                <input
+                  id="price"
+                  type="number"
+                  {...register("price", {
+                    required: true,
+                  })}
+                  className={inputClass}
+                />
               </div>
+            </div>
 
-              <div className="w-full flex flex-col gap-y-2">
-                <label htmlFor="image" className={labelClass}>
-                  Image
-                </label>
-                <div className="w-full flex flex-row">
-                  <div className={inputClass}>
-                    <IKContext
-                      publicKey={publicKey}
-                      urlEndpoint={urlEndpoint}
-                      authenticationEndpoint={`${ORIGIN}/auth`}
+            <div className="w-full flex flex-col gap-y-2">
+              <label htmlFor="image" className={labelClass}>
+                Image
+              </label>
+              <div className="w-full flex flex-row">
+                <div className={inputClass}>
+                  <IKContext
+                    publicKey={publicKey}
+                    urlEndpoint={urlEndpoint}
+                    authenticationEndpoint={`${ORIGIN}/auth`}
+                  >
+                    <div className="w-full flex flex-col gap-y-2">
+                      {Array.from(Array(imageField + 1).keys())
+                        .filter((el) => el > 0)
+                        .map((el) => {
+                          return (
+                            <IKUpload
+                              key={el}
+                              useUniqueFileName={true}
+                              folder={"/cars"}
+                              onError={onError}
+                              onSuccess={onSuccess}
+                            />
+                          );
+                        })}
+                    </div>
+                  </IKContext>
+                  {imageField <= 10 ? (
+                    <button
+                      className="w-full py-2 pt-3 text-left text-blue-700 hover:text-blue-500 font-bold font-encode"
+                      onClick={() => setImageField(imageField + 1)}
                     >
-                      <IKUpload
-                        useUniqueFileName={true}
-                        folder={"/cars"}
-                        onError={onError}
-                        onSuccess={onSuccess}
-                      />
-                    </IKContext>
-                  </div>
+                      <i class="fa-solid fa-plus"></i>
+                      Add image
+                    </button>
+                  ) : null}
                 </div>
               </div>
             </div>

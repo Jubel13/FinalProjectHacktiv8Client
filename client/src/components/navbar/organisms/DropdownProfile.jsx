@@ -84,7 +84,7 @@ export default function DropdownProfile() {
                 }
                 onClick={signOutHandler}
               >
-                <i class="fa-solid fa-right-from-bracket"></i>
+                <i className="fa-solid fa-right-from-bracket"></i>
                 {`  Sign Out`}
               </button>
             </div>

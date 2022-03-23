@@ -45,25 +45,24 @@ export default function Dropdown({ title }) {
               }
               style={{ minWidth: "12rem" }}
             >
-              <button
+              <label
                 className={
                   "text-lg py-4 px-4 font-normal block w-full whitespace-nowrap bg-transparent " +
                   "text-blueGray-700 hover:bg-yellow-100"
                 }
-                onClick={() => navigate(`/${title.toLowerCase()}/user`)}
+                // for={title === "Login" ? "login-modal" : "register-modal"}
               >
                 {title}
-              </button>
-              <button
-                href="#pablo"
+              </label>
+              <label
                 className={
                   "text-lg py-4 px-4 font-normal block w-full whitespace-nowrap bg-transparent " +
                   "text-blueGray-700 hover:bg-yellow-100"
                 }
-                onClick={() => navigate(`/${title.toLowerCase()}/dealer`)}
+                for={title === "Login" ? "login-modal" : "register-modal"}
               >
                 {`${title} as dealer`}
-              </button>
+              </label>
             </div>
           </div>
         </div>

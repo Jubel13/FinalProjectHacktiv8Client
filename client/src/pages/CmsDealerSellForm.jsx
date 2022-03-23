@@ -8,8 +8,6 @@ import { ORIGIN } from "../API";
 const labelClass = "text-xl font-bold font-encode text-slate-900 px-2";
 const inputClass =
   "block text-lg text-slate-900 font-encode w-full px-4 py-2 bg-white border border-slate-900 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500";
-const inputWithBoxClass =
-  "block text-lg text-slate-900 font-encode w-10/12 px-4 py-2 bg-white border border-slate-900 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500";
 const selectClass =
   "select select-bordered w-full block text-lg text-slate-900 font-encode font-normal w-full px-4 py-2 bg-white border border-slate-900 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500";
 const textAreaClass =
@@ -67,6 +65,7 @@ export default function CmsDealerSellForm() {
         title: "Sell a Car",
         text: "Success add car",
       });
+      reset()
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -90,8 +89,8 @@ export default function CmsDealerSellForm() {
 
   return (
     <div className="min-h-screen w-full flex flex-col bg-slate-100 items-center p-8">
-      <div className="w-full h-full bg-white flex flex-col px-36 rounded-xl drop-shadow-2xl">
-        <div className="h-36 w-full py-8 text-4xl font-bold font-encode text-slate-900">
+      <div className="w-full h-full bg-white flex flex-col px-48 rounded-xl drop-shadow-2xl">
+        <div className="h-36 w-full py-8 mt-4 text-4xl font-bold font-encode text-slate-900">
           Sell a Car
         </div>
         <div className="w-full flex flex-col -mt-8">
@@ -145,6 +144,7 @@ export default function CmsDealerSellForm() {
                     disabled
                     {...register("type", { required: true })}
                     className={selectClass}
+                    defaultValue=""
                   >
                     <option value="" selected disabled hidden>
                       Select car model
@@ -154,6 +154,7 @@ export default function CmsDealerSellForm() {
                   <select
                     {...register("TypeId", { required: true })}
                     className={selectClass}
+                    defaultValue=""
                   >
                     <option value="" selected disabled hidden>
                       Select car model
@@ -174,6 +175,7 @@ export default function CmsDealerSellForm() {
                 <select
                   {...register("fuel", { required: true })}
                   className={selectClass}
+                  defaultValue=""
                 >
                   <option value="" selected disabled hidden>
                     Select fuel type
@@ -188,6 +190,7 @@ export default function CmsDealerSellForm() {
                 <select
                   {...register("seats", { required: true })}
                   className={selectClass}
+                  defaultValue=""
                 >
                   <option value="" selected disabled hidden>
                     Select fuel type

@@ -62,7 +62,7 @@ export default function DropdownProfile() {
             >
               <p
                 className={
-                  "text-lg text-left py-4 px-4 font-semibold block w-full whitespace-nowrap bg-transparent " +
+                  "text-md text-left py-4 px-4 font-semibold block w-full whitespace-nowrap bg-transparent " +
                   "text-blueGray-700"
                 }
               >
@@ -70,7 +70,7 @@ export default function DropdownProfile() {
               </p>
               <p
                 className={
-                  "text-md -mt-2 text-slate-600 text-left px-4 font-normal block w-full whitespace-nowrap bg-transparent " +
+                  "text-sm -mt-2 text-slate-600 text-left px-4 font-normal block w-full whitespace-nowrap bg-transparent " +
                   "text-blueGray-700"
                 }
               >
@@ -79,7 +79,7 @@ export default function DropdownProfile() {
               <div className="divider"></div>
               <button
                 className={
-                  "text-lg text-left py-4 px-4 font-normal block w-full whitespace-nowrap bg-transparent " +
+                  "text-md text-left py-4 px-4 font-normal block w-full whitespace-nowrap bg-transparent " +
                   "text-blueGray-700 hover:bg-yellow-100"
                 }
                 onClick={signOutHandler}

@@ -32,10 +32,11 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/cars" element={<CarList />} />
+
           <Route
             path="/dealer/dashboard"
             element={
-              <NavigationGuard>
+              <NavigationGuard setLoginDealer={setLoginDealer}>
                 <CmsDealer />
               </NavigationGuard>
             }
@@ -43,6 +44,7 @@ export default function App() {
             <Route path="" element={<CmsDealerDashboard />} />
             <Route path="sell" element={<CmsDealerSellForm />} />
           </Route>
+
           <Route path="/detail/:id" element={<Detail />} />
           <Route
             path="/full-report/:idInspection"

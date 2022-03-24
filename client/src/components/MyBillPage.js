@@ -5,7 +5,6 @@ import Swal from 'sweetalert2';
 export default function MyBill() {
   const [boughtHistory, setBoughtHistory] = useState([]);
   const [boughtHistoryCash, setBoughtHistoryCash] = useState({})
-  const [boughtHistoryCredit, setBoughtHistoryCredit] = useState([])
   const [showCash, setShowCash] = useState(true)
   const [showCredit, setShowCredit] = useState(false)
 
@@ -15,10 +14,9 @@ export default function MyBill() {
       headers: {access_token: localStorage.access_token}
     })
       .then(res => {
-        setBoughtHistory(res.data)
         if (res.data.length) {
           res.data.map(el => {
-            el.installment === false ? setBoughtHistoryCash(el) : setBoughtHistoryCredit(el)
+            el.installment === false ? setBoughtHistoryCash(el) : setBoughtHistory(res.data)
           })
         }
       })
@@ -90,14 +88,14 @@ export default function MyBill() {
   return (
     <>
       <div className="flex flex-col justify-center w-full bg-slate-100">
-        <ul class="nav nav-tabs flex flex-col md:flex-row flex-wrap list-none border-b-0 pl-0 mb-4 mx-24" id="tabs-tab"
+        <ul className="nav nav-tabs flex flex-col md:flex-row flex-wrap list-none border-b-0 pl-0 mb-4 mx-24" id="tabs-tab"
           role="tablist">
-          <li class="nav-item" role="presentation">
-            <button onClick={changeShowCash} class="
+          <li className="nav-item" role="presentation">
+            <button onClick={changeShowCash} className="
               nav-link
-              block
-              font-medium
-              text-xs
+              font-semibold
+              text-lg
+              text-gray-600
               leading-tight
               uppercase
               border-x-0 border-t-0 border-b-2 border-transparent
@@ -110,12 +108,12 @@ export default function MyBill() {
             " data-bs-toggle="pill" data-bs-target="#tabs-home" role="tab" aria-controls="tabs-home"
               aria-selected="true">Cash</button>
           </li>
-          <li class="nav-item" role="presentation">
+          <li className="nav-item" role="presentation">
             <button onClick={changeShowCredit} className="
               nav-link
-              block
-              font-medium
-              text-xs
+              font-semibold
+              text-lg
+              text-gray-600
               leading-tight
               uppercase
               border-x-0 border-t-0 border-b-2 border-transparent
@@ -129,15 +127,15 @@ export default function MyBill() {
           </li>
           
         </ul>
-        <div class="tab-content mx-24">
+        <div className="tab-content mx-24">
           {
             showCash !== false ? 
               <>
                 {
                   boughtHistoryCash.installment === false ? 
                   <div className="tab-pane fade show active" role="tabpanel" aria-labelledby="tabs-home-tab">
-                    <div class="flex flex-col card bg-base-100 shadow-lg m-5">
-                      <div class="card-body mx-20 ">
+                    <div className="flex flex-col card bg-base-100 shadow-lg m-5">
+                      <div className="card-body mx-20 ">
                         <h2 className="card-title font-bold text-gray-800 mb-5">{boughtHistoryCash.carName}</h2>
                         <div className="flex flex-row justify-between w-full">
                           <span className="font-semibold text-slate-500">Submission Time</span>
@@ -162,8 +160,8 @@ export default function MyBill() {
                   </div>
                   :
                   <div className="tab-pane fade show active" role="tabpanel" aria-labelledby="tabs-home-tab">
-                    <div class="flex flex-col card bg-base-100 shadow-lg m-5 h-80">
-                      <div class="flex justify-center items-center card-body">
+                    <div className="flex flex-col card bg-base-100 shadow-lg m-5 h-80">
+                      <div className="flex justify-center items-center card-body">
                         <h1>You don't have a cash payment history yet</h1>
                       </div>
                     </div>

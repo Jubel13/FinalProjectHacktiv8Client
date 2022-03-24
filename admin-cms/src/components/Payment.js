@@ -66,7 +66,12 @@ function Payment({ pay }) {
             <option value='false'>Not Paid</option>
           </select>
         </td>
-        <td>{pay.price}</td>
+        <td>
+          {pay.price.toLocaleString("id", {
+            style: "currency",
+            currency: "IDR",
+          })}
+        </td>
         <td>{pay.saved_token_id === "CASH" ? "Cash" : "Credit"}</td>
         <td>
           <button onClick={handleShow} className='btn btn-secondary mx-1'>

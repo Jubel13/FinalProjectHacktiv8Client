@@ -17,7 +17,7 @@ export default function Footer() {
               </div>
 
               <p className="max-w-md mt-2 text-gray-500">
-                Men use classic car
+                Real men use classic car
               </p>
 
               <div className="flex mt-4 -mx-2">
@@ -86,18 +86,6 @@ export default function Footer() {
                 >
                   Tec
                 </a>
-                <a
-                  href="#"
-                  className="block mt-2 text-sm text-gray-600 hover:underline"
-                >
-                  Music
-                </a>
-                <a
-                  href="#"
-                  className="block mt-2 text-sm text-gray-600 hover:underline"
-                >
-                  Videos
-                </a>
               </div>
 
               <div>
@@ -108,19 +96,13 @@ export default function Footer() {
                   href="#"
                   className="block mt-2 text-sm text-gray-600 hover:underline"
                 >
-                  Mega cloud
+                  Classic Car
                 </a>
                 <a
                   href="#"
                   className="block mt-2 text-sm text-gray-600 hover:underline"
                 >
-                  Aperion UI
-                </a>
-                <a
-                  href="#"
-                  className="block mt-2 text-sm text-gray-600 hover:underline"
-                >
-                  Meraki UI
+                  We only sell classic car
                 </a>
               </div>
 

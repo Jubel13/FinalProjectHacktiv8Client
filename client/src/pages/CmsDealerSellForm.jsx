@@ -16,12 +16,19 @@ const textAreaClass =
 export default function CmsDealerSellForm() {
   const publicKey = "public_BACW09RMefisOpJUrHcxl/9Id9g=";
   const urlEndpoint = "https://ik.imagekit.io/iqpgx3omg7kg";
-  const { register, handleSubmit, watch, reset } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    watch,
+    reset,
+  } = useForm();
   const [brands, setBrands] = useState([]);
   const [types, setTypes] = useState([]);
   const [imageField, setImageField] = useState(1);
   const [uploadedImageSource, setUploadedImageSource] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [showError, setShowError] = useState(false);
   const watchBrand = watch("brand", null);
 
   const fetchBrands = async () => {
@@ -53,6 +60,7 @@ export default function CmsDealerSellForm() {
 
   const onSubmit = async (data) => {
     try {
+      setShowError(true);
       setIsLoading(true);
       data.yearMade = `${data.yearMade}-01-01`;
       data.image = uploadedImageSource;
@@ -68,14 +76,14 @@ export default function CmsDealerSellForm() {
         text: "Success add car",
       });
       reset();
-      setIsLoading(false)
+      setIsLoading(false);
     } catch (error) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: error.response.data.message,
       });
-      setIsLoading(false)
+      setIsLoading(false);
     }
   };
 
@@ -108,25 +116,37 @@ export default function CmsDealerSellForm() {
                 <input
                   type="text"
                   placeholder="Input car name here"
-                  {...register("name", { required: true })}
+                  {...register("name", { required: "Name is required" })}
                   className={inputClass}
                 />
+                {errors.name && (
+                  <p className="pl-2 text-red-600 font-semibold">
+                    <i class="fa-solid fa-triangle-exclamation mr-1"></i>{" "}
+                    {errors.name.message}
+                  </p>
+                )}
               </div>
 
               <div className="w-full flex flex-col gap-y-2">
                 <label className={labelClass}>Color</label>
                 <input
                   type="text"
-                  {...register("color", { required: true })}
+                  {...register("color", { required: "Color is required" })}
                   className={inputClass}
                   placeholder="Black, Red, Green, Blue Metalic, others?"
                 />
+                {errors.color && (
+                  <p className="pl-2 text-red-600 font-semibold">
+                    <i class="fa-solid fa-triangle-exclamation mr-1"></i>{" "}
+                    {errors.color.message}
+                  </p>
+                )}
               </div>
 
               <div className="w-full flex flex-col gap-y-2">
                 <label className={labelClass}>Brand</label>
                 <select
-                  {...register("brand", { required: true })}
+                  {...register("brand", { required: "Brand is required" })}
                   className={selectClass}
                   defaultValue=""
                 >
@@ -141,6 +161,12 @@ export default function CmsDealerSellForm() {
                     );
                   })}
                 </select>
+                {errors.brand && (
+                  <p className="pl-2 text-red-600 font-semibold">
+                    <i class="fa-solid fa-triangle-exclamation mr-1"></i>{" "}
+                    {errors.brand.message}
+                  </p>
+                )}
               </div>
 
               <div className="w-full flex flex-col gap-y-2">
@@ -148,7 +174,7 @@ export default function CmsDealerSellForm() {
                 {!types ? (
                   <select
                     disabled
-                    {...register("type", { required: true })}
+                    {...register("type", { required: "Model is required" })}
                     className={selectClass}
                     defaultValue=""
                   >
@@ -158,7 +184,7 @@ export default function CmsDealerSellForm() {
                   </select>
                 ) : (
                   <select
-                    {...register("TypeId", { required: true })}
+                    {...register("TypeId", { required: "Model is required" })}
                     className={selectClass}
                     defaultValue=""
                   >
@@ -174,12 +200,18 @@ export default function CmsDealerSellForm() {
                     })}
                   </select>
                 )}
+                {errors.TypeId && (
+                  <p className="pl-2 text-red-600 font-semibold">
+                    <i class="fa-solid fa-triangle-exclamation mr-1"></i>{" "}
+                    {errors.TypeId.message}
+                  </p>
+                )}
               </div>
 
               <div className="w-full flex flex-col gap-y-2">
                 <label className={labelClass}>Fuel</label>
                 <select
-                  {...register("fuel", { required: true })}
+                  {...register("fuel", { required: "Fuel type is required" })}
                   className={selectClass}
                   defaultValue=""
                 >
@@ -189,12 +221,20 @@ export default function CmsDealerSellForm() {
                   <option value="Gasoline">Gasoline</option>
                   <option value="Diesel">Diesel</option>
                 </select>
+                {errors.fuel && (
+                  <p className="pl-2 text-red-600 font-semibold">
+                    <i class="fa-solid fa-triangle-exclamation mr-1"></i>{" "}
+                    {errors.fuel.message}
+                  </p>
+                )}
               </div>
 
               <div className="w-full flex flex-col gap-y-2">
                 <label className={labelClass}>Number of Seat</label>
                 <select
-                  {...register("seats", { required: true })}
+                  {...register("seats", {
+                    required: "Number of seat is required",
+                  })}
                   className={selectClass}
                   defaultValue=""
                 >
@@ -209,6 +249,12 @@ export default function CmsDealerSellForm() {
                     );
                   })}
                 </select>
+                {errors.seats && (
+                  <p className="pl-2 text-red-600 font-semibold">
+                    <i class="fa-solid fa-triangle-exclamation mr-1"></i>{" "}
+                    {errors.seats.message}
+                  </p>
+                )}
               </div>
 
               <div className="w-full flex flex-col gap-y-2">
@@ -216,29 +262,41 @@ export default function CmsDealerSellForm() {
                 <input
                   type="number"
                   {...register("yearMade", {
-                    required: true,
-                    min: 1800,
-                    max: 2010,
+                    required: "Year made is required",
+                    min: { value: 1800, message: "Minimum year is 1800" },
+                    max: { value: 2010, message: "Maximum year is 2010" },
                   })}
                   placeholder="Enter year between 1800 and 2010"
                   className={inputClass}
                 />
+                {errors.yearMade && (
+                  <p className="pl-2 text-red-600 font-semibold">
+                    <i class="fa-solid fa-triangle-exclamation mr-1"></i>{" "}
+                    {errors.yearMade.message}
+                  </p>
+                )}
               </div>
 
               <div className="w-full flex flex-col gap-y-2">
                 <label htmlFor="mileage" className={labelClass}>
                   Mileage
                 </label>
-                <div className="w-full flex flex-row">
+                <div className="w-full flex flex-col">
                   <input
                     id="mileage"
                     type="number"
                     placeholder="Input number only in kilometer"
                     {...register("mileage", {
-                      required: true,
+                      required: "Mileage is required",
                     })}
                     className={inputClass}
                   />
+                  {errors.mileage && (
+                    <p className="pl-2 text-red-600 font-semibold">
+                      <i class="fa-solid fa-triangle-exclamation mr-1"></i>{" "}
+                      {errors.mileage.message}
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
@@ -247,16 +305,22 @@ export default function CmsDealerSellForm() {
               <label htmlFor="price" className={labelClass}>
                 Price
               </label>
-              <div className="w-full flex flex-row">
+              <div className="w-full flex flex-col">
                 <input
                   id="price"
                   type="number"
                   placeholder="Input number only in rupiah (IDR)"
                   {...register("price", {
-                    required: true,
+                    required: "Price is required",
                   })}
                   className={inputClass}
                 />
+                {errors.price && (
+                  <p className="pl-2 text-red-600 font-semibold">
+                    <i class="fa-solid fa-triangle-exclamation mr-1"></i>{" "}
+                    {errors.price.message}
+                  </p>
+                )}
               </div>
             </div>
 
@@ -311,9 +375,17 @@ export default function CmsDealerSellForm() {
                 rows={5}
                 cols={50}
                 placeholder="Specify your car here"
-                {...register("description", { required: true })}
+                {...register("description", {
+                  required: "Description is required",
+                })}
                 className={textAreaClass}
               />
+              {errors.description && (
+                <p className="pl-2 text-red-600 font-semibold">
+                  <i class="fa-solid fa-triangle-exclamation mr-1"></i>{" "}
+                  {errors.description.message}
+                </p>
+              )}
             </div>
             <div className="pb-16 w-full flex justify-end">
               {isLoading ? (

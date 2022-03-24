@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import serverApi from "../API/serverApi";
 import Swal from "sweetalert2";
+import { priceFormatter } from "../helpers";
 
 export default function MyBill() {
   const [boughtHistory, setBoughtHistory] = useState([]);
@@ -174,7 +175,7 @@ export default function MyBill() {
                       role='tabpanel'
                       aria-labelledby='tabs-home-tab'
                     >
-                      <div className='flex flex-col card bg-base-100 shadow-lg m-5'>
+                      <div className='flex flex-col card bg-white shadow-lg m-5'>
                         <div className='card-body mx-20 '>
                           <h2 className='card-title font-bold text-gray-800 mb-5'>
                             {el.carName}
@@ -192,7 +193,7 @@ export default function MyBill() {
                               Total Price
                             </span>
                             <span className='font-bold text-slate-700'>
-                              {el.price}
+                              {priceFormatter(el.price)}
                             </span>
                           </div>
                           <div className='flex flex-row justify-between w-full'>
@@ -228,7 +229,7 @@ export default function MyBill() {
                   role='tabpanel'
                   aria-labelledby='tabs-home-tab'
                 >
-                  <div className='flex flex-col card bg-base-100 shadow-lg m-5 h-80'>
+                  <div className='flex flex-col card bg-white shadow-lg m-5 h-80'>
                     <div className='flex justify-center items-center card-body'>
                       <h1>You don't have a cash payment history yet</h1>
                     </div>
@@ -244,7 +245,7 @@ export default function MyBill() {
                   role='tabpanel'
                   aria-labelledby='tabs-home-tab'
                 >
-                  <div class='flex flex-col card bg-base-100 shadow-lg m-5 h-80'>
+                  <div class='flex flex-col card bg-white shadow-lg m-5 h-80'>
                     <div class='flex justify-center items-center card-body'>
                       <h1>You don't have a credit payment history yet</h1>
                     </div>
@@ -260,7 +261,7 @@ export default function MyBill() {
                         role='tabpanel'
                         aria-labelledby='tabs-profile-tab'
                       >
-                        <div class='flex card bg-base-100 shadow-lg m-5'>
+                        <div class='flex card bg-white shadow-lg m-5'>
                           <div class='card-body mx-20'>
                             <h2 className='card-title font-bold text-gray-800 mb-5'>
                               {el.carName}

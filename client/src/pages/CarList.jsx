@@ -8,16 +8,20 @@ export default function CarList() {
   const [cars, setCars] = useState([]);
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
-  const [totalItem, setTotalItem] = useState()
-  const [hasMore, setHasMore] = useState(true)
+  const [totalItem, setTotalItem] = useState();
+  const [hasMore, setHasMore] = useState(true);
   let [searchParams, setSearchParams] = useSearchParams();
   let brandQuery = searchParams.get("brand")?.toLowerCase();
 
   const fetchCars = async () => {
+    const data = await carsApi.get();
     const response = await carsApi.get(`?page=${page}`);
     // console.log(response.data);
-    setTotalItem(response.data.count)
+    setTotalItem(data.data.rows.length);
     setIsLoading(false);
+    if (cars.length === totalItem) {
+      setHasMore(false);
+    }
     if (brandQuery) {
       let cars = response.data.rows.filter((car) => {
         return car.Type.Brand.name.toLowerCase() === brandQuery;
@@ -25,7 +29,7 @@ export default function CarList() {
       // console.log(cars);
       setCars(cars);
     } else {
-      console.log(response.data.rows);
+      // console.log(response.data.rows);
       setCars(cars.concat(response.data.rows));
     }
   };
@@ -42,9 +46,7 @@ export default function CarList() {
   }, [page]);
 
   const fetchMorePage = () => {
-    if (cars.length === totalItem - 1) {
-      setHasMore(false)
-    }
+    console.log(cars.length, totalItem);
     setPage(page + 1);
     console.log(page, ">>>>>");
   };
@@ -75,12 +77,18 @@ export default function CarList() {
             dataLength={cars.length}
             className="h-full w-full flex flex-wrap gap-y-8 items-center justify-center"
             next={fetchMorePage}
-            hasMore={true}
-            loader={<h4>Loading...</h4>}
+            hasMore={hasMore}
+            loader={
+              <h4 className="w-full flex flex-col justify-center items-center">
+                Loading...
+              </h4>
+            }
             endMessage={
-              <p style={{ textAlign: "center" }}>
-                <b>Yay! You have seen it all</b>
-              </p>
+              <>
+                <p className="w-full mt-8 text-center text-slate-900 font-encode">
+                  <b>Yay! You have seen it all</b>
+                </p>
+              </>
             }
           >
             {cars.map((car, index) => {

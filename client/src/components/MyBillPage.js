@@ -174,7 +174,7 @@ export default function MyBill() {
                       role='tabpanel'
                       aria-labelledby='tabs-home-tab'
                     >
-                      <div className='flex flex-col card bg-base-100 shadow-lg m-5'>
+                      <div className='flex flex-col card bg-white shadow-lg m-5'>
                         <div className='card-body mx-20 '>
                           <h2 className='card-title font-bold text-gray-800 mb-5'>
                             {el.carName}

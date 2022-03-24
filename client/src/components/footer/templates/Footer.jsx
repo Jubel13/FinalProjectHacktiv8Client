@@ -12,13 +12,12 @@ export default function Footer() {
                   href="#"
                   className="text-xl font-bold text-gray-800 hover:text-gray-700"
                 >
-                  Brand
+                  Auto Classic
                 </a>
               </div>
 
               <p className="max-w-md mt-2 text-gray-500">
-                Join 31,000+ other and never miss out on new tips, tutorials,
-                and more.
+                Men use classic car
               </p>
 
               <div className="flex mt-4 -mx-2">
@@ -142,7 +141,7 @@ export default function Footer() {
 
         <div>
           <p className="text-center text-gray-800">
-            © Brand 2020 - All rights reserved
+            © Auto Classic 2022 - All rights reserved
           </p>
         </div>
       </div>

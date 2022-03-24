@@ -27,7 +27,7 @@ export default function Hero() {
             <input
               type='text'
               className='w-9/12 h-full text-xl pl-6 bg-white rounded-l-xl'
-              placeholder='Search by brand/model'
+              placeholder='Search by brand'
               value={brand}
               onChange={changeBrand}
             />

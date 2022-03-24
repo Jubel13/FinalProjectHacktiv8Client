@@ -9,7 +9,7 @@ export function fetchCars() {
       axios
         .get(`${baseUrl}/cars`)
         .then((resp) => {
-          dispatch(fetchCarsAction(resp.data));
+          dispatch(fetchCarsAction(resp.data.rows));
           resolve(resp.data);
         })
         .catch((err) => {

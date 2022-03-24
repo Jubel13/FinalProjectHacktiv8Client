@@ -67,7 +67,7 @@ function Payment({ pay }) {
           </select>
         </td>
         <td>{pay.price}</td>
-        <td>{pay.saved_token_id}</td>
+        <td>{pay.saved_token_id === "CASH" ? "Cash" : "Credit"}</td>
         <td>
           <button onClick={handleShow} className='btn btn-secondary mx-1'>
             Check Payment

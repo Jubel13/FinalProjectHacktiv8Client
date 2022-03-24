@@ -34,6 +34,11 @@ function Sidebar() {
             </Link>
           </li>
           <li className='nav-item'>
+            <Link to='payment' className='nav-link nav-menu'>
+              <i class='fa-solid fa-file-invoice'></i>&nbsp; Payment Status
+            </Link>
+          </li>
+          <li className='nav-item'>
             <Link to='exterior' className='nav-link nav-menu'>
               <i class='fa-solid fa-car-on'></i>&nbsp; Exterior
             </Link>

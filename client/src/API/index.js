@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const ORIGIN = "http://localhost:3000";
+export const ORIGIN = "https://autoclassic-hacktiv8.herokuapp.com";
 
 export const carsApi = axios.create({
   baseURL: `${ORIGIN}/cars`,
@@ -11,8 +11,8 @@ export const dealerApi = axios.create({
 });
 
 export const buyerApi = axios.create({
-  baseURL: `${ORIGIN}/buyers`
-})
+  baseURL: `${ORIGIN}/buyers`,
+});
 
 export const brandApi = axios.create({
   baseURL: `${ORIGIN}/brands`,

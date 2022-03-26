@@ -1,6 +1,6 @@
 import { USER_LOGIN, USER_LOGOUT } from "../actionTypes";
 
-const baseUrl = "http://localhost:3000";
+const baseUrl = "https://autoclassic-hacktiv8.herokuapp.com";
 
 // User
 export function loginAction(payload) {

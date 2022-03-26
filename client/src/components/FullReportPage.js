@@ -108,8 +108,11 @@ export default function FullReportPage() {
                     <i className='fa-solid fa-check text-white'></i>
                   </span>
                 ) : (
-                  <span className='px-2 rounded-full bg-red-600'>
-                    <i className='fa-solid fa-x text-white'></i>
+                  <span
+                    className='px-2 rounded-full bg-red-600'
+                    style={{ color: "white" }}
+                  >
+                    x
                   </span>
                 )}
               </div>
@@ -121,8 +124,11 @@ export default function FullReportPage() {
                     <i className='fa-solid fa-check text-white'></i>
                   </span>
                 ) : (
-                  <span className='px-2 rounded-full bg-red-600'>
-                    <i className='fa-solid fa-x text-white'></i>
+                  <span
+                    className='px-2 rounded-full bg-red-600'
+                    style={{ color: "white" }}
+                  >
+                    x
                   </span>
                 )}
               </div>
@@ -134,8 +140,11 @@ export default function FullReportPage() {
                     <i className='fa-solid fa-check text-white'></i>
                   </span>
                 ) : (
-                  <span className='px-2 rounded-full bg-red-600'>
-                    <i className='fa-solid fa-x text-white'></i>
+                  <span
+                    className='px-2 rounded-full bg-red-600'
+                    style={{ color: "white" }}
+                  >
+                    x
                   </span>
                 )}
               </div>
@@ -147,8 +156,11 @@ export default function FullReportPage() {
                     <i className='fa-solid fa-check text-white'></i>
                   </span>
                 ) : (
-                  <span className='px-2 rounded-full bg-red-600'>
-                    <i className='fa-solid fa-x text-white'></i>
+                  <span
+                    className='px-2 rounded-full bg-red-600'
+                    style={{ color: "white" }}
+                  >
+                    x
                   </span>
                 )}
               </div>
@@ -161,8 +173,11 @@ export default function FullReportPage() {
                     <i className='fa-solid fa-check text-white'></i>
                   </span>
                 ) : (
-                  <span className='px-2 rounded-full bg-red-600'>
-                    <i className='fa-solid fa-x text-white'></i>
+                  <span
+                    className='px-2 rounded-full bg-red-600'
+                    style={{ color: "white" }}
+                  >
+                    x
                   </span>
                 )}
               </div>
@@ -174,8 +189,11 @@ export default function FullReportPage() {
                     <i className='fa-solid fa-check text-white'></i>
                   </span>
                 ) : (
-                  <span className='px-2 rounded-full bg-red-600'>
-                    <i className='fa-solid fa-x text-white'></i>
+                  <span
+                    className='px-2 rounded-full bg-red-600'
+                    style={{ color: "white" }}
+                  >
+                    x
                   </span>
                 )}
               </div>
@@ -187,8 +205,11 @@ export default function FullReportPage() {
                     <i className='fa-solid fa-check text-white'></i>
                   </span>
                 ) : (
-                  <span className='px-2 rounded-full bg-red-600'>
-                    <i className='fa-solid fa-x text-white'></i>
+                  <span
+                    className='px-2 rounded-full bg-red-600'
+                    style={{ color: "white" }}
+                  >
+                    x
                   </span>
                 )}
               </div>
@@ -200,8 +221,11 @@ export default function FullReportPage() {
                     <i className='fa-solid fa-check text-white'></i>
                   </span>
                 ) : (
-                  <span className='px-2 rounded-full bg-red-600'>
-                    <i className='fa-solid fa-x text-white'></i>
+                  <span
+                    className='px-2 rounded-full bg-red-600'
+                    style={{ color: "white" }}
+                  >
+                    x
                   </span>
                 )}
               </div>
@@ -253,8 +277,11 @@ export default function FullReportPage() {
                     <i className='fa-solid fa-check text-white'></i>
                   </span>
                 ) : (
-                  <span className='px-2 rounded-full bg-red-600'>
-                    <i className='fa-solid fa-x text-white'></i>
+                  <span
+                    className='px-2 rounded-full bg-red-600'
+                    style={{ color: "white" }}
+                  >
+                    x
                   </span>
                 )}
               </div>
@@ -266,8 +293,11 @@ export default function FullReportPage() {
                     <i className='fa-solid fa-check text-white'></i>
                   </span>
                 ) : (
-                  <span className='px-2 rounded-full bg-red-600'>
-                    <i className='fa-solid fa-x text-white'></i>
+                  <span
+                    className='px-2 rounded-full bg-red-600'
+                    style={{ color: "white" }}
+                  >
+                    x
                   </span>
                 )}
               </div>
@@ -279,8 +309,11 @@ export default function FullReportPage() {
                     <i className='fa-solid fa-check text-white'></i>
                   </span>
                 ) : (
-                  <span className='px-2 rounded-full bg-red-600'>
-                    <i className='fa-solid fa-x text-white'></i>
+                  <span
+                    className='px-2 rounded-full bg-red-600'
+                    style={{ color: "white" }}
+                  >
+                    x
                   </span>
                 )}
               </div>
@@ -292,8 +325,11 @@ export default function FullReportPage() {
                     <i className='fa-solid fa-check text-white'></i>
                   </span>
                 ) : (
-                  <span className='px-2 rounded-full bg-red-600'>
-                    <i className='fa-solid fa-x text-white'></i>
+                  <span
+                    className='px-2 rounded-full bg-red-600'
+                    style={{ color: "white" }}
+                  >
+                    x
                   </span>
                 )}
               </div>
@@ -306,8 +342,11 @@ export default function FullReportPage() {
                     <i className='fa-solid fa-check text-white'></i>
                   </span>
                 ) : (
-                  <span className='px-2 rounded-full bg-red-600'>
-                    <i className='fa-solid fa-x text-white'></i>
+                  <span
+                    className='px-2 rounded-full bg-red-600'
+                    style={{ color: "white" }}
+                  >
+                    x
                   </span>
                 )}
               </div>
@@ -319,8 +358,11 @@ export default function FullReportPage() {
                     <i className='fa-solid fa-check text-white'></i>
                   </span>
                 ) : (
-                  <span className='px-2 rounded-full bg-red-600'>
-                    <i className='fa-solid fa-x text-white'></i>
+                  <span
+                    className='px-2 rounded-full bg-red-600'
+                    style={{ color: "white" }}
+                  >
+                    x
                   </span>
                 )}
               </div>
@@ -332,8 +374,11 @@ export default function FullReportPage() {
                     <i className='fa-solid fa-check text-white'></i>
                   </span>
                 ) : (
-                  <span className='px-2 rounded-full bg-red-600'>
-                    <i className='fa-solid fa-x text-white'></i>
+                  <span
+                    className='px-2 rounded-full bg-red-600'
+                    style={{ color: "white" }}
+                  >
+                    x
                   </span>
                 )}
               </div>
@@ -345,8 +390,11 @@ export default function FullReportPage() {
                     <i className='fa-solid fa-check text-white'></i>
                   </span>
                 ) : (
-                  <span className='px-2 rounded-full bg-red-600'>
-                    <i className='fa-solid fa-x text-white'></i>
+                  <span
+                    className='px-2 rounded-full bg-red-600'
+                    style={{ color: "white" }}
+                  >
+                    x
                   </span>
                 )}
               </div>
@@ -398,8 +446,11 @@ export default function FullReportPage() {
                     <i className='fa-solid fa-check text-white'></i>
                   </span>
                 ) : (
-                  <span className='px-2 rounded-full bg-red-600'>
-                    <i className='fa-solid fa-x text-white'></i>
+                  <span
+                    className='px-2 rounded-full bg-red-600'
+                    style={{ color: "white" }}
+                  >
+                    x
                   </span>
                 )}
               </div>
@@ -411,8 +462,11 @@ export default function FullReportPage() {
                     <i className='fa-solid fa-check text-white'></i>
                   </span>
                 ) : (
-                  <span className='px-2 rounded-full bg-red-600'>
-                    <i className='fa-solid fa-x text-white'></i>
+                  <span
+                    className='px-2 rounded-full bg-red-600'
+                    style={{ color: "white" }}
+                  >
+                    x
                   </span>
                 )}
               </div>
@@ -424,8 +478,11 @@ export default function FullReportPage() {
                     <i className='fa-solid fa-check text-white'></i>
                   </span>
                 ) : (
-                  <span className='px-2 rounded-full bg-red-600'>
-                    <i className='fa-solid fa-x text-white'></i>
+                  <span
+                    className='px-2 rounded-full bg-red-600'
+                    style={{ color: "white" }}
+                  >
+                    x
                   </span>
                 )}
               </div>
@@ -438,8 +495,11 @@ export default function FullReportPage() {
                     <i className='fa-solid fa-check text-white'></i>
                   </span>
                 ) : (
-                  <span className='px-2 rounded-full bg-red-600'>
-                    <i className='fa-solid fa-x text-white'></i>
+                  <span
+                    className='px-2 rounded-full bg-red-600'
+                    style={{ color: "white" }}
+                  >
+                    x
                   </span>
                 )}
               </div>
@@ -451,8 +511,11 @@ export default function FullReportPage() {
                     <i className='fa-solid fa-check text-white'></i>
                   </span>
                 ) : (
-                  <span className='px-2 rounded-full bg-red-600'>
-                    <i className='fa-solid fa-x text-white'></i>
+                  <span
+                    className='px-2 rounded-full bg-red-600'
+                    style={{ color: "white" }}
+                  >
+                    x
                   </span>
                 )}
               </div>
@@ -464,8 +527,11 @@ export default function FullReportPage() {
                     <i className='fa-solid fa-check text-white'></i>
                   </span>
                 ) : (
-                  <span className='px-2 rounded-full bg-red-600'>
-                    <i className='fa-solid fa-x text-white'></i>
+                  <span
+                    className='px-2 rounded-full bg-red-600'
+                    style={{ color: "white" }}
+                  >
+                    x
                   </span>
                 )}
               </div>
@@ -515,8 +581,11 @@ export default function FullReportPage() {
                     <i className='fa-solid fa-check text-white'></i>
                   </span>
                 ) : (
-                  <span className='px-2 rounded-full bg-red-600'>
-                    <i className='fa-solid fa-x text-white'></i>
+                  <span
+                    className='px-2 rounded-full bg-red-600'
+                    style={{ color: "white" }}
+                  >
+                    x
                   </span>
                 )}
               </div>
@@ -528,8 +597,11 @@ export default function FullReportPage() {
                     <i className='fa-solid fa-check text-white'></i>
                   </span>
                 ) : (
-                  <span className='px-2 rounded-full bg-red-600'>
-                    <i className='fa-solid fa-x text-white'></i>
+                  <span
+                    className='px-2 rounded-full bg-red-600'
+                    style={{ color: "white" }}
+                  >
+                    x
                   </span>
                 )}
               </div>
@@ -541,8 +613,11 @@ export default function FullReportPage() {
                     <i className='fa-solid fa-check text-white'></i>
                   </span>
                 ) : (
-                  <span className='px-2 rounded-full bg-red-600'>
-                    <i className='fa-solid fa-x text-white'></i>
+                  <span
+                    className='px-2 rounded-full bg-red-600'
+                    style={{ color: "white" }}
+                  >
+                    x
                   </span>
                 )}
               </div>
@@ -554,8 +629,11 @@ export default function FullReportPage() {
                     <i className='fa-solid fa-check text-white'></i>
                   </span>
                 ) : (
-                  <span className='px-2 rounded-full bg-red-600'>
-                    <i className='fa-solid fa-x text-white'></i>
+                  <span
+                    className='px-2 rounded-full bg-red-600'
+                    style={{ color: "white" }}
+                  >
+                    x
                   </span>
                 )}
               </div>
@@ -567,8 +645,11 @@ export default function FullReportPage() {
                     <i className='fa-solid fa-check text-white'></i>
                   </span>
                 ) : (
-                  <span className='px-2 rounded-full bg-red-600'>
-                    <i className='fa-solid fa-x text-white'></i>
+                  <span
+                    className='px-2 rounded-full bg-red-600'
+                    style={{ color: "white" }}
+                  >
+                    x
                   </span>
                 )}
               </div>
@@ -581,8 +662,11 @@ export default function FullReportPage() {
                     <i className='fa-solid fa-check text-white'></i>
                   </span>
                 ) : (
-                  <span className='px-2 rounded-full bg-red-600'>
-                    <i className='fa-solid fa-x text-white'></i>
+                  <span
+                    className='px-2 rounded-full bg-red-600'
+                    style={{ color: "white" }}
+                  >
+                    x
                   </span>
                 )}
               </div>
@@ -594,8 +678,11 @@ export default function FullReportPage() {
                     <i className='fa-solid fa-check text-white'></i>
                   </span>
                 ) : (
-                  <span className='px-2 rounded-full bg-red-600'>
-                    <i className='fa-solid fa-x text-white'></i>
+                  <span
+                    className='px-2 rounded-full bg-red-600'
+                    style={{ color: "white" }}
+                  >
+                    x
                   </span>
                 )}
               </div>
@@ -607,8 +694,11 @@ export default function FullReportPage() {
                     <i className='fa-solid fa-check text-white'></i>
                   </span>
                 ) : (
-                  <span className='px-2 rounded-full bg-red-600'>
-                    <i className='fa-solid fa-x text-white'></i>
+                  <span
+                    className='px-2 rounded-full bg-red-600'
+                    style={{ color: "white" }}
+                  >
+                    x
                   </span>
                 )}
               </div>
@@ -620,8 +710,11 @@ export default function FullReportPage() {
                     <i className='fa-solid fa-check text-white'></i>
                   </span>
                 ) : (
-                  <span className='px-2 rounded-full bg-red-600'>
-                    <i className='fa-solid fa-x text-white'></i>
+                  <span
+                    className='px-2 rounded-full bg-red-600'
+                    style={{ color: "white" }}
+                  >
+                    x
                   </span>
                 )}
               </div>
@@ -633,8 +726,11 @@ export default function FullReportPage() {
                     <i className='fa-solid fa-check text-white'></i>
                   </span>
                 ) : (
-                  <span className='px-2 rounded-full bg-red-600'>
-                    <i className='fa-solid fa-x text-white'></i>
+                  <span
+                    className='px-2 rounded-full bg-red-600'
+                    style={{ color: "white" }}
+                  >
+                    x
                   </span>
                 )}
               </div>

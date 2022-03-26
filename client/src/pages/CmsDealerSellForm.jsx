@@ -239,7 +239,7 @@ export default function CmsDealerSellForm() {
                   defaultValue=""
                 >
                   <option value="" selected disabled hidden>
-                    Select fuel type
+                    Select seats number
                   </option>
                   {Array.from(Array(10).keys()).map((el) => {
                     return (

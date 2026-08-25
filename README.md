@@ -29,5 +29,5 @@ Login detail for admin:
 email: james@mail.com
 password: 12345
 ```
-Server used for this app: https://github.com/Jubel13/FinalProjectHacktiv8Server
+Server used for this app: https://final-project-hacktiv8-server.vercel.app/
 

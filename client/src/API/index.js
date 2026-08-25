@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const ORIGIN = "https://autoclassic-hacktiv8.herokuapp.com";
+export const ORIGIN = "https://final-project-hacktiv8-server.vercel.app/";
 
 export const carsApi = axios.create({
   baseURL: `${ORIGIN}/cars`,

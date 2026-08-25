@@ -1,6 +1,6 @@
 import { USER_LOGIN, USER_LOGOUT } from "../actionTypes";
 
-const baseUrl = "https://autoclassic-hacktiv8.herokuapp.com";
+const baseUrl = "https://final-project-hacktiv8-server.vercel.app/";
 
 // User
 export function loginAction(payload) {

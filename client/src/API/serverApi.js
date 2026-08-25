@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://autoclassic-hacktiv8.herokuapp.com",
+  baseURL: "https://final-project-hacktiv8-server.vercel.app/",
 });
 
 export default instance;
